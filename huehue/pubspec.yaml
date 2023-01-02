@@ -12,7 +12,46 @@ dependencies:
   flutter:
     sdk: flutter
 
+
+
+  ####### ####### #######
   cupertino_icons: ^1.0.2
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+  flutter_app_name: ^0.1.1
+  flutter_launcher_icons: ^0.11.0
+  flutter_native_splash: ^2.1.6
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+  quick_actions: ^0.6.0+11
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+  share_plus: ^4.0.10
+  status_bar_control: ^3.2.1
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+  url_launcher: ^6.1.5
+  ####### ####### #######
+
+
+
+  ####### ####### #######
+  widget_mask: ^1.0.0+0
+  ####### ####### #######
+
+
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +63,12 @@ flutter:
 
   uses-material-design: true
 
+  assets:
+    - logo.png
+    - logo_background.png
+    - logo_android.png
+    - logo_ios.png
+
   fonts:
     - family: Ubuntu
       fonts:
@@ -34,3 +79,35 @@ flutter:
     - family: Electric
       fonts:
         - asset: fonts/electric.ttf
+
+
+
+flutter_native_splash:
+  color: "#120A18"
+
+  image: assets/logo.png
+
+  branding: assets/logo.png
+
+  branding_mode: center
+
+  android_12:
+
+  android: true
+  ios: true
+  web: false
+
+
+
+flutter_icons:
+  image_path_android: "assets/logo_android.png"
+  image_path_ios: "assets/logo_ios.png"
+  android: true
+  ios: true
+  adaptive_icon_background: "assets/logo_background.png"
+  adaptive_icon_foreground: "assets/logo.png"
+
+
+
+flutter_app_name:
+  name: "Hue To Hue"
