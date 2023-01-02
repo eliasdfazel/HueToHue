@@ -10,9 +10,11 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
@@ -29,17 +31,14 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
   @override
   void initState() {
     super.initState();
-
-    placeholderEntry = glowingSplashScreen();
-
   }
 
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 1333), () {
+    Future.delayed(const Duration(milliseconds: 1357), () {
 
-      // navigateToWithPop(context, const DashboardInterface());
+      navigateToWithPop(context, const DashboardInterface());
 
     });
 
@@ -65,43 +64,38 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
                 child: SizedBox(
                     height: double.maxFinite,
                     width: double.maxFinite,
-                    child: placeholderEntry
+                    child: InnerShadow(
+                        shadows: [
+                          Shadow(
+                              color: ColorsResources.primaryColorLighter.withOpacity(0.37),
+                              blurRadius: 37,
+                              offset: const Offset(0, 0)
+                          )
+                        ],
+                        child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(37),
+                                border: Border.all(
+                                    color: ColorsResources.primaryColorLighter,
+                                    width: 1,
+                                    strokeAlign: StrokeAlign.inside
+                                ),
+                                color: ColorsResources.primaryColorDarkest
+                            ),
+                            child: const Center(
+                                child: SizedBox(
+                                    height: 303,
+                                    width: 303,
+                                    child: Image(
+                                      image: AssetImage("logo.png"),
+                                      fit: BoxFit.contain,
+                                    )
+                                )
+                            )
+                        )
+                    )
                 )
             )
-        )
-    );
-  }
-
-  Widget glowingSplashScreen() {
-
-    return InnerShadow(
-        shadows: [
-          Shadow(
-              color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-              blurRadius: 37,
-              offset: const Offset(0, 0)
-          )
-        ],
-        child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(37),
-            border: Border.all(
-              color: ColorsResources.primaryColorLighter,
-              width: 1,
-              strokeAlign: StrokeAlign.inside
-            ),
-            color: ColorsResources.primaryColorDarkest
-          ),
-          child: const Center(
-            child: SizedBox(
-                height: 333,
-                width: 333,
-                child: Image(
-                  image: AssetImage("logo.png"),
-                  fit: BoxFit.contain,
-                )
-            )
-          )
         )
     );
   }
