@@ -87,10 +87,6 @@ flutter_native_splash:
 
   image: assets/logo.png
 
-  branding: assets/logo.png
-
-  branding_mode: center
-
   android_12:
 
   android: true
