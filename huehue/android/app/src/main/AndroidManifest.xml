@@ -1,3 +1,13 @@
+<!--
+  ~ Copyright © 2023 By Geeks Empire.
+  ~
+  ~ Created by Elias Fazel
+  ~ Last modified 1/2/23, 4:10 AM
+  ~
+  ~ Licensed Under MIT License.
+  ~ https://opensource.org/licenses/MIT
+  -->
+
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="co.geeksempire.huehue">
    <application

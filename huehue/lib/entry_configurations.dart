@@ -1,3 +1,13 @@
+/*
+ * Copyright © 2023 By Geeks Empire.
+ *
+ * Created by Elias Fazel
+ * Last modified 1/2/23, 4:19 AM
+ *
+ * Licensed Under MIT License.
+ * https://opensource.org/licenses/MIT
+ */
+
 import 'package:flutter/material.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
