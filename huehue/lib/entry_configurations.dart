@@ -48,7 +48,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
     Future.delayed(const Duration(milliseconds: 1357), () {
 
-     navigateToWithPop(context, const DashboardInterface());
+      navigateToWithPop(context, const DashboardInterface());
 
     });
 
