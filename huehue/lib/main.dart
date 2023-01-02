@@ -10,6 +10,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/entry_configurations.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -17,6 +18,8 @@ import 'package:huehue/utils/animation/fade_transition.dart';
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

@@ -9,7 +9,9 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -30,6 +32,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
   @override
   void initState() {
 
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
@@ -37,6 +41,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
   @override
   Widget build(BuildContext context) {
+
+    FlutterNativeSplash.remove();
 
     Future.delayed(const Duration(milliseconds: 1357), () {
 

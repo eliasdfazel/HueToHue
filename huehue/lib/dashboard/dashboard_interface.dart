@@ -9,6 +9,7 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -26,6 +27,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
 
   @override
   void initState() {
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
