@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/ui/system_bars.dart';
 
 class DashboardInterface extends StatefulWidget {
 
@@ -25,6 +26,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
 
   @override
   void initState() {
+
+    changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
+
     super.initState();
   }
 
