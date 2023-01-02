@@ -10,7 +10,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -40,13 +39,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
     Future.delayed(const Duration(milliseconds: 1333), () {
 
-      FlutterNativeSplash.remove();
-
-      Future.delayed(const Duration(milliseconds: 999), () {
-
-        // navigateToWithPop(context, const DashboardInterface());
-
-      });
+      // navigateToWithPop(context, const DashboardInterface());
 
     });
 
@@ -95,7 +88,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
             border: Border.all(
               color: ColorsResources.primaryColorLighter,
               width: 1,
-              strokeAlign: StrokeAlign.center
+              strokeAlign: StrokeAlign.inside
             ),
             color: ColorsResources.primaryColorDarkest
           ),
@@ -105,6 +98,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
                 width: 333,
                 child: Image(
                   image: AssetImage("logo.png"),
+                  fit: BoxFit.contain,
                 )
             )
           )
