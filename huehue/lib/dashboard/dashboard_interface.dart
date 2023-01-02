@@ -15,6 +15,7 @@ import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:widget_mask/widget_mask.dart';
 
 class DashboardInterface extends StatefulWidget {
 
@@ -24,7 +25,7 @@ class DashboardInterface extends StatefulWidget {
   State<DashboardInterface> createState() => _DashboardInterfaceState();
 }
 
-class _DashboardInterfaceState extends State<DashboardInterface> with SingleTickerProviderStateMixin  {
+class _DashboardInterfaceState extends State<DashboardInterface> {
 
   @override
   void initState() {
@@ -66,72 +67,19 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
                         borderRadius: BorderRadius.circular(37),
                         // color: ColorsResources.primaryColorDarkest,
                       ),
-                      child: InnerShadow(
-                          shadows: [
-                            Shadow(
-                                color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                blurRadius: 37,
-                                offset: const Offset(0, 0)
-                            )
-                          ],
-                          child: Stack(
-                            children: [
+                      child: Stack(
+                        children: [
 
-                              /* Start - Glow */
-                              InnerShadow(
-                                  shadows: [
-                                    Shadow(
-                                        color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                        blurRadius: 37,
-                                        offset: const Offset(0, 0)
-                                    )
-                                  ],
-                                  child: Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(37),
-                                          border: Border.all(
-                                              color: ColorsResources.primaryColorLighter,
-                                              width: 1,
-                                              strokeAlign: StrokeAlign.inside
-                                          ),
-                                          color: ColorsResources.primaryColorDarkest
-                                      ),
-                                      child: const Center(
-                                          child: SizedBox(
-                                              height: 303,
-                                              width: 303,
-                                              child: Image(
-                                                image: AssetImage("logo.png"),
-                                                fit: BoxFit.contain,
-                                              )
-                                          )
-                                      )
-                                  )
-                              ),
-                              /* End - Glow */
-
-                              /* Start - Content */
-                              Center(
-                                child: SizedBox(
-                                    height: 133,
-                                    width: 733,
-                                    child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(37),
-                                            border: Border.all(
-                                                color: ColorsResources.primaryColorLighter,
-                                                width: 1,
-                                                strokeAlign: StrokeAlign.inside
-                                            ),
-                                            color: ColorsResources.yellow
-                                        )
-                                    )
+                          /* Start - Glow */
+                          InnerShadow(
+                              shadows: [
+                                Shadow(
+                                    color: ColorsResources.primaryColorLighter.withOpacity(0.37),
+                                    blurRadius: 37,
+                                    offset: const Offset(0, 0)
                                 )
-                              ),
-                              /* End - Content */
-
-                              /* Start - Stroke */
-                              Container(
+                              ],
+                              child: Container(
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(37),
                                       border: Border.all(
@@ -139,13 +87,69 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
                                           width: 1,
                                           strokeAlign: StrokeAlign.inside
                                       ),
-                                      color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                                      color: ColorsResources.primaryColorDarkest
                                   )
                               )
-                              /* End - Stroke */
+                          ),
+                          /* End - Glow */
 
-                            ],
+                          /* Start - Content */
+
+                          /* Start - Branding */
+                          Positioned(
+                              top: 37,
+                              left: 37,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: ColorsResources.black.withOpacity(0.73),
+                                            blurRadius: 19
+                                        )
+                                      ]
+                                  ),
+                                  child: const WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask: ColoredBox(
+                                          color: ColorsResources.primaryColorDarkest
+                                      ),
+                                      child: Image(
+                                        image: AssetImage("squircle.png"),
+                                        height: 73,
+                                        width: 73,
+                                      )
+                                  )
+                              )
+                          ),
+                          const Positioned(
+                            top: 37,
+                            left: 37,
+                            child: Image(
+                              image: AssetImage("logo.png"),
+                              height: 73,
+                              width: 73,
+                            )
+                          ),
+                          /* End - Branding */
+
+                          /* End - Content */
+
+                          /* Start - Stroke */
+                          Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(37),
+                                  border: Border.all(
+                                      color: ColorsResources.primaryColorLighter,
+                                      width: 1,
+                                      strokeAlign: StrokeAlign.inside
+                                  ),
+                                  color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                              )
                           )
+                          /* End - Stroke */
+
+                        ],
                       )
                     )
                 )
