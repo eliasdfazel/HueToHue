@@ -11,8 +11,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
+import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
@@ -37,9 +40,15 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 159), () {
+    Future.delayed(const Duration(milliseconds: 333), () {
 
       FlutterNativeSplash.remove();
+
+      Future.delayed(const Duration(milliseconds: 999), () {
+
+        navigateToWithPop(context, const DashboardInterface());
+
+      });
 
     });
 
@@ -52,8 +61,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
           backgroundColor: ColorsResources.black,
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: ZoomPageTransitionsBuilder(),
-            TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
+            TargetPlatform.android: FadeTransitionBuilder(),
+            TargetPlatform.iOS: FadeTransitionBuilder(),
           }),
         ),
         home: Scaffold(

@@ -11,6 +11,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/entry_configurations.dart';
+import 'package:huehue/resources/colors_resources.dart';
+import 'package:huehue/utils/animation/fade_transition.dart';
 
 void main() async {
 
@@ -18,9 +20,18 @@ void main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: EntryConfigurations()
+      theme: ThemeData(
+        fontFamily: 'Ubuntu',
+        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+        backgroundColor: ColorsResources.black,
+        pageTransitionsTheme: const PageTransitionsTheme(builders: {
+          TargetPlatform.android: FadeTransitionBuilder(),
+          TargetPlatform.iOS: FadeTransitionBuilder(),
+        }),
+      ),
+      home: const EntryConfigurations()
   ));
 
 }
