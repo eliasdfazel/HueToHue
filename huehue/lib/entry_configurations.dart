@@ -12,9 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
 
 class EntryConfigurations extends StatefulWidget {
@@ -46,7 +48,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
     Future.delayed(const Duration(milliseconds: 1357), () {
 
-    //  navigateToWithPop(context, const DashboardInterface());
+     navigateToWithPop(context, const DashboardInterface());
 
     });
 
