@@ -122,13 +122,18 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   )
                               )
                           ),
-                          const Positioned(
+                          Positioned(
                             top: 37,
                             left: 37,
-                            child: Image(
-                              image: AssetImage("logo.png"),
-                              height: 73,
-                              width: 73,
+                            child: InkWell(
+                              onTap: () {
+
+                              },
+                              child: Image(
+                                image: AssetImage("logo.png"),
+                                height: 73,
+                                width: 73,
+                              )
                             )
                           ),
                           /* End - Branding */
@@ -160,21 +165,26 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   )
                               )
                           ),
-                          const Positioned(
+                          Positioned(
                               bottom: 37,
                               left: 37,
                               child: SizedBox(
                                 height: 73,
                                 width: 73,
-                                child: Padding(
-                                  padding: EdgeInsets.only(top: 5),
-                                  child: Center(
-                                      child: Image(
-                                        image: AssetImage("settings.png"),
-                                        height: 53,
-                                        width: 53,
-                                      )
-                                  ),
+                                child: InkWell(
+                                  onTap: () {
+
+                                  },
+                                  child: Padding(
+                                    padding: EdgeInsets.only(top: 5),
+                                    child: Center(
+                                        child: Image(
+                                          image: AssetImage("settings.png"),
+                                          height: 53,
+                                          width: 53,
+                                        )
+                                    ),
+                                  )
                                 )
                               )
                           ),
