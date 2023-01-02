@@ -11,11 +11,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
-import 'package:huehue/utils/navigations/navigation_commands.dart';
 
 class EntryConfigurations extends StatefulWidget {
 
@@ -27,26 +25,26 @@ class EntryConfigurations extends StatefulWidget {
 
 class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTickerProviderStateMixin  {
 
-  Widget placeholder = Container();
+  Widget placeholderEntry = Container();
 
   @override
   void initState() {
     super.initState();
 
-    placeholder = glowingSplashScreen();
+    placeholderEntry = glowingSplashScreen();
 
   }
 
   @override
   Widget build(BuildContext context) {
 
-    Future.delayed(const Duration(milliseconds: 333), () {
+    Future.delayed(const Duration(milliseconds: 1333), () {
 
       FlutterNativeSplash.remove();
 
       Future.delayed(const Duration(milliseconds: 999), () {
 
-        navigateToWithPop(context, const DashboardInterface());
+        // navigateToWithPop(context, const DashboardInterface());
 
       });
 
@@ -59,7 +57,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.black,
+          backgroundColor: ColorsResources.primaryColorDarkest,
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: FadeTransitionBuilder(),
             TargetPlatform.iOS: FadeTransitionBuilder(),
@@ -68,13 +66,13 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
         home: Scaffold(
             resizeToAvoidBottomInset: true,
             extendBody: true,
-            backgroundColor: ColorsResources.black,
+            backgroundColor: ColorsResources.primaryColorDarkest,
             body: ClipRRect(
                 borderRadius: BorderRadius.circular(37),
                 child: SizedBox(
                     height: double.maxFinite,
                     width: double.maxFinite,
-                    child: placeholder
+                    child: placeholderEntry
                 )
             )
         )
@@ -99,7 +97,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
               width: 1,
               strokeAlign: StrokeAlign.center
             ),
-            color: ColorsResources.primaryColorDarkest,
+            color: ColorsResources.primaryColorDarkest
           ),
           child: const Center(
             child: SizedBox(
@@ -108,8 +106,8 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
                 child: Image(
                   image: AssetImage("logo.png"),
                 )
-            ),
-          ),
+            )
+          )
         )
     );
   }

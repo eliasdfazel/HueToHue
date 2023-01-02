@@ -38,7 +38,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.black,
+          backgroundColor: ColorsResources.primaryColorDarkest,
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: FadeTransitionBuilder(),
             TargetPlatform.iOS: FadeTransitionBuilder(),
@@ -47,7 +47,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> with SingleTick
         home: Scaffold(
             resizeToAvoidBottomInset: true,
             extendBody: true,
-            backgroundColor: ColorsResources.black,
+            backgroundColor: ColorsResources.primaryColorDarkest,
             body: ClipRRect(
                 borderRadius: BorderRadius.circular(37),
                 child: SizedBox(
