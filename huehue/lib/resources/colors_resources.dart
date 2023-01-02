@@ -12,11 +12,11 @@ import 'package:flutter/material.dart';
 
 class ColorsResources {
 
-  static const primaryColor = Color.fromARGB(255, 255, 185, 0);
-  static const primaryColorLighter = Color.fromARGB(255, 255, 224, 144);
-  static const primaryColorLightest = Color.fromARGB(255, 255, 237, 219);
-  static const primaryColorDarker = Color.fromARGB(255, 80, 72, 58);
-  static const primaryColorDarkest = Color.fromARGB(255, 40, 35, 30);
+  static const primaryColor = Color.fromARGB(255, 75, 0, 132);
+  static const primaryColorLighter = Color.fromARGB(255, 142, 0, 255);
+  static const primaryColorLightest = Color.fromARGB(255, 199, 128, 255);
+  static const primaryColorDarker = Color.fromARGB(255, 44, 0, 77);
+  static const primaryColorDarkest = Color.fromARGB(255, 18, 10, 24);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);
