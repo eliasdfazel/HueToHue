@@ -73,9 +73,12 @@ flutter:
   uses-material-design: true
 
   assets:
+    - back.png
     - blob_bottom.png
     - blob_play.png
     - blob_top.png
+    - blob_preferences_bottom.png
+    - blob_preferences_top.png
 
     - level_indicator.png
     - link.png
