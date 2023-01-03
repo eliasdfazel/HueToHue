@@ -2,12 +2,13 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 5:17 AM
+ * Last modified 1/3/23, 5:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
@@ -73,6 +74,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                       child: Stack(
                         children: [
 
+                          /* Start - Decoration */
                           /* Start - Glow */
                           InnerShadow(
                               shadows: [
@@ -95,6 +97,45 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                               )
                           ),
                           /* End - Glow */
+
+                          /* Start - Blurry Background */
+                          const Blur(
+                            blur: 13.0,
+                            blurColor: ColorsResources.primaryColorDarkest,
+                            colorOpacity: 0.13,
+                            child: SizedBox(
+                              height: double.maxFinite,
+                              width: double.maxFinite,
+                            ),
+                          ),
+                          /* End - Blurry Background */
+                          /* End - Decoration */
+
+                          /* Start - Stroke */
+                          Container(
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(37),
+                                border: Border.all(
+                                    color: ColorsResources.primaryColorLighter,
+                                    width: 1,
+                                    strokeAlign: StrokeAlign.inside
+                                ),
+                                color: ColorsResources.primaryColorDarkest
+                            ),
+                            child: const Center(
+                                child: SizedBox(
+                                    height: 399,
+                                    width: 399,
+                                    child: Image(
+                                        image: AssetImage("blob_play.png")
+                                    )
+                                )
+                            ),
+                          ),
+                          /* End - Stroke */
+                          /* End - Decoration */
 
                           /* Start - Content */
                           /* Start - Branding */
