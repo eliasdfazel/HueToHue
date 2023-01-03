@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 5:11 AM
+ * Last modified 1/3/23, 5:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,9 +11,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -276,7 +278,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () {
 
-
+                                          navigateTo(context, const PreferencesInterface());
 
                                         },
                                         child: const Padding(
