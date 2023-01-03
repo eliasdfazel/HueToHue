@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 6:31 AM
+ * Last modified 1/3/23, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -336,16 +336,15 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                               )
                           ),
                           Positioned(
-                            top: 123,
-                            right: 29,
+                            top: 119,
+                            right: 37,
                             child: SizedBox(
-                              height: 23,
-                              width: 91,
+                              width: 73,
                               child: Container(
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
-                                      color: ColorsResources.black.withOpacity(0.37),
+                                      color: ColorsResources.black.withOpacity(0.51),
                                       blurRadius: 13,
                                       offset: const Offset(0, 3)
                                     )
