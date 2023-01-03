@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 5:33 AM
+ * Last modified 1/3/23, 5:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/gameplay/hue_to_hue.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -111,7 +112,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           /* End - Blurry Background */
                           /* End - Decoration */
 
-                          /* Start - Stroke */
+                          /* Start - Stroke / Play */
                           Container(
                             height: double.maxFinite,
                             width: double.maxFinite,
@@ -124,17 +125,45 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                 ),
                                 color: ColorsResources.primaryColorDarkest
                             ),
-                            child: const Center(
+                            child: Center(
                                 child: SizedBox(
                                     height: 399,
                                     width: 399,
-                                    child: Image(
-                                        image: AssetImage("blob_play.png")
+                                    child: WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask: Material(
+                                          shadowColor: Colors.transparent,
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                              splashColor: ColorsResources.primaryColor,
+                                              splashFactory: InkRipple.splashFactory,
+                                              onTap: () {
+
+                                                Future.delayed(const Duration(milliseconds: 333), () {
+
+                                                  navigateTo(context, const HueToHue());
+
+                                                });
+
+                                              },
+                                              child: const Image(
+                                                image: AssetImage("blob_play.png"),
+                                                height: 399,
+                                                width: 399,
+                                              )
+                                          )
+                                      ),
+                                      child: const Image(
+                                        image: AssetImage("blob_play.png"),
+                                        height: 399,
+                                        width: 399,
+                                      )
                                     )
                                 )
-                            ),
+                            )
                           ),
-                          /* End - Stroke */
+                          /* End - Stroke / Play */
                           /* End - Decoration */
 
                           /* Start - Content */
@@ -171,7 +200,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                               child: WidgetMask(
                                 blendMode: BlendMode.srcIn,
                                 childSaveLayer: true,
-                                  mask: Material(
+                                mask: Material(
                                       shadowColor: Colors.transparent,
                                       color: Colors.transparent,
                                       child: InkWell(
