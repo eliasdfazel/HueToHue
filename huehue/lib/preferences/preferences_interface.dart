@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 8:19 AM
+ * Last modified 1/3/23, 8:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,8 +10,10 @@
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/preferences/util/ui/SwitchPreferences.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -220,8 +222,20 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                             /* End - Back */
 
                             /* Start - Preferences */
-                            ListView(
-                              padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(37),
+                              child: ListView(
+                                padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                children: [
+
+                                  /* Start - Continuously Switch */
+                                  SwitchPreferences(titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously())
+                                  /* End - Continuously Switch */
+
+                                ],
+                              )
                             ),
                             /* End - Preferences */
 

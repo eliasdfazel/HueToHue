@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/2/23, 4:19 AM
+ * Last modified 1/3/23, 8:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,6 +17,9 @@ class ColorsResources {
   static const primaryColorLightest = Color.fromARGB(255, 199, 128, 255);
   static const primaryColorDarker = Color.fromARGB(255, 44, 0, 77);
   static const primaryColorDarkest = Color.fromARGB(255, 18, 10, 24);
+
+  static const switchOn = Color.fromARGB(255, 0, 165, 255);
+  static const switchOff = Color.fromARGB(255, 255, 0, 144);
 
   static const Color blue = Color.fromARGB(255, 0, 161, 255);
   static const Color lightBlue = Color.fromARGB(255, 128, 208, 255);
