@@ -2,12 +2,13 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 6:55 AM
+ * Last modified 1/3/23, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
@@ -71,12 +72,13 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                         child: Stack(
                           children: [
 
+                            /* Start - Decoration */
                             /* Start - Glow */
                             InnerShadow(
                                 shadows: [
                                   Shadow(
                                       color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                      blurRadius: 37,
+                                      blurRadius: 1,
                                       offset: const Offset(0, 0)
                                   )
                                 ],
@@ -84,7 +86,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(37),
                                         border: Border.all(
-                                            color: ColorsResources.primaryColorLighter,
+                                            color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                             width: 1.3,
                                             strokeAlign: StrokeAlign.inside
                                         ),
@@ -93,6 +95,65 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                 )
                             ),
                             /* End - Glow */
+
+                            /* Start - Blobs */
+                            /* Start - Blob Bottom */
+                            const Positioned(
+                              bottom: 0,
+                              left: 0,
+                              child: SizedBox(
+                                  height: 253,
+                                  width: 253,
+                                  child: Image(
+                                      image: AssetImage("blob_preferences_bottom.png")
+                                  )
+                              ),
+                            ),
+                            /* End - Blob Bottom */
+
+                            /* Start - Blob Top */
+                            const Positioned(
+                              top: 0,
+                              right: 0,
+                              child: SizedBox(
+                                  height: 253,
+                                  width: 253,
+                                  child: Image(
+                                      image: AssetImage("blob_preferences_top.png")
+                                  )
+                              ),
+                            ),
+                            /* End - Blob Top */
+                            /* End - Blobs */
+
+                            /* Start - Blurry Background */
+                            const Blur(
+                              blur: 37.0,
+                              blurColor: ColorsResources.primaryColorDarkest,
+                              colorOpacity: 0.19,
+                              child: SizedBox(
+                                height: double.maxFinite,
+                                width: double.maxFinite,
+                              ),
+                            ),
+                            /* End - Blurry Background */
+
+                            /* Start - Stroke */
+                            Container(
+                                height: double.maxFinite,
+                                width: double.maxFinite,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(37),
+                                    border: Border.all(
+                                        color: ColorsResources.primaryColorLighter,
+                                        width: 1.3,
+                                        strokeAlign: StrokeAlign.inside
+                                    ),
+                                    color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                                )
+                            ),
+                            /* End - Stroke */
+                            /* End - Decoration */
 
                             /* Start - Content */
                             /* Start - Back */
@@ -139,12 +200,12 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                             navigatePop(context);
 
                                           },
-                                          child: Padding(
-                                            padding: EdgeInsets.only(top: 7),
-                                            child: const Image(
+                                          child: const Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
+                                            child: Image(
                                               image: AssetImage("back.png"),
-                                              height: 73,
-                                              width: 73,
+                                              height: 37,
+                                              width: 37,
                                             )
                                           )
                                       )
@@ -157,6 +218,12 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                 )
                             ),
                             /* End - Back */
+
+                            /* Start - Preferences */
+                            ListView(
+                              padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
+                            ),
+                            /* End - Preferences */
 
                             /* Start - Branding */
                             Positioned(
@@ -217,10 +284,6 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                 )
                             ),
                             /* End - Branding */
-
-                            ListView(
-                              padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
-                            )
                             /* End - Content */
 
                           ],
