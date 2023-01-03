@@ -10,9 +10,11 @@
 
 import 'dart:math';
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/numbers.dart';
 
 class HueToHue extends StatefulWidget {
@@ -42,10 +44,18 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   List<Color> gradientColors = [];
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePop(context);
+
+    return true;
+  }
+
   @override
   void initState() {
     super.initState();
 
+    BackButtonInterceptor.add(aInterceptor);
 
     for (int i = 0; i < gradientLayersCount; i++) {
       gradientColors.add(ColorsResources.applicationGeeksEmpire);

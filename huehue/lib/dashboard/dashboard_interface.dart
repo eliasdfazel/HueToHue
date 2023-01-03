@@ -94,7 +94,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           /* End - Glow */
 
                           /* Start - Content */
-
                           /* Start - Branding */
                           Positioned(
                               top: 37,
@@ -123,22 +122,40 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                               )
                           ),
                           Positioned(
-                            top: 37,
-                            left: 37,
-                            child: InkWell(
-                              onTap: () {
+                              top: 37,
+                              left: 37,
+                              child: WidgetMask(
+                                blendMode: BlendMode.srcIn,
+                                childSaveLayer: true,
+                                  mask: Material(
+                                      shadowColor: Colors.transparent,
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                          splashColor: ColorsResources.primaryColor,
+                                          splashFactory: InkRipple.splashFactory,
+                                          onTap: () {
 
-                              },
-                              child: Image(
-                                image: AssetImage("logo.png"),
-                                height: 73,
-                                width: 73,
+
+
+                                          },
+                                          child: const Image(
+                                            image: AssetImage("logo.png"),
+                                            height: 73,
+                                            width: 73,
+                                          )
+                                      )
+                                  ),
+                                child: const Image(
+                                  image: AssetImage("squircle.png"),
+                                  height: 73,
+                                  width: 73,
+                                ),
+
                               )
-                            )
                           ),
                           /* End - Branding */
 
-                          /* Start - Settings */
+                          /* Start - Preferences */
                           Positioned(
                               bottom: 37,
                               left: 37,
@@ -151,7 +168,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         )
                                       ]
                                   ),
-                                  child: const WidgetMask(
+                                  child: WidgetMask(
                                       blendMode: BlendMode.srcATop,
                                       childSaveLayer: true,
                                       mask: ColoredBox(
@@ -168,43 +185,38 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           Positioned(
                               bottom: 37,
                               left: 37,
-                              child: SizedBox(
-                                height: 73,
-                                width: 73,
-                                child: InkWell(
-                                  onTap: () {
+                              child: WidgetMask(
+                                blendMode: BlendMode.srcIn,
+                                childSaveLayer: true,
+                                mask: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.primaryColor,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
 
-                                  },
-                                  child: Padding(
-                                    padding: EdgeInsets.only(top: 5),
-                                    child: Center(
-                                        child: Image(
-                                          image: AssetImage("settings.png"),
-                                          height: 53,
-                                          width: 53,
+
+
+                                        },
+                                        child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 13, 0, 7),
+                                          child: Image(
+                                              image: AssetImage("settings.png")
+                                          )
                                         )
-                                    ),
-                                  )
-                                )
+                                    )
+                                ),
+                                child: const Image(
+                                  image: AssetImage("squircle.png"),
+                                  height: 73,
+                                  width: 73,
+                                ),
+
                               )
                           ),
-                          /* End - Settings */
-
+                          /* End - Preferences */
                           /* End - Content */
-
-                          /* Start - Stroke */
-                          Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(37),
-                                  border: Border.all(
-                                      color: ColorsResources.primaryColorLighter,
-                                      width: 1,
-                                      strokeAlign: StrokeAlign.inside
-                                  ),
-                                  color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
-                              )
-                          )
-                          /* End - Stroke */
 
                         ],
                       )
