@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 9:09 AM
+ * Last modified 1/3/23, 9:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/resources/colors_resources.dart';
+import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/ui/gradient_text/constants.dart';
 import 'package:huehue/utils/ui/gradient_text/gradient.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
@@ -96,37 +97,58 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(7),
-                          border: Border.all(
-                              width: 1,
-                              color: ColorsResources.switchOff,
-                              strokeAlign: StrokeAlign.inside
-                          ),
-                          color: ColorsResources.primaryColorDarkest,
-                          boxShadow: [
-                            BoxShadow(
-                              color: switchStatusColor,
-                              blurRadius: 7
-                            )
-                          ]
-                        ),
-                        child: SizedBox(
-                          width: 73,
-                          height: 31,
-                          child: Center(
-                            child: Text(
-                              switchStatusText,
-                              style: const TextStyle(
-                                color: ColorsResources.premiumLight,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: "Nasa"
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(7),
+                      child: Material(
+                        shadowColor: Colors.transparent,
+                        color: Colors.transparent,
+                        child: InkWell(
+                          splashColor: ColorsResources.primaryColor,
+                          splashFactory: InkRipple.splashFactory,
+                          onTap: () {
+
+                            setState(() {
+
+                              switchStatusText = StringsResources.switchOn();
+                              switchStatusColor = ColorsResources.switchOn;
+
+                            });
+
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(7),
+                                  border: Border.all(
+                                      width: 1,
+                                      color: switchStatusColor,
+                                      strokeAlign: StrokeAlign.inside
+                                  ),
+                                  color: ColorsResources.primaryColorDarkest,
+                                  boxShadow: [
+                                    BoxShadow(
+                                        color: switchStatusColor,
+                                        blurRadius: 7
+                                    )
+                                  ]
                               ),
-                            ),
-                          ),
+                              child: SizedBox(
+                                  width: 73,
+                                  height: 31,
+                                  child: Center(
+                                      child: Text(
+                                          switchStatusText,
+                                          style: const TextStyle(
+                                              color: ColorsResources.premiumLight,
+                                              fontSize: 15,
+                                              letterSpacing: 1.9,
+                                              fontFamily: "Nasa"
+                                          )
+                                      )
+                                  )
+                              )
+                          )
                         )
+                      )
                     )
                   )
               )
