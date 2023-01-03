@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 5:41 AM
+ * Last modified 1/3/23, 6:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -112,7 +112,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           /* End - Blurry Background */
                           /* End - Decoration */
 
-                          /* Start - Stroke / Play */
+                          /* Start - Stroke | Play */
                           Container(
                             height: double.maxFinite,
                             width: double.maxFinite,
@@ -163,7 +163,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                 )
                             )
                           ),
-                          /* End - Stroke / Play */
+                          /* End - Stroke | Play */
                           /* End - Decoration */
 
                           /* Start - Content */
@@ -304,6 +304,29 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   width: 73,
                                 ),
                               )
+                          ),
+                          Positioned(
+                            top: 123,
+                            right: 29,
+                            child: SizedBox(
+                              height: 23,
+                              width: 91,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: ColorsResources.black.withOpacity(0.37),
+                                      blurRadius: 13,
+                                      offset: const Offset(0, 3)
+                                    )
+                                  ]
+                                ),
+                                child: const Image(
+                                  image: AssetImage("level_indicator.png"),
+                                  fit: BoxFit.contain,
+                                )
+                              )
+                            )
                           ),
                           /* End - Level */
 

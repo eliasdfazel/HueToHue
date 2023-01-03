@@ -75,6 +75,7 @@ flutter:
   assets:
     - blob_play.png
 
+    - level_indicator.png
     - link.png
     - logo.png
     - logo_background.png
