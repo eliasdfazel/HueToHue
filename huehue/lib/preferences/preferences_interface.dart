@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 5:17 AM
+ * Last modified 1/3/23, 6:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -83,7 +83,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                         borderRadius: BorderRadius.circular(37),
                                         border: Border.all(
                                             color: ColorsResources.primaryColorLighter,
-                                            width: 1,
+                                            width: 1.3,
                                             strokeAlign: StrokeAlign.inside
                                         ),
                                         color: ColorsResources.primaryColorDarkest

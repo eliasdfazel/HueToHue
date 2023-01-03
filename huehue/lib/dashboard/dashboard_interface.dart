@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 6:00 AM
+ * Last modified 1/3/23, 6:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,7 +81,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                               shadows: [
                                 Shadow(
                                     color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                    blurRadius: 37,
+                                    blurRadius: 1,
                                     offset: const Offset(0, 0)
                                 )
                               ],
@@ -89,8 +89,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(37),
                                       border: Border.all(
-                                          color: ColorsResources.primaryColorLighter,
-                                          width: 1,
+                                          color: ColorsResources.primaryColorLighter.withOpacity(0.37),
+                                          width: 1.3,
                                           strokeAlign: StrokeAlign.inside
                                       ),
                                       color: ColorsResources.primaryColorDarkest
@@ -99,11 +99,41 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                           ),
                           /* End - Glow */
 
+                          /* Start - Blobs */
+                          /* Start - Blob Bottom */
+                          const Positioned(
+                            bottom: 0,
+                            left: 0,
+                            child: SizedBox(
+                                height: 253,
+                                width: 253,
+                                child: Image(
+                                    image: AssetImage("blob_bottom.png")
+                                )
+                            ),
+                          ),
+                          /* End - Blob Bottom */
+
+                          /* Start - Blob Top */
+                          const Positioned(
+                            top: 0,
+                            right: 0,
+                            child: SizedBox(
+                                height: 253,
+                                width: 253,
+                                child: Image(
+                                    image: AssetImage("blob_top.png")
+                                )
+                            ),
+                          ),
+                          /* End - Blob Top */
+                          /* End - Blobs */
+
                           /* Start - Blurry Background */
                           const Blur(
-                            blur: 13.0,
+                            blur: 37.0,
                             blurColor: ColorsResources.primaryColorDarkest,
-                            colorOpacity: 0.13,
+                            colorOpacity: 0.19,
                             child: SizedBox(
                               height: double.maxFinite,
                               width: double.maxFinite,
@@ -120,10 +150,10 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                 borderRadius: BorderRadius.circular(37),
                                 border: Border.all(
                                     color: ColorsResources.primaryColorLighter,
-                                    width: 1,
+                                    width: 1.3,
                                     strokeAlign: StrokeAlign.inside
                                 ),
-                                color: ColorsResources.primaryColorDarkest
+                                color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                             ),
                             child: Center(
                                 child: SizedBox(
