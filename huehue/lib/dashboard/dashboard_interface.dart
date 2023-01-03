@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/2/23, 4:19 AM
+ * Last modified 1/3/23, 5:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class DashboardInterface extends StatefulWidget {
@@ -150,10 +151,89 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   height: 73,
                                   width: 73,
                                 ),
-
                               )
                           ),
                           /* End - Branding */
+
+                          /* Start - Level */
+                          Positioned(
+                              top: 37,
+                              right: 37,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: ColorsResources.black.withOpacity(0.73),
+                                            blurRadius: 19
+                                        )
+                                      ]
+                                  ),
+                                  child: WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask: ColoredBox(
+                                          color: ColorsResources.primaryColorDarkest
+                                      ),
+                                      child: Image(
+                                        image: AssetImage("squircle.png"),
+                                        height: 73,
+                                        width: 73,
+                                      )
+                                  )
+                              )
+                          ),
+                          Positioned(
+                              top: 37,
+                              right: 37,
+                              child: WidgetMask(
+                                blendMode: BlendMode.srcIn,
+                                childSaveLayer: true,
+                                mask: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.primaryColor,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
+
+
+
+                                        },
+                                        child: SizedBox(
+                                          height: 73,
+                                          width: 73,
+                                          child: Center(
+                                            child: Padding(
+                                                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                                child: Text(
+                                                  "99",
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 31,
+                                                    fontFamily: "Electric",
+                                                    shadows: [
+                                                      Shadow(
+                                                        color: ColorsResources.white.withOpacity(0.19),
+                                                        blurRadius: 7,
+                                                        offset: const Offset(0, 3)
+                                                      )
+                                                    ]
+                                                  ),
+                                                )
+                                            )
+                                          )
+                                        )
+                                    )
+                                ),
+                                child: const Image(
+                                  image: AssetImage("squircle.png"),
+                                  height: 73,
+                                  width: 73,
+                                ),
+                              )
+                          ),
+                          /* End - Level */
 
                           /* Start - Preferences */
                           Positioned(
@@ -212,10 +292,70 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                   height: 73,
                                   width: 73,
                                 ),
-
                               )
                           ),
                           /* End - Preferences */
+
+                          /* Start - Link */
+                          Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: Container(
+                                  decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: ColorsResources.black.withOpacity(0.73),
+                                            blurRadius: 19
+                                        )
+                                      ]
+                                  ),
+                                  child: WidgetMask(
+                                      blendMode: BlendMode.srcATop,
+                                      childSaveLayer: true,
+                                      mask: ColoredBox(
+                                          color: ColorsResources.primaryColorDarkest
+                                      ),
+                                      child: Image(
+                                        image: AssetImage("squircle.png"),
+                                        height: 73,
+                                        width: 73,
+                                      )
+                                  )
+                              )
+                          ),
+                          Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: WidgetMask(
+                                blendMode: BlendMode.srcIn,
+                                childSaveLayer: true,
+                                mask: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.primaryColor,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
+
+                                          launchUrl(Uri.parse(StringsResources.linksGeeksEmpire()), mode: LaunchMode.externalApplication);
+
+                                        },
+                                        child: const Padding(
+                                            padding: EdgeInsets.fromLTRB(0, 13, 0, 7),
+                                            child: Image(
+                                                image: AssetImage("link.png")
+                                            )
+                                        )
+                                    )
+                                ),
+                                child: const Image(
+                                  image: AssetImage("squircle.png"),
+                                  height: 73,
+                                  width: 73,
+                                ),
+                              )
+                          ),
+                          /* End - Link */
                           /* End - Content */
 
                         ],

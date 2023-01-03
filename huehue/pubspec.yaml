@@ -73,6 +73,7 @@ flutter:
   assets:
     - blob_play.png
 
+    - link.png
     - logo.png
     - logo_background.png
     - logo_android.png
