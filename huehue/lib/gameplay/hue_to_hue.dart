@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 10:09 AM
+ * Last modified 1/4/23, 10:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,21 +34,16 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   /* Start - Server */
   List<Color> allColors = [
-    ColorsResources.lightestCyan,
-    ColorsResources.gameGeeksEmpire,
-    ColorsResources.blue,
-    ColorsResources.grayLight,
-    ColorsResources.green,
-    ColorsResources.applicationGeeksEmpire,
-    ColorsResources.black,
-    ColorsResources.orange,
-    ColorsResources.pink,
-    ColorsResources.yellow,
+
+  ];
+
+  List<String> allShapes = [
+
   ];
 
   double gradientLayersCount = 2;
 
-  int animationDuration = 777;
+  int animationDuration = 9999;
   /* End - Server */
 
   PreferencesIO preferencesIO = PreferencesIO();
