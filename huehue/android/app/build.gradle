@@ -47,10 +47,11 @@ android {
         applicationId "co.geeksempire.huehue"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion flutter.targetSdkVersion
-        versionCode flutterVersionCode.toInteger()
-        versionName flutterVersionName
+        minSdkVersion 27
+        targetSdkVersion 33
+
+        versionCode 1
+        versionName "0.1.4.2023"
     }
 
     buildTypes {
