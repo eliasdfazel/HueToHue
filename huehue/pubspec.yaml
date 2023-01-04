@@ -97,11 +97,13 @@ flutter:
     - blob_preferences_top.png
 
     - level_indicator.png
+    - level_indicator_bottom.png
     - link.png
     - logo.png
     - logo_background.png
     - logo_android.png
     - logo_ios.png
+    - point_indicator.png
 
     - preferences_pointer.png
 
