@@ -30,7 +30,9 @@ dependencies:
 
   ####### ####### #######
   flutter_app_name: ^0.1.1
+
   flutter_inner_shadow: 0.0.1
+
   flutter_launcher_icons: ^0.11.0
   flutter_native_splash: ^2.1.6
   ####### ####### #######
@@ -45,6 +47,9 @@ dependencies:
 
   ####### ####### #######
   share_plus: ^4.0.10
+
+  shared_preferences: ^2.0.15
+
   status_bar_control: ^3.2.1
   ####### ####### #######
 

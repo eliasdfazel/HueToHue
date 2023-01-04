@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 6:37 AM
+ * Last modified 1/4/23, 2:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,12 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:huehue/gameplay/hue_to_hue.dart';
+import 'package:huehue/preferences/PreferencesKeys.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -32,6 +34,8 @@ class DashboardInterface extends StatefulWidget {
 
 class _DashboardInterfaceState extends State<DashboardInterface> {
 
+  String currentLevel = "0";
+
   @override
   void initState() {
 
@@ -40,6 +44,9 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    retrieveCurrentLevel();
+
   }
 
   @override
@@ -270,7 +277,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         )
                                       ]
                                   ),
-                                  child: WidgetMask(
+                                  child: const WidgetMask(
                                       blendMode: BlendMode.srcATop,
                                       childSaveLayer: true,
                                       mask: ColoredBox(
@@ -308,7 +315,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                             child: Padding(
                                                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                                                 child: Text(
-                                                  "99",
+                                                  currentLevel,
                                                   textAlign: TextAlign.center,
                                                   style: TextStyle(
                                                     color: ColorsResources.premiumLight,
@@ -372,7 +379,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         )
                                       ]
                                   ),
-                                  child: WidgetMask(
+                                  child: const WidgetMask(
                                       blendMode: BlendMode.srcATop,
                                       childSaveLayer: true,
                                       mask: ColoredBox(
@@ -433,7 +440,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         )
                                       ]
                                   ),
-                                  child: WidgetMask(
+                                  child: const WidgetMask(
                                       blendMode: BlendMode.srcATop,
                                       childSaveLayer: true,
                                       mask: ColoredBox(
@@ -489,6 +496,20 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
             )
         )
     );
+  }
+
+  void retrieveCurrentLevel() async {
+
+    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    
+    currentLevel = sharedPreferences.getString(PreferencesKeys.currentLevel) ?? "1";
+    
+    setState(() {
+
+      currentLevel;
+
+    });
+
   }
 
 }
