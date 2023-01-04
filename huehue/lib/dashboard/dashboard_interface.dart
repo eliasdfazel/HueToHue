@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 2:35 AM
+ * Last modified 1/4/23, 2:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -408,7 +408,11 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () {
 
-                                          navigateTo(context, const PreferencesInterface());
+                                          Future.delayed(const Duration(milliseconds: 333), () {
+
+                                            navigateTo(context, const PreferencesInterface());
+
+                                          });
 
                                         },
                                         child: const Padding(

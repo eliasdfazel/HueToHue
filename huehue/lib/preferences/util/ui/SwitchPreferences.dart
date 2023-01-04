@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 9:16 AM
+ * Last modified 1/4/23, 3:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,8 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:huehue/preferences/PreferencesKeys.dart';
+import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/ui/gradient_text/constants.dart';
@@ -19,18 +21,24 @@ import 'package:huehue/utils/ui/system_bars.dart';
 
 class SwitchPreferences extends StatefulWidget {
 
+  PreferencesIO preferencesIO;
+
+  String preferencesKey;
+
   String titlePreferences;
   String descriptionPreferences;
 
-  SwitchPreferences({super.key, required this.titlePreferences, required this.descriptionPreferences});
+  SwitchPreferences({super.key, required this.preferencesIO, required this.preferencesKey, required this.titlePreferences, required this.descriptionPreferences});
 
   @override
   State<SwitchPreferences> createState() => _SwitchPreferencesState();
 }
 
-class _SwitchPreferencesState extends State<SwitchPreferences> {
+class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProviderStateMixin {
 
-  String switchStatusText = "Off";
+  AnimationController? animationController;
+
+  String switchStatusText = StringsResources.switchOff();
   Color switchStatusColor = ColorsResources.switchOff;
 
   @override
@@ -41,6 +49,47 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    animationController = AnimationController(vsync: this);
+    animationController?.duration = const Duration(milliseconds: 357);
+
+    Animation<Color?> animationColor = ColorTween(begin: ColorsResources.switchOff, end: ColorsResources.switchOn).animate(animationController!);
+
+    animationColor..addListener(() {
+
+      setState(() {
+
+        switchStatusColor = animationColor.value!;
+
+      });
+
+    })..addStatusListener((status) {
+
+      switch (status) {
+        case AnimationStatus.completed: {
+          break;
+        }
+        case AnimationStatus.dismissed: {
+          break;
+        }
+        case AnimationStatus.forward: {
+
+          switchStatusText = StringsResources.switchOn();
+
+          break;
+        }
+        case AnimationStatus.reverse: {
+
+          switchStatusText = StringsResources.switchOff();
+
+          break;
+        }
+      }
+
+    });
+
+    initializeSwitch();
+
   }
 
   @override
@@ -52,7 +101,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
   Widget switchPreferences(String titlePreferences, String descriptionPreferences) {
 
     return Padding(
-      padding: EdgeInsets.fromLTRB(37, 0, 37, 0),
+      padding: const EdgeInsets.fromLTRB(37, 0, 37, 0),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(13),
         child: Blur(
@@ -64,6 +113,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
+              /* Start - Title */
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
@@ -92,75 +142,78 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
                   )
                 )
               ),
+              /* End - Title */
 
+              /* Start - Switch */
               Align(
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(7),
-                      child: Material(
-                        shadowColor: Colors.transparent,
-                        color: Colors.transparent,
-                        child: InkWell(
-                          splashColor: ColorsResources.primaryColor,
-                          splashFactory: InkRipple.splashFactory,
-                          onTap: () {
+                    child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(7),
+                            border: Border.all(
+                                width: 1,
+                                color: switchStatusColor,
+                                strokeAlign: StrokeAlign.inside
+                            ),
+                            color: ColorsResources.primaryColorDarkest,
+                            boxShadow: [
+                              BoxShadow(
+                                  color: switchStatusColor,
+                                  blurRadius: 7
+                              )
+                            ]
+                        ),
+                        child: SizedBox(
+                            width: 73,
+                            height: 31,
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(7),
+                                child: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.primaryColor,
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
 
-                            setState(() {
+                                        Future.delayed(const Duration(milliseconds: 333), ()  {
 
-                              if (switchStatusText == StringsResources.switchOn()) {
+                                          storeValuesSwitch();
 
-                                switchStatusText = StringsResources.switchOff();
-                                switchStatusColor = ColorsResources.switchOff;
+                                          if (switchStatusText == StringsResources.switchOn()) {
 
-                              } else {
+                                            animationController?.reverse();
 
-                                switchStatusText = StringsResources.switchOn();
-                                switchStatusColor = ColorsResources.switchOn;
+                                          } else {
 
-                              }
+                                            animationController?.forward();
 
-                            });
+                                          }
 
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(7),
-                                  border: Border.all(
-                                      width: 1,
-                                      color: switchStatusColor,
-                                      strokeAlign: StrokeAlign.inside
-                                  ),
-                                  color: ColorsResources.primaryColorDarkest,
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: switchStatusColor,
-                                        blurRadius: 7
-                                    )
-                                  ]
-                              ),
-                              child: SizedBox(
-                                  width: 73,
-                                  height: 31,
-                                  child: Center(
-                                      child: Text(
-                                          switchStatusText,
-                                          style: const TextStyle(
-                                              color: ColorsResources.premiumLight,
-                                              fontSize: 15,
-                                              letterSpacing: 1.9,
-                                              fontFamily: "Nasa"
+                                        });
+
+                                      },
+                                      child: Center(
+                                          child: Text(
+                                              switchStatusText,
+                                              style: const TextStyle(
+                                                  color: ColorsResources.premiumLight,
+                                                  fontSize: 15,
+                                                  letterSpacing: 1.9,
+                                                  fontFamily: "Nasa"
+                                              )
                                           )
                                       )
-                                  )
-                              )
-                          )
+                                  ),
+                                )
+                            )
                         )
-                      )
                     )
                   )
               )
+              /* End - Switch */
 
             ],
           ),
@@ -171,6 +224,38 @@ class _SwitchPreferencesState extends State<SwitchPreferences> {
         )
       )
     );
+  }
+
+  void initializeSwitch() async {
+
+    switch (widget.preferencesKey) {
+      case PreferencesKeys.continuously: {
+
+        bool continuouslyValue = await widget.preferencesIO.retrieveContinuously();
+        debugPrint("Initial Continuously $continuouslyValue");
+
+        continuouslyValue ? animationController?.forward() : animationController?.reverse();
+
+        break;
+      }
+    }
+
+  }
+
+  void storeValuesSwitch() async {
+
+    switch (widget.preferencesKey) {
+      case PreferencesKeys.continuously: {
+
+        bool continuouslyValue = await widget.preferencesIO.retrieveContinuously();
+        debugPrint("Continuously: $continuouslyValue | Switching It...");
+
+        continuouslyValue ? widget.preferencesIO.storeContinuously(false) : widget.preferencesIO.storeContinuously(true);
+
+        break;
+      }
+    }
+
   }
 
 }

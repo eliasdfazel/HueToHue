@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 8:31 AM
+ * Last modified 1/4/23, 3:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,6 +13,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/preferences/PreferencesKeys.dart';
+import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/util/ui/SwitchPreferences.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -30,6 +32,8 @@ class PreferencesInterface extends StatefulWidget {
 }
 
 class _PreferencesInterfaceState extends State<PreferencesInterface> {
+
+  PreferencesIO preferencesIO = PreferencesIO();
 
   @override
   void initState() {
@@ -158,6 +162,25 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                             /* End - Decoration */
 
                             /* Start - Content */
+                            /* Start - Preferences */
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(37),
+                              child: ListView(
+                                padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
+                                physics: const BouncingScrollPhysics(),
+                                scrollDirection: Axis.vertical,
+                                children: [
+
+                                  /* Start - Continuously Switch */
+                                  SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.continuously,
+                                      titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously())
+                                  /* End - Continuously Switch */
+
+                                ],
+                              )
+                            ),
+                            /* End - Preferences */
+
                             /* Start - Back */
                             Positioned(
                                 top: 37,
@@ -199,16 +222,20 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                           splashFactory: InkRipple.splashFactory,
                                           onTap: () {
 
-                                            navigatePop(context);
+                                            Future.delayed(const Duration(milliseconds: 333), () {
+
+                                              navigatePop(context);
+
+                                            });
 
                                           },
                                           child: const Padding(
-                                            padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
-                                            child: Image(
-                                              image: AssetImage("back.png"),
-                                              height: 37,
-                                              width: 37,
-                                            )
+                                              padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
+                                              child: Image(
+                                                image: AssetImage("back.png"),
+                                                height: 37,
+                                                width: 37,
+                                              )
                                           )
                                       )
                                   ),
@@ -220,24 +247,6 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                 )
                             ),
                             /* End - Back */
-
-                            /* Start - Preferences */
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(37),
-                              child: ListView(
-                                padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
-                                physics: const BouncingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                children: [
-
-                                  /* Start - Continuously Switch */
-                                  SwitchPreferences(titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously())
-                                  /* End - Continuously Switch */
-
-                                ],
-                              )
-                            ),
-                            /* End - Preferences */
 
                             /* Start - Branding */
                             Positioned(
@@ -298,6 +307,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                 )
                             ),
                             /* End - Branding */
+
                             /* End - Content */
 
                           ],
