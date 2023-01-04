@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 3:58 AM
+ * Last modified 1/4/23, 4:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -232,7 +232,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
       case PreferencesKeys.continuously: {
 
         bool continuouslyValue = await widget.preferencesIO.retrieveContinuously();
-        debugPrint("Initial Continuously $continuouslyValue");
+        debugPrint("Initial Continuously: $continuouslyValue");
 
         continuouslyValue ? animationController?.forward() : animationController?.reverse();
 
