@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 10:13 AM
+ * Last modified 1/4/23, 10:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,6 +11,7 @@
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:huehue/gameplay/gradients_shapes.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -160,7 +161,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
                             gameplayPlaceholder,
 
-                            shapePlaceholder,
+                            Positioned(
+                              top: 173,
+                              right: 37,
+                              left: 37,
+                              child: shapePlaceholder
+                            ),
 
                             /* Start - Level */
                             Positioned(
@@ -482,7 +488,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
       gradientColors.add(ColorsResources.primaryColorDarkest);
     }
 
+    setState(() {
 
+      shapePlaceholder = GradientsShapes(allShapes: allShapes);
+
+    });
 
   }
 
@@ -522,7 +532,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     initializeGameplay();
 
     //setup counter then
-
 
   }
 
