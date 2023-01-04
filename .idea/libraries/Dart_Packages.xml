@@ -219,6 +219,13 @@
             </list>
           </value>
         </entry>
+        <entry key="loading_animation_widget">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../Libraries/SachielProject/loading_animation_widget/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="matcher">
           <value>
             <list>
@@ -733,6 +740,7 @@
       <root url="file://$USER_HOME$/flutter/packages/flutter/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_test/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_web_plugins/lib" />
+      <root url="file://$PROJECT_DIR$/../Libraries/SachielProject/loading_animation_widget/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

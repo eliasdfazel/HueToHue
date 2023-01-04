@@ -2,20 +2,23 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/2/23, 4:20 AM
+ * Last modified 1/4/23, 5:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-import 'dart:math';
-
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
+import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
+import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/numbers.dart';
+import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 
 class HueToHue extends StatefulWidget {
 
@@ -44,6 +47,20 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   List<Color> gradientColors = [];
 
+  int animationDuration = 7777;
+
+  Widget gameplayPlaceholder = Container(
+    height: 399,
+    width: 351,
+    alignment: Alignment.center,
+    child: LoadingAnimationWidget.discreteCircle(
+      color: ColorsResources.premiumLight.withOpacity(0.93),
+      secondRingColor: ColorsResources.primaryColorLighter,
+      thirdRingColor: ColorsResources.cyan,
+      size: 73
+    )
+  );
+
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     navigatePop(context);
@@ -53,19 +70,20 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   @override
   void initState() {
+
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+    changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
+
     super.initState();
+
+    retrieveGameData();
 
     BackButtonInterceptor.add(aInterceptor);
 
     for (int i = 0; i < gradientLayersCount; i++) {
-      gradientColors.add(ColorsResources.applicationGeeksEmpire);
+      gradientColors.add(ColorsResources.primaryColorDarkest);
     }
-
-    Future.delayed(const Duration(milliseconds: 1357), () {
-
-      animateColor(999, ColorsResources.dark, ColorsResources.winterColor);
-
-    });
 
   }
 
@@ -123,7 +141,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
           if (gradientIndex == gradientLayersCount) {
             debugPrint("Animation Status Restart");
 
-            animateColor(animationDuration, endColor, allColors[Random().nextInt(allColors.length)]);
+            animateColor(animationDuration, endColor, randomColor(allColors));
 
           } else {
 
@@ -149,56 +167,84 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
   @override
   Widget build(BuildContext context) {
 
-    return SafeArea(
-        child: ClipRRect(
-            borderRadius: BorderRadius.circular(37),
-            child: MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: StringsResources.applicationName(),
-                color: ColorsResources.primaryColor,
-                theme: ThemeData(
-                  fontFamily: 'Ubuntu',
-                  colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-                  backgroundColor: ColorsResources.black,
-                  pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                    TargetPlatform.android: ZoomPageTransitionsBuilder(),
-                    TargetPlatform.iOS: ZoomPageTransitionsBuilder(),
-                  }),
-                ),
-                home: Scaffold(
-                    resizeToAvoidBottomInset: true,
-                    extendBody: true,
-                    backgroundColor: ColorsResources.yellow,
-                    body: SizedBox(
-                        height: double.maxFinite,
-                        width: double.maxFinite,
-                        child: InkWell(
-                          onTap: () {
-
-
-
-                          },
-                          child: Container(
-                            height: double.maxFinite,
-                            width: double.maxFinite,
-                            decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
-                                    transform: GradientRotation(degreeToRadian(137))
-                                )
-                            ),
-                            child: Stack(
-                              children: [
-
-                              ],
-                            ),
-                          ),
-                        )
-                    )
+    return ClipRRect(
+        borderRadius: BorderRadius.circular(37),
+        child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: StringsResources.applicationName(),
+            color: ColorsResources.primaryColorDarkest,
+            theme: ThemeData(
+              fontFamily: 'Ubuntu',
+              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColorDarkest),
+              backgroundColor: ColorsResources.primaryColorDarkest,
+              pageTransitionsTheme: const PageTransitionsTheme(builders: {
+                TargetPlatform.android: FadeTransitionBuilder(),
+                TargetPlatform.iOS: FadeTransitionBuilder(),
+              }),
+            ),
+            home: Scaffold(
+                resizeToAvoidBottomInset: true,
+                extendBody: true,
+                backgroundColor: ColorsResources.primaryColorDarkest,
+                body: SizedBox(
+                    height: double.maxFinite,
+                    width: double.maxFinite,
+                    child: gameplayPlaceholder
                 )
             )
         )
     );
+  }
+
+  void initializeGameplay() {
+
+    Future.delayed(const Duration(milliseconds: 1111), () {
+
+      animateColor(animationDuration, randomColor(allColors), randomColor(allColors));
+
+    });
+
+    setState(() {
+
+      gameplayPlaceholder = Material(
+          shadowColor: Colors.transparent,
+          color: Colors.transparent,
+          child: InkWell(
+            splashColor: ColorsResources.primaryColor,
+            splashFactory: InkRipple.splashFactory,
+            onTap: () {
+              debugPrint("Gameplay Clicked");
+
+
+
+            },
+            child: Container(
+              height: double.maxFinite,
+              width: double.maxFinite,
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                      colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
+                      transform: GradientRotation(degreeToRadian(137))
+                  )
+              ),
+              child: Stack(
+                children: [
+
+                ],
+              ),
+            ),
+          )
+      );
+
+    });
+
+  }
+
+  void retrieveGameData() {
+
+    // after getting data
+    // initializeGameplay();
+
   }
 
 }

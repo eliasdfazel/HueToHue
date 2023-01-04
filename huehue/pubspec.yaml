@@ -40,6 +40,13 @@ dependencies:
 
 
   ####### ####### #######
+  loading_animation_widget:
+    path: 'X:\Xlutter\Libraries\SachielProject\loading_animation_widget'
+  ####### ####### #######
+
+
+
+  ####### ####### #######
   quick_actions: ^0.6.0+11
   ####### ####### #######
 
