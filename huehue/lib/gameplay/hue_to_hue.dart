@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 10:10 AM
+ * Last modified 1/4/23, 10:13 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -64,6 +64,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     )
   );
 
+  Widget shapePlaceholder = Container();
+
   int levels = 0;
   double levelsOpacity = 0.0;
 
@@ -96,11 +98,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     super.initState();
 
-    initializeGameplay();
+    retrieveGameData();
 
     initializeGameInformation();
-
-    retrieveGameData();
 
     BackButtonInterceptor.add(aInterceptor);
 
@@ -159,6 +159,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
                             /* End - Gameplay Control */
 
                             gameplayPlaceholder,
+
+                            shapePlaceholder,
 
                             /* Start - Level */
                             Positioned(
@@ -480,6 +482,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
       gradientColors.add(ColorsResources.primaryColorDarkest);
     }
 
+
+
   }
 
   void initializeGameInformation() async {
@@ -515,6 +519,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
 
     // after getting data
+    initializeGameplay();
 
     //setup counter then
 
