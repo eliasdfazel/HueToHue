@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 10:06 AM
+ * Last modified 1/4/23, 10:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -100,6 +100,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    initializeGameplay();
 
     initializeGameInformation();
 
@@ -483,12 +485,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
       gradientColors.add(ColorsResources.primaryColorDarkest);
     }
 
-    Future.delayed(const Duration(milliseconds: 1111), () {
-
-      // animateColor(animationDuration, randomColor(allColors), randomColor(allColors));
-
-    });
-
   }
 
   void initializeGameInformation() async {
@@ -522,11 +518,21 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   void retrieveGameData() {
 
+
     // after getting data
 
     //setup counter then
 
-    initializeGameplay();
+
+  }
+
+  void startGameProcess() {
+
+    Future.delayed(const Duration(milliseconds: 1111), () {
+
+      animateColor(animationDuration, randomColor(allColors), randomColor(allColors));
+
+    });
 
   }
 
