@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 4:06 AM
+ * Last modified 1/4/23, 9:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,18 +16,18 @@ class PreferencesIO {
 
   final Future<SharedPreferences> sharedPreferences = SharedPreferences.getInstance();
 
-  Future<String> retrieveCurrentLevel() async {
+  Future<int> retrieveCurrentLevel() async {
 
-    String currentLevel = (await sharedPreferences).getString(PreferencesKeys.currentLevel) ?? "1";
+    int currentLevel = (await sharedPreferences).getInt(PreferencesKeys.currentLevel) ?? 1;
 
     return currentLevel;
   }
 
-  Future storeCurrentLevel(String currentLevel) async {
+  Future storeCurrentLevel(int currentLevel) async {
 
     sharedPreferences.then((value) async => {
 
-      await value.setString(PreferencesKeys.currentLevel, currentLevel).then((value) => {
+      await value.setInt(PreferencesKeys.currentLevel, currentLevel).then((value) => {
         debugPrint("Current Level Stored Successfully: $currentLevel")
       })
 

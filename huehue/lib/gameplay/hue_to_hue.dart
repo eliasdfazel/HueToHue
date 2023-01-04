@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 8:54 AM
+ * Last modified 1/4/23, 9:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -494,11 +494,14 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
       if (value) {
 
-        setState(() {
+        preferencesIO.retrieveCurrentLevel().then((currentLevel) => {
 
+          setState(() {
 
-          levelsOpacity = 1.0;
+            levels = currentLevel;
+            levelsOpacity = 1.0;
 
+          })
 
         })
 
@@ -508,9 +511,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     setState(() {
 
-
       pointsOpacity = 1.0;
-
 
     });
 
@@ -519,6 +520,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
   void retrieveGameData() {
 
     // after getting data
+
+    //setup counter then
+
     // initializeGameplay();
 
   }
