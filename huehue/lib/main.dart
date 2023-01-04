@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 7:56 AM
+ * Last modified 1/4/23, 8:07 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,7 +22,6 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 
