@@ -29,35 +29,13 @@
             {
               "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
               "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:942557431731:android:0b31ac87400848c71cedc6",
-        "android_client_info": {
-          "package_name": "co.geeksempire.huetohue"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyC1fxGQF6pw2Mk3vj6Q8YWrEl2HAgYdXME"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
+            },
             {
-              "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
-              "client_type": 3
+              "client_id": "942557431731-i4ivm6bt99im4t54lp6cjj8gtf55nkt8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "co.geeksempire.huehue"
+              }
             }
           ]
         }
