@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 5:43 AM
+ * Last modified 1/4/23, 8:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -54,7 +54,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     width: 351,
     alignment: Alignment.center,
     child: LoadingAnimationWidget.discreteCircle(
-      color: ColorsResources.premiumLight.withOpacity(0.93),
+      color: ColorsResources.premiumLight,
       secondRingColor: ColorsResources.primaryColorLighter,
       thirdRingColor: ColorsResources.cyan,
       size: 73
