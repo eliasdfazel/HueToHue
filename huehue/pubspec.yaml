@@ -70,6 +70,7 @@ dependencies:
 
   ####### ####### #######
   widget_mask: ^1.0.0+0
+  firebase_core: ^2.4.1
   ####### ####### #######
 
 

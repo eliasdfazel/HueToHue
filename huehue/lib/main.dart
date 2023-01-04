@@ -2,20 +2,27 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/2/23, 4:17 AM
+ * Last modified 1/4/23, 7:56 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/entry_configurations.dart';
+import 'package:huehue/firebase_options.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 
 void main() async {
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
 

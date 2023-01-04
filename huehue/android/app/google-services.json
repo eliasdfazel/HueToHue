@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "942557431731",
+    "project_id": "hue-to-hue",
+    "storage_bucket": "hue-to-hue.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942557431731:android:07a60e128a5333511cedc6",
+        "android_client_info": {
+          "package_name": "co.geeksempire.huehue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1fxGQF6pw2Mk3vj6Q8YWrEl2HAgYdXME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942557431731:android:0b31ac87400848c71cedc6",
+        "android_client_info": {
+          "package_name": "co.geeksempire.huetohue"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1fxGQF6pw2Mk3vj6Q8YWrEl2HAgYdXME"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
