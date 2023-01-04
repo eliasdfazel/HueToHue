@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 4:05 AM
+ * Last modified 1/4/23, 4:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -102,126 +102,170 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(37, 0, 37, 0),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(13),
-        child: Blur(
-          blur: 37,
-          blurColor: ColorsResources.primaryColorDarkest,
-          colorOpacity: 0.13,
-          overlay: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
+      child: Column(
+        children: [
 
-              /* Start - Title */
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
-                  child: GradientText(
-                    widget.titlePreferences,
-                    colors: const [
-                      ColorsResources.white,
-                      ColorsResources.premiumLight,
-                    ],
-                    gradientType: GradientType.radial,
-                    radius: 3,
-                    maxLinesNumber: 1,
-                    textAlign: TextAlign.left,
-                    style: TextStyle(
-                      color: ColorsResources.premiumLight,
-                      fontSize: 23,
-                      fontFamily: "Electric",
-                      shadows: [
-                        Shadow(
-                          color: ColorsResources.white.withOpacity(0.19),
-                          blurRadius: 7,
-                          offset: const Offset(0, 3)
+          ClipRRect(
+              borderRadius: BorderRadius.circular(13),
+              child: Blur(
+                blur: 37,
+                blurColor: ColorsResources.primaryColorDarkest,
+                colorOpacity: 0.13,
+                overlay: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                    /* Start - Title */
+                    Expanded(
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(13, 0, 0, 0),
+                            child: GradientText(
+                              widget.titlePreferences,
+                              colors: const [
+                                ColorsResources.white,
+                                ColorsResources.premiumLight,
+                              ],
+                              gradientType: GradientType.radial,
+                              radius: 3,
+                              maxLinesNumber: 1,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 23,
+                                  fontFamily: "Electric",
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white.withOpacity(0.19),
+                                        blurRadius: 7,
+                                        offset: const Offset(0, 3)
+                                    )
+                                  ]
+                              ),
+                            )
                         )
-                      ]
                     ),
-                  )
-                )
-              ),
-              /* End - Title */
+                    /* End - Title */
 
-              /* Start - Switch */
-              Align(
-                  alignment: Alignment.center,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
-                    child: Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(7),
-                            border: Border.all(
-                                width: 1,
-                                color: switchStatusColor,
-                                strokeAlign: StrokeAlign.inside
-                            ),
-                            color: ColorsResources.primaryColorDarkest,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: switchStatusColor,
-                                  blurRadius: 7
-                              )
-                            ]
-                        ),
-                        child: SizedBox(
-                            width: 73,
-                            height: 31,
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(7),
-                                child: Material(
-                                  shadowColor: Colors.transparent,
-                                  color: Colors.transparent,
-                                  child: InkWell(
-                                      splashColor: ColorsResources.primaryColor,
-                                      splashFactory: InkRipple.splashFactory,
-                                      onTap: () {
-
-                                        Future.delayed(const Duration(milliseconds: 333), ()  {
-
-                                          storeValuesSwitch();
-
-                                          if (switchStatusText == StringsResources.switchOn()) {
-
-                                            animationController?.reverse();
-
-                                          } else {
-
-                                            animationController?.forward();
-
-                                          }
-
-                                        });
-
-                                      },
-                                      child: Center(
-                                          child: Text(
-                                              switchStatusText,
-                                              style: const TextStyle(
-                                                  color: ColorsResources.premiumLight,
-                                                  fontSize: 15,
-                                                  letterSpacing: 1.9,
-                                                  fontFamily: "Nasa"
-                                              )
-                                          )
+                    /* Start - Switch */
+                    Align(
+                        alignment: Alignment.center,
+                        child: Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 13, 0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(7),
+                                    border: Border.all(
+                                        width: 1,
+                                        color: switchStatusColor,
+                                        strokeAlign: StrokeAlign.inside
+                                    ),
+                                    color: ColorsResources.primaryColorDarkest,
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: switchStatusColor,
+                                          blurRadius: 7
                                       )
-                                  ),
+                                    ]
+                                ),
+                                child: SizedBox(
+                                    width: 73,
+                                    height: 31,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(7),
+                                        child: Material(
+                                          shadowColor: Colors.transparent,
+                                          color: Colors.transparent,
+                                          child: InkWell(
+                                              splashColor: ColorsResources.primaryColor,
+                                              splashFactory: InkRipple.splashFactory,
+                                              onTap: () {
+
+                                                Future.delayed(const Duration(milliseconds: 333), ()  {
+
+                                                  storeValuesSwitch();
+
+                                                  if (switchStatusText == StringsResources.switchOn()) {
+
+                                                    animationController?.reverse();
+
+                                                  } else {
+
+                                                    animationController?.forward();
+
+                                                  }
+
+                                                });
+
+                                              },
+                                              child: Center(
+                                                  child: Text(
+                                                      switchStatusText,
+                                                      style: const TextStyle(
+                                                          color: ColorsResources.premiumLight,
+                                                          fontSize: 15,
+                                                          letterSpacing: 1.9,
+                                                          fontFamily: "Nasa"
+                                                      )
+                                                  )
+                                              )
+                                          ),
+                                        )
+                                    )
                                 )
                             )
                         )
                     )
-                  )
-              )
-              /* End - Switch */
+                    /* End - Switch */
 
-            ],
+                  ],
+                ),
+                child: const SizedBox(
+                    height: 53,
+                    width: double.maxFinite
+                ),
+              )
           ),
-          child: const SizedBox(
-            height: 53,
-            width: double.maxFinite
+
+          const Divider(
+            height: 13,
+            color: Colors.transparent
           ),
-        )
+
+          const Image(
+            image: AssetImage("preferences_pointer.png"),
+            height: 11,
+          ),
+          ClipRRect(
+              borderRadius: BorderRadius.circular(13),
+              child: Container(
+                color: ColorsResources.premiumLight.withOpacity(0.07),
+                child: SizedBox(
+                  height: 53,
+                  width: double.maxFinite,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                    child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          StringsResources.switchDescriptionContinuously(),
+                          textAlign: TextAlign.start,
+                          maxLines: 2,
+                          style: const TextStyle(
+                            color: ColorsResources.premiumLight,
+                            fontSize: 13,
+                            fontFamily: "Ubuntu",
+                            letterSpacing: 1.1,
+                            height: 1.3
+                          ),
+                        )
+                    )
+                  )
+                )
+              )
+          ),
+
+        ],
       )
     );
   }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 2:40 AM
+ * Last modified 1/4/23, 4:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -139,7 +139,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
                           /* Start - Blurry Background */
                           const Blur(
-                            blur: 37.0,
+                            blur: 31.0,
                             blurColor: ColorsResources.primaryColorDarkest,
                             colorOpacity: 0.19,
                             child: SizedBox(

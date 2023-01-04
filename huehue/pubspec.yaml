@@ -92,6 +92,8 @@ flutter:
     - logo_android.png
     - logo_ios.png
 
+    - preferences_pointer.png
+
     - settings.png
     - squircle.png
 
