@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 5:58 AM
+ * Last modified 1/5/23, 7:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,7 +42,7 @@ class _GradientsShapesState extends State<GradientsShapes>  {
         gradient: LinearGradient(
             colors: List.generate(widget.gradientColors.length, (index) => widget.gradientColors[index]),
             transform: GradientRotation(degreeToRadian(137))
-        ).createShader(Rect.fromLTRB(0, 0, 300, 333)),
+        ).createShader(Rect.fromLTRB(0, 0, 333, 333)),
         strokeWidth:3,
       )
     );
