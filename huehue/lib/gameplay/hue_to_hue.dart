@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 9:20 AM
+ * Last modified 1/5/23, 9:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -83,7 +83,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     super.initState();
 
-    retrieveGameData();
+    retrieveGameData(currentLevels);
 
     initializeGameInformation();
 
@@ -448,7 +448,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   }
 
-  void retrieveGameData({int currentLevel = 1}) {
+  void retrieveGameData(int currentLevels) {
 
     GetOptions getOptions = const GetOptions(source: Source.cache);
 
@@ -607,7 +607,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
         gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
 
-        if (currentPoints == 7) {
+        if (currentPoints == 8) {
           debugPrint("Player Wins!");
 
           currentPoints = 0;
@@ -616,7 +616,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
             currentLevels += 1;
 
-            retrieveGameData(currentLevel: 1);
+            retrieveGameData(currentLevels);
 
           } else {
 
