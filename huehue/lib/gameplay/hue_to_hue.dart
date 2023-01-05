@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:14 AM
+ * Last modified 1/5/23, 7:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,7 +56,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   Widget shapePlaceholder = Container();
 
-  int currentLevels = 0;
+  int currentLevels = 1;
   double levelsOpacity = 0.0;
 
   int currentPoints = 0;
@@ -124,6 +124,275 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
                     child: gameplayPlaceholder
                 )
             )
+        )
+    );
+  }
+
+  Widget gameplayView(List<Color> gradientColors) {
+
+    return Container(
+        height: double.maxFinite,
+        width: double.maxFinite,
+        decoration: BoxDecoration(
+            gradient: LinearGradient(
+                colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
+                transform: GradientRotation(degreeToRadian(137))
+            )
+        ),
+        child: Stack(
+          children: [
+
+            /* Start - Gameplay Control */
+            Material(
+              shadowColor: Colors.transparent,
+              color: Colors.transparent,
+              child: InkWell(
+                splashColor: ColorsResources.primaryColor,
+                splashFactory: InkRipple.splashFactory,
+                onTap: () {
+                  debugPrint("Gameplay Clicked");
+
+                },
+              ),
+            ),
+            /* End - Gameplay Control */
+
+            Positioned(
+                top: 173,
+                right: 37,
+                left: 37,
+                child: shapePlaceholder
+            ),
+
+            /* Start - Level */
+            Positioned(
+                bottom: 37,
+                right: 37,
+                child: AnimatedOpacity(
+                    opacity: levelsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.black.withOpacity(0.73),
+                                  blurRadius: 19
+                              )
+                            ]
+                        ),
+                        child: const WidgetMask(
+                            blendMode: BlendMode.srcATop,
+                            childSaveLayer: true,
+                            mask: ColoredBox(
+                                color: ColorsResources.primaryColorDarkest
+                            ),
+                            child: Image(
+                              image: AssetImage("squircle.png"),
+                              height: 73,
+                              width: 73,
+                            )
+                        )
+                    )
+                )
+            ),
+            Positioned(
+                bottom: 37,
+                right: 37,
+                child: AnimatedOpacity(
+                    opacity: levelsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: WidgetMask(
+                      blendMode: BlendMode.srcIn,
+                      childSaveLayer: true,
+                      mask: Material(
+                          shadowColor: Colors.transparent,
+                          color: Colors.transparent,
+                          child: InkWell(
+                              splashColor: ColorsResources.primaryColor,
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+
+
+
+                              },
+                              child: SizedBox(
+                                  height: 73,
+                                  width: 73,
+                                  child: Center(
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                          child: Text(
+                                            currentLevels.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: ColorsResources.premiumLight,
+                                                fontSize: 31,
+                                                fontFamily: "Electric",
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.white.withOpacity(0.19),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          )
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+                      child: const Image(
+                        image: AssetImage("squircle.png"),
+                        height: 73,
+                        width: 73,
+                      ),
+                    )
+                )
+            ),
+            Positioned(
+                bottom: 119,
+                right: 37,
+                child: AnimatedOpacity(
+                    opacity: levelsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: SizedBox(
+                        width: 73,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: ColorsResources.black.withOpacity(0.51),
+                                      blurRadius: 13,
+                                      offset: const Offset(0, 3)
+                                  )
+                                ]
+                            ),
+                            child: const Image(
+                              image: AssetImage("level_indicator_bottom.png"),
+                              fit: BoxFit.contain,
+                            )
+                        )
+                    )
+                )
+            ),
+            /* End - Level */
+
+            /* Start - Point */
+            Positioned(
+                top: 37,
+                left: 37,
+                child: AnimatedOpacity(
+                    opacity: pointsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: Container(
+                        decoration: BoxDecoration(
+                            boxShadow: [
+                              BoxShadow(
+                                  color: ColorsResources.black.withOpacity(0.73),
+                                  blurRadius: 19
+                              )
+                            ]
+                        ),
+                        child: const WidgetMask(
+                            blendMode: BlendMode.srcATop,
+                            childSaveLayer: true,
+                            mask: ColoredBox(
+                                color: ColorsResources.primaryColorDarkest
+                            ),
+                            child: Image(
+                              image: AssetImage("squircle.png"),
+                              height: 73,
+                              width: 73,
+                            )
+                        )
+                    )
+                )
+            ),
+            Positioned(
+                top: 37,
+                left: 37,
+                child: AnimatedOpacity(
+                    opacity: pointsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: WidgetMask(
+                      blendMode: BlendMode.srcIn,
+                      childSaveLayer: true,
+                      mask: Material(
+                          shadowColor: Colors.transparent,
+                          color: Colors.transparent,
+                          child: InkWell(
+                              splashColor: ColorsResources.primaryColor,
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+
+
+
+                              },
+                              child: SizedBox(
+                                  height: 73,
+                                  width: 73,
+                                  child: Center(
+                                      child: Padding(
+                                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                          child: Text(
+                                            currentPoints.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(
+                                                color: ColorsResources.premiumLight,
+                                                fontSize: 31,
+                                                fontFamily: "Electric",
+                                                shadows: [
+                                                  Shadow(
+                                                      color: ColorsResources.white.withOpacity(0.19),
+                                                      blurRadius: 7,
+                                                      offset: const Offset(0, 3)
+                                                  )
+                                                ]
+                                            ),
+                                          )
+                                      )
+                                  )
+                              )
+                          )
+                      ),
+                      child: const Image(
+                        image: AssetImage("squircle.png"),
+                        height: 73,
+                        width: 73,
+                      ),
+                    )
+                )
+            ),
+            Positioned(
+                top: 119,
+                left: 37,
+                child: AnimatedOpacity(
+                    opacity: pointsOpacity,
+                    duration: const Duration(milliseconds: 1357),
+                    child: SizedBox(
+                        width: 73,
+                        child: Container(
+                            decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                      color: ColorsResources.black.withOpacity(0.51),
+                                      blurRadius: 13,
+                                      offset: const Offset(0, 3)
+                                  )
+                                ]
+                            ),
+                            child: const Image(
+                              image: AssetImage("point_indicator.png"),
+                              fit: BoxFit.contain,
+                            )
+                        )
+                    )
+                )
+            ),
+            /* End - Point */
+
+          ],
         )
     );
   }
@@ -209,8 +478,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     gradientColors.clear();
 
-    gradientColors.addAll(allColors);
-
     for (int i = 0; i < gradientLayersCount; i++) {
       gradientColors.add(randomColor(allColors));
     }
@@ -219,273 +486,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
       gradientColors;
 
-      gameplayPlaceholder = Container(
-          height: double.maxFinite,
-          width: double.maxFinite,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
-                  transform: GradientRotation(degreeToRadian(137))
-              )
-          ),
-          child: Stack(
-            children: [
-
-              /* Start - Gameplay Control */
-              Material(
-                shadowColor: Colors.transparent,
-                color: Colors.transparent,
-                child: InkWell(
-                  splashColor: ColorsResources.primaryColor,
-                  splashFactory: InkRipple.splashFactory,
-                  onTap: () {
-                    debugPrint("Gameplay Clicked");
-
-                  },
-                ),
-              ),
-              /* End - Gameplay Control */
-
-              gameplayPlaceholder,
-
-              Positioned(
-                  top: 173,
-                  right: 37,
-                  left: 37,
-                  child: shapePlaceholder
-              ),
-
-              /* Start - Level */
-              Positioned(
-                  bottom: 37,
-                  right: 37,
-                  child: AnimatedOpacity(
-                      opacity: levelsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsResources.black.withOpacity(0.73),
-                                    blurRadius: 19
-                                )
-                              ]
-                          ),
-                          child: const WidgetMask(
-                              blendMode: BlendMode.srcATop,
-                              childSaveLayer: true,
-                              mask: ColoredBox(
-                                  color: ColorsResources.primaryColorDarkest
-                              ),
-                              child: Image(
-                                image: AssetImage("squircle.png"),
-                                height: 73,
-                                width: 73,
-                              )
-                          )
-                      )
-                  )
-              ),
-              Positioned(
-                  bottom: 37,
-                  right: 37,
-                  child: AnimatedOpacity(
-                      opacity: levelsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: WidgetMask(
-                        blendMode: BlendMode.srcIn,
-                        childSaveLayer: true,
-                        mask: Material(
-                            shadowColor: Colors.transparent,
-                            color: Colors.transparent,
-                            child: InkWell(
-                                splashColor: ColorsResources.primaryColor,
-                                splashFactory: InkRipple.splashFactory,
-                                onTap: () {
-
-
-
-                                },
-                                child: SizedBox(
-                                    height: 73,
-                                    width: 73,
-                                    child: Center(
-                                        child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                            child: Text(
-                                              currentLevels.toString(),
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: ColorsResources.premiumLight,
-                                                  fontSize: 31,
-                                                  fontFamily: "Electric",
-                                                  shadows: [
-                                                    Shadow(
-                                                        color: ColorsResources.white.withOpacity(0.19),
-                                                        blurRadius: 7,
-                                                        offset: const Offset(0, 3)
-                                                    )
-                                                  ]
-                                              ),
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        child: const Image(
-                          image: AssetImage("squircle.png"),
-                          height: 73,
-                          width: 73,
-                        ),
-                      )
-                  )
-              ),
-              Positioned(
-                  bottom: 119,
-                  right: 37,
-                  child: AnimatedOpacity(
-                      opacity: levelsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: SizedBox(
-                          width: 73,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: ColorsResources.black.withOpacity(0.51),
-                                        blurRadius: 13,
-                                        offset: const Offset(0, 3)
-                                    )
-                                  ]
-                              ),
-                              child: const Image(
-                                image: AssetImage("level_indicator_bottom.png"),
-                                fit: BoxFit.contain,
-                              )
-                          )
-                      )
-                  )
-              ),
-              /* End - Level */
-
-              /* Start - Point */
-              Positioned(
-                  top: 37,
-                  left: 37,
-                  child: AnimatedOpacity(
-                      opacity: pointsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: Container(
-                          decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color: ColorsResources.black.withOpacity(0.73),
-                                    blurRadius: 19
-                                )
-                              ]
-                          ),
-                          child: const WidgetMask(
-                              blendMode: BlendMode.srcATop,
-                              childSaveLayer: true,
-                              mask: ColoredBox(
-                                  color: ColorsResources.primaryColorDarkest
-                              ),
-                              child: Image(
-                                image: AssetImage("squircle.png"),
-                                height: 73,
-                                width: 73,
-                              )
-                          )
-                      )
-                  )
-              ),
-              Positioned(
-                  top: 37,
-                  left: 37,
-                  child: AnimatedOpacity(
-                      opacity: pointsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: WidgetMask(
-                        blendMode: BlendMode.srcIn,
-                        childSaveLayer: true,
-                        mask: Material(
-                            shadowColor: Colors.transparent,
-                            color: Colors.transparent,
-                            child: InkWell(
-                                splashColor: ColorsResources.primaryColor,
-                                splashFactory: InkRipple.splashFactory,
-                                onTap: () {
-
-
-
-                                },
-                                child: SizedBox(
-                                    height: 73,
-                                    width: 73,
-                                    child: Center(
-                                        child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                            child: Text(
-                                              currentPoints.toString(),
-                                              textAlign: TextAlign.center,
-                                              style: TextStyle(
-                                                  color: ColorsResources.premiumLight,
-                                                  fontSize: 31,
-                                                  fontFamily: "Electric",
-                                                  shadows: [
-                                                    Shadow(
-                                                        color: ColorsResources.white.withOpacity(0.19),
-                                                        blurRadius: 7,
-                                                        offset: const Offset(0, 3)
-                                                    )
-                                                  ]
-                                              ),
-                                            )
-                                        )
-                                    )
-                                )
-                            )
-                        ),
-                        child: const Image(
-                          image: AssetImage("squircle.png"),
-                          height: 73,
-                          width: 73,
-                        ),
-                      )
-                  )
-              ),
-              Positioned(
-                  top: 119,
-                  left: 37,
-                  child: AnimatedOpacity(
-                      opacity: pointsOpacity,
-                      duration: const Duration(milliseconds: 1357),
-                      child: SizedBox(
-                          width: 73,
-                          child: Container(
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                        color: ColorsResources.black.withOpacity(0.51),
-                                        blurRadius: 13,
-                                        offset: const Offset(0, 3)
-                                    )
-                                  ]
-                              ),
-                              child: const Image(
-                                image: AssetImage("point_indicator.png"),
-                                fit: BoxFit.contain,
-                              )
-                          )
-                      )
-                  )
-              ),
-              /* End - Point */
-
-            ],
-          )
-      );
+      gameplayPlaceholder = gameplayView(gradientColors);
 
       shapePlaceholder = GradientsShapes(gradientColors: gradientColors);
 
@@ -526,22 +527,22 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     FirebaseFirestore.instance
       .doc(levelPath(currentLevels))
-      .get(/*const GetOptions(source: Source.cache)*/).then((DocumentSnapshot documentSnapshot) => {
+      .get(const GetOptions(source: Source.cache)).then((DocumentSnapshot documentSnapshot) => {
 
-      if (documentSnapshot.exists) {
+        if (documentSnapshot.exists) {
 
-        Future.delayed(Duration.zero, () {
-          debugPrint("${levelPath(currentLevels)} | Data Retrieved");
+          Future.delayed(Duration.zero, () {
+            debugPrint("Data Retrieved | ${documentSnapshot.data()}");
 
-          LevelsDataStructure levelsDataStructure = LevelsDataStructure(documentSnapshot);
+            LevelsDataStructure levelsDataStructure = LevelsDataStructure(documentSnapshot);
 
-          initializeGameplay(levelsDataStructure.gradientLayers(), levelsDataStructure.allColors());
+            initializeGameplay(levelsDataStructure.gradientLayers(), levelsDataStructure.allColors());
 
-        })
+          })
 
-      } else {
-        debugPrint("Error | ${levelPath(currentLevels)}")
-      }
+        } else {
+          debugPrint("Error | ${levelPath(currentLevels)}")
+        }
 
       });
 

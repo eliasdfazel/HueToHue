@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:10 AM
+ * Last modified 1/5/23, 7:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -525,7 +525,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
         .collection(allLevelPath())
         .get(const GetOptions(source: Source.server)).then((value) => {
           if (value.docs.isNotEmpty) {
-            debugPrint("All Levels Collections Retrieved Successfully | ${value.docs.length}")
+            debugPrint("All Levels Collections Retrieved Successfully")
           } else {
             debugPrint("No Levels Collections")
           }
