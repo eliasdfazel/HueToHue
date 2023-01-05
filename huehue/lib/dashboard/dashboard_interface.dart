@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:30 AM
+ * Last modified 1/5/23, 9:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -34,6 +34,8 @@ class DashboardInterface extends StatefulWidget {
 }
 
 class _DashboardInterfaceState extends State<DashboardInterface> {
+
+  int maximumLevels = 7;
 
   PreferencesIO preferencesIO = PreferencesIO();
 
@@ -184,7 +186,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
                                                 Future.delayed(const Duration(milliseconds: 333), () {
 
-                                                  navigateTo(context, const HueToHue());
+                                                  navigateTo(context, HueToHue(maximumLevels: maximumLevels));
 
                                                 });
 
@@ -523,12 +525,25 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     FirebaseFirestore.instance
         .collection(allLevelPath())
-        .get(const GetOptions(source: Source.server)).then((value) => {
-          if (value.docs.isNotEmpty) {
-            debugPrint("All Levels Collections Retrieved Successfully")
-          } else {
-            debugPrint("No Levels Collections")
-          }
+        .get(const GetOptions(source: Source.server)).then((collections) => {
+          Future.delayed(Duration.zero, () {
+
+            if (collections.docs.isNotEmpty) {
+              debugPrint("All Levels Collections Retrieved Successfully");
+
+              maximumLevels = collections.size;
+
+              setState(() {
+
+                maximumLevels;
+
+              });
+
+            } else {
+              debugPrint("No Levels Collections");
+            }
+
+          })
         });
 
   }

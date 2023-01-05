@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 9:25 AM
+ * Last modified 1/5/23, 9:35 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,7 +29,9 @@ import 'package:widget_mask/widget_mask.dart';
 
 class HueToHue extends StatefulWidget {
 
-  const HueToHue({super.key});
+  int maximumLevels = 7;
+
+  HueToHue({super.key, required this.maximumLevels});
 
   @override
   State<HueToHue> createState() => _HueToHueState();
@@ -616,7 +618,17 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
             currentLevels += 1;
 
-            retrieveGameData(currentLevels);
+            if (currentLevels > widget.maximumLevels) {
+              debugPrint("Player Won & Finished The Game!");
+
+
+            } else {
+
+              retrieveGameData(currentLevels);
+
+              preferencesIO.storeCurrentLevel(currentLevels);
+
+            }
 
           } else {
 
