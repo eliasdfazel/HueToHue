@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 8:13 AM
+ * Last modified 1/5/23, 8:30 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,8 @@ class GradientsShapes extends StatefulWidget {
 
   GradientsShapes({super.key, required this.levelsDataStructure});
 
+  List<Color> randomShapedColor = [];
+
   @override
   State<GradientsShapes> createState() => _GradientsShapesState();
 }
@@ -27,6 +29,7 @@ class GradientsShapes extends StatefulWidget {
 class _GradientsShapesState extends State<GradientsShapes>  {
 
   BlobController blobController = BlobController();
+
 
   @override
   void dispose() {
@@ -50,6 +53,8 @@ class _GradientsShapesState extends State<GradientsShapes>  {
 
     if (widget.levelsDataStructure != null) {
 
+      widget.randomShapedColor = List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => randomColor(widget.levelsDataStructure!.allColors()));
+
       blobShape = Align(
           alignment: Alignment.topCenter,
           child: Blob.random(
@@ -60,7 +65,7 @@ class _GradientsShapesState extends State<GradientsShapes>  {
               styles: BlobStyles(
                   fillType: BlobFillType.fill,
                   gradient: LinearGradient(
-                      colors: List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => randomColor(widget.levelsDataStructure!.allColors())),
+                      colors: widget.randomShapedColor,
                       transform: GradientRotation(degreeToRadian(137))
                   ).createShader(Rect.zero)
               )
