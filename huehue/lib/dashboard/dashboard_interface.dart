@@ -2,16 +2,18 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 9:08 AM
+ * Last modified 1/5/23, 7:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
@@ -47,6 +49,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     super.initState();
 
     retrievePreferences();
+
+    cacheGameplayData();
 
   }
 
@@ -512,6 +516,20 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
       currentLevel;
 
     });
+
+  }
+
+  void cacheGameplayData() {
+
+    FirebaseFirestore.instance
+        .collection(allLevelPath())
+        .get(const GetOptions(source: Source.server)).then((value) => {
+          if (value.docs.isNotEmpty) {
+            debugPrint("All Levels Collections Retrieved Successfully | ${value.docs.length}")
+          } else {
+            debugPrint("No Levels Collections")
+          }
+        });
 
   }
 
