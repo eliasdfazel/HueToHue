@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 9:07 AM
+ * Last modified 1/5/23, 9:20 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -387,7 +387,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
                             AnimatedOpacity(
                               opacity: gameplayWaitingOpacity,
-                              duration: const Duration(milliseconds: 555),
+                              duration: Duration.zero,
                               child: Center(
                                   child: Container(
                                       height: 333,
@@ -410,34 +410,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
             )
         )
     );
-  }
-
-  void initializeGameplay(int animationDuration, int gradientLayersCount, List<Color> allColors) {
-
-    gradientColors.clear();
-
-    allLevelColors.clear();
-
-    allLevelColors.addAll(allColors);
-
-    for (int i = 0; i < gradientLayersCount; i++) {
-      gradientColors.add(randomColor(allColors));
-    }
-
-    setState(() {
-
-      gradientColors;
-
-      levelsDataStructure;
-
-      gameplayWaitingOpacity = 0;
-
-      gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
-
-    });
-
-    startGameProcess(animationDuration, gradientLayersCount, allColors);
-
   }
 
   void initializeGameInformation() async {
@@ -476,11 +448,17 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   }
 
-  void retrieveGameData() {
+  void retrieveGameData({int currentLevel = 1}) {
+
+    GetOptions getOptions = const GetOptions(source: Source.cache);
+
+    if (gameContinuously) {
+      getOptions = const GetOptions(source: Source.server);
+    }
 
     FirebaseFirestore.instance
       .doc(levelPath(currentLevels))
-      .get(const GetOptions(source: Source.cache)).then((DocumentSnapshot documentSnapshot) => {
+      .get(getOptions).then((DocumentSnapshot documentSnapshot) => {
 
         if (documentSnapshot.exists) {
 
@@ -498,6 +476,44 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
         }
 
       });
+
+  }
+
+  void initializeGameplay(int animationDuration, int gradientLayersCount, List<Color> allColors) {
+
+    gradientColors.clear();
+
+    allLevelColors.clear();
+
+    allLevelColors.addAll(allColors);
+
+    for (int i = 0; i < gradientLayersCount; i++) {
+      gradientColors.add(randomColor(allColors));
+    }
+
+    setState(() {
+
+      gradientColors;
+
+      levelsDataStructure;
+
+      gameplayWaitingOpacity = 0;
+
+      gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
+
+    });
+
+    startGameProcess(animationDuration, gradientLayersCount, allColors);
+
+  }
+
+  void startGameProcess(int animationDuration, int gradientLayersCount, List<Color> allColors) {
+
+    Future.delayed(const Duration(milliseconds: 1111), () {
+
+      animateColor(animationDuration, gradientLayersCount, allColors, randomColor(allColors), randomColor(allColors));
+
+    });
 
   }
 
@@ -578,19 +594,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   }
 
-  void startGameProcess(int animationDuration, int gradientLayersCount, List<Color> allColors) {
-
-    Future.delayed(const Duration(milliseconds: 1111), () {
-
-      animateColor(animationDuration, gradientLayersCount, allColors, randomColor(allColors), randomColor(allColors));
-
-    });
-
-  }
-
   void processPlayAction(List<Color> gameplayGradientColors, List<Color> shapedGradientColor) async {
 
-    if (listEquals(gameplayGradientColors, shapedGradientColor)) {
+    bool testingMode = kDebugMode;
+
+    if (listEquals(gameplayGradientColors, shapedGradientColor) || testingMode) {
       debugPrint("Player Wins!");
 
       setState(() {
@@ -598,6 +606,23 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
         currentPoints += 1;
 
         gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
+
+        if (currentPoints == 7) {
+          debugPrint("Player Wins!");
+
+          currentPoints = 0;
+
+          if (gameContinuously) {
+
+            currentLevels += 1;
+
+            retrieveGameData(currentLevel: 1);
+
+          } else {
+
+          }
+
+        }
 
       });
 
@@ -607,7 +632,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
       setState(() {
 
-        currentPoints;
+
 
       });
 
