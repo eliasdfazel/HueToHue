@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:37 AM
+ * Last modified 1/5/23, 7:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -38,7 +38,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   PreferencesIO preferencesIO = PreferencesIO();
 
+  LevelsDataStructure? levelsDataStructure;
+
   List<Color> gradientColors = [];
+
+  List<Color> allLevelColors = [];
 
   Widget gameplayPlaceholder = Center(
     child: Container(
@@ -53,8 +57,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
         )
     )
   );
-
-  Widget shapePlaceholder = Container();
 
   int currentLevels = 1;
   double levelsOpacity = 0.0;
@@ -128,7 +130,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     );
   }
 
-  Widget gameplayView(List<Color> gradientColors) {
+  Widget gameplayView() {
 
     return Container(
         height: double.maxFinite,
@@ -158,10 +160,10 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
             /* End - Gameplay Control */
 
             Positioned(
-                top: 173,
+                top: 73,
                 right: 37,
                 left: 37,
-                child: shapePlaceholder
+                child: GradientsShapes(levelsDataStructure: levelsDataStructure)
             ),
 
             /* Start - Level */
@@ -478,6 +480,10 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     gradientColors.clear();
 
+    allLevelColors.clear();
+
+    allLevelColors.addAll(allColors);
+
     for (int i = 0; i < gradientLayersCount; i++) {
       gradientColors.add(randomColor(allColors));
     }
@@ -486,9 +492,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
       gradientColors;
 
-      gameplayPlaceholder = gameplayView(gradientColors);
+      levelsDataStructure;
 
-      shapePlaceholder = GradientsShapes(gradientColors: gradientColors);
+      gameplayPlaceholder = gameplayView();
 
     });
 
@@ -534,9 +540,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
           Future.delayed(Duration.zero, () {
             debugPrint("Data Retrieved | ${documentSnapshot.data()}");
 
-            LevelsDataStructure levelsDataStructure = LevelsDataStructure(documentSnapshot);
+            levelsDataStructure = LevelsDataStructure(documentSnapshot);
 
-            initializeGameplay(levelsDataStructure.gradientLayers(), levelsDataStructure.allColors());
+            initializeGameplay(levelsDataStructure!.gradientLayers(), levelsDataStructure!.allColors());
 
           })
 
