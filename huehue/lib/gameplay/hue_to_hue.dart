@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:50 AM
+ * Last modified 1/5/23, 8:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -266,7 +266,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
                                   BoxShadow(
                                       color: ColorsResources.black.withOpacity(0.51),
                                       blurRadius: 13,
-                                      offset: const Offset(0, 3)
+                                      offset: const Offset(0, -3)
                                   )
                                 ]
                             ),
