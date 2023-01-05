@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 9:24 AM
+ * Last modified 1/5/23, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,7 +43,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   LevelsDataStructure? levelsDataStructure;
 
-  List<Color> gradientColors = [ColorsResources.primaryColorLightest, ColorsResources.primaryColorLightest];
+  List<Color> gradientColors = [ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest];
 
   List<Color> allLevelColors = [];
 
@@ -488,7 +488,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     allLevelColors.addAll(allColors);
 
     for (int i = 0; i < gradientLayersCount; i++) {
-      gradientColors.add(randomColor(allColors));
+      gradientColors.add(ColorsResources.primaryColorDarkest);
     }
 
     setState(() {
