@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/7/23, 8:50 AM
+ * Last modified 1/7/23, 9:25 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -42,6 +43,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   String currentLevel = "0";
 
   double playButtonOpacity = 0.0;
+
+  Widget waitingAnimationPlaceholder = Container();
 
   @override
   void initState() {
@@ -171,50 +174,12 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                 ),
                                 color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                             ),
-                            child: AnimatedOpacity(
-                              opacity: playButtonOpacity,
-                              duration: const Duration(milliseconds: 357),
-                              child: Center(
-                                  child: SizedBox(
-                                      height: 399,
-                                      width: 399,
-                                      child: WidgetMask(
-                                          blendMode: BlendMode.srcATop,
-                                          childSaveLayer: true,
-                                          mask: Material(
-                                              shadowColor: Colors.transparent,
-                                              color: Colors.transparent,
-                                              child: InkWell(
-                                                  splashColor: ColorsResources.primaryColor,
-                                                  splashFactory: InkRipple.splashFactory,
-                                                  onTap: () {
-
-                                                    Future.delayed(const Duration(milliseconds: 333), () {
-
-                                                      navigateTo(context, HueToHue(maximumLevels: maximumLevels));
-
-                                                    });
-
-                                                  },
-                                                  child: const Image(
-                                                    image: AssetImage("blob_play.png"),
-                                                    height: 399,
-                                                    width: 399,
-                                                  )
-                                              )
-                                          ),
-                                          child: const Image(
-                                            image: AssetImage("blob_play.png"),
-                                            height: 399,
-                                            width: 399,
-                                          )
-                                      )
-                                  )
-                              )
-                            )
+                            child: playButtonDesign()
                           ),
                           /* End - Stroke | Play */
                           /* End - Decoration */
+
+                          waitingAnimationPlaceholder,
 
                           /* Start - Content */
                           /* Start - Branding */
@@ -529,9 +494,16 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
   void cacheGameplayData() {
 
+    setState(() {
+
+      waitingAnimationPlaceholder = waitingAnimation();
+
+    });
+
     FirebaseFirestore.instance
         .collection(allLevelPath())
         .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
+
           Future.delayed(Duration.zero, () {
 
             if (collections.docs.isNotEmpty) {
@@ -540,6 +512,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               maximumLevels = collections.size;
 
               setState(() {
+
+                waitingAnimationPlaceholder = Container();
 
                 playButtonOpacity = 1.0;
 
@@ -552,8 +526,71 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
             }
 
           })
+
         });
 
+  }
+
+  Widget waitingAnimation() {
+
+    return Center(
+        child: Container(
+            height: 333,
+            width: 333,
+            alignment: Alignment.center,
+            child: LoadingAnimationWidget.discreteCircle(
+                color: ColorsResources.goldenColor,
+                secondRingColor: ColorsResources.primaryColorLighter,
+                thirdRingColor: ColorsResources.cyan,
+                size: 73
+            )
+        )
+    );
+  }
+
+  Widget playButtonDesign() {
+
+    return AnimatedOpacity(
+        opacity: playButtonOpacity,
+        duration: const Duration(milliseconds: 357),
+        child: Center(
+            child: SizedBox(
+                height: 399,
+                width: 399,
+                child: WidgetMask(
+                    blendMode: BlendMode.srcATop,
+                    childSaveLayer: true,
+                    mask: Material(
+                        shadowColor: Colors.transparent,
+                        color: Colors.transparent,
+                        child: InkWell(
+                            splashColor: ColorsResources.primaryColor,
+                            splashFactory: InkRipple.splashFactory,
+                            onTap: () {
+
+                              Future.delayed(const Duration(milliseconds: 333), () {
+
+                                navigateTo(context, HueToHue(maximumLevels: maximumLevels));
+
+                              });
+
+                            },
+                            child: const Image(
+                              image: AssetImage("blob_play.png"),
+                              height: 399,
+                              width: 399,
+                            )
+                        )
+                    ),
+                    child: const Image(
+                      image: AssetImage("blob_play.png"),
+                      height: 399,
+                      width: 399,
+                    )
+                )
+            )
+        )
+    );
   }
 
 }
