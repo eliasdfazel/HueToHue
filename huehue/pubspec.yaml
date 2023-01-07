@@ -110,6 +110,8 @@ flutter:
     - blob_preferences_bottom.png
     - blob_preferences_top.png
 
+    - chaotic.png
+
     - level_indicator.png
     - level_indicator_bottom.png
     - link.png
