@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 8:12 AM
+ * Last modified 1/7/23, 8:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -29,18 +29,22 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
-  runApp(MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        fontFamily: 'Ubuntu',
-        colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-        backgroundColor: ColorsResources.primaryColorDarkest,
-        pageTransitionsTheme: const PageTransitionsTheme(builders: {
-          TargetPlatform.android: FadeTransitionBuilder(),
-          TargetPlatform.iOS: FadeTransitionBuilder(),
-        }),
-      ),
-      home: const EntryConfigurations()
-  ));
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => {
+
+    runApp(MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          fontFamily: 'Ubuntu',
+          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
+          backgroundColor: ColorsResources.primaryColorDarkest,
+          pageTransitionsTheme: const PageTransitionsTheme(builders: {
+            TargetPlatform.android: FadeTransitionBuilder(),
+            TargetPlatform.iOS: FadeTransitionBuilder(),
+          }),
+        ),
+        home: const EntryConfigurations()
+    ))
+
+  });
 
 }
