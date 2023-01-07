@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/7/23, 10:30 AM
+ * Last modified 1/7/23, 10:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,6 +15,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
+import 'package:huehue/gameplay/scenes/chaotic_hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -177,13 +178,6 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                             child: playButtonDesign()
                           ),
                           /* End - Stroke | Play */
-
-                          /* Start - Chaotic Play */
-                          Positioned(
-                            right: 37,
-                            child: Container(),
-                          ),
-                          /* End - Chaotic Play */
                           /* End - Decoration */
 
                           waitingAnimationPlaceholder,
@@ -564,39 +558,92 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
             child: SizedBox(
                 height: 399,
                 width: 399,
-                child: WidgetMask(
-                    blendMode: BlendMode.srcATop,
-                    childSaveLayer: true,
-                    mask: Material(
-                        shadowColor: Colors.transparent,
-                        color: Colors.transparent,
-                        child: InkWell(
-                            splashColor: ColorsResources.primaryColor,
-                            splashFactory: InkRipple.splashFactory,
-                            onTap: () {
+                child: Stack(
+                  children: [
 
-                              Future.delayed(const Duration(milliseconds: 333), () {
+                    WidgetMask(
+                        blendMode: BlendMode.srcATop,
+                        childSaveLayer: true,
+                        mask: Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                                splashColor: ColorsResources.primaryColor,
+                                splashFactory: InkRipple.splashFactory,
+                                onTap: () {
 
-                                navigateTo(context, HueToHue(maximumLevels: maximumLevels));
+                                  Future.delayed(const Duration(milliseconds: 333), () {
 
-                              });
+                                    navigateTo(context, HueToHue(maximumLevels: maximumLevels));
 
-                            },
-                            child: const Image(
-                              image: AssetImage("blob_play.png"),
-                              height: 399,
-                              width: 399,
+                                  });
+
+                                },
+                                child: const Image(
+                                  image: AssetImage("blob_play.png"),
+                                  height: 399,
+                                  width: 399,
+                                )
                             )
+                        ),
+                        child: const Image(
+                          image: AssetImage("blob_play.png"),
+                          height: 399,
+                          width: 399,
                         )
                     ),
-                    child: const Image(
-                      image: AssetImage("blob_play.png"),
-                      height: 399,
-                      width: 399,
-                    )
+
+                    /* Start - Chaotic Play */
+                    Positioned(
+                      right: 31,
+                      bottom: 31,
+                      child: chaoticPlayDesign(),
+                    ),
+                    /* End - Chaotic Play */
+
+                  ],
                 )
             )
         )
+    );
+  }
+
+  Widget chaoticPlayDesign() {
+
+    return SizedBox(
+      height: 137,
+      width: 137,
+      child: WidgetMask(
+          blendMode: BlendMode.srcATop,
+          childSaveLayer: true,
+          mask: Material(
+              shadowColor: Colors.transparent,
+              color: Colors.transparent,
+              child: InkWell(
+                  splashColor: ColorsResources.primaryColor,
+                  splashFactory: InkRipple.splashFactory,
+                  onTap: () {
+
+                    Future.delayed(const Duration(milliseconds: 333), () {
+
+                      navigateTo(context, ChaoticHueToHue(maximumLevels: maximumLevels));
+
+                    });
+
+                  },
+                  child: const Image(
+                    image: AssetImage("chaotic_play.png"),
+                    height: 137,
+                    width: 137,
+                  )
+              )
+          ),
+          child: const Image(
+            image: AssetImage("chaotic_play.png"),
+            height: 137,
+            width: 137,
+          )
+      )
     );
   }
 
