@@ -52,6 +52,12 @@ dependencies:
 
 
   ####### ####### #######
+  just_audio: ^0.9.31
+  ####### ####### #######
+
+
+
+  ####### ####### #######
   loading_animation_widget:
     path: 'X:\Xlutter\Libraries\SachielProject\loading_animation_widget'
   ####### ####### #######
@@ -136,7 +142,6 @@ flutter:
 
 flutter_native_splash:
   color: "#120A18"
-
   image: assets/logo.png
 
   android_12:

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 9:35 AM
+ * Last modified 1/7/23, 8:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -600,10 +600,19 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     bool testingMode = kDebugMode;
 
+    setState(() {
+
+      pointsOpacity = 0.37;
+      levelsOpacity = 0.37;
+
+    });
+
     if (listEquals(gameplayGradientColors, shapedGradientColor) || testingMode) {
       debugPrint("Player Wins!");
 
       setState(() {
+
+        pointsOpacity = 1.0;
 
         currentPoints += 1;
 
@@ -615,6 +624,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
           currentPoints = 0;
 
           if (gameContinuously) {
+
+            levelsOpacity = 1.0;
 
             currentLevels += 1;
 
@@ -642,11 +653,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     } else {
       debugPrint("Player Loses!");
 
-      setState(() {
 
-
-
-      });
 
     }
 
