@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/7/23, 8:31 AM
+ * Last modified 1/7/23, 8:50 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,6 +40,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
   PreferencesIO preferencesIO = PreferencesIO();
 
   String currentLevel = "0";
+
+  double playButtonOpacity = 0.0;
 
   @override
   void initState() {
@@ -169,42 +171,46 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
                                 ),
                                 color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                             ),
-                            child: Center(
-                                child: SizedBox(
-                                    height: 399,
-                                    width: 399,
-                                    child: WidgetMask(
-                                      blendMode: BlendMode.srcATop,
-                                      childSaveLayer: true,
-                                      mask: Material(
-                                          shadowColor: Colors.transparent,
-                                          color: Colors.transparent,
-                                          child: InkWell(
-                                              splashColor: ColorsResources.primaryColor,
-                                              splashFactory: InkRipple.splashFactory,
-                                              onTap: () {
+                            child: AnimatedOpacity(
+                              opacity: playButtonOpacity,
+                              duration: const Duration(milliseconds: 357),
+                              child: Center(
+                                  child: SizedBox(
+                                      height: 399,
+                                      width: 399,
+                                      child: WidgetMask(
+                                          blendMode: BlendMode.srcATop,
+                                          childSaveLayer: true,
+                                          mask: Material(
+                                              shadowColor: Colors.transparent,
+                                              color: Colors.transparent,
+                                              child: InkWell(
+                                                  splashColor: ColorsResources.primaryColor,
+                                                  splashFactory: InkRipple.splashFactory,
+                                                  onTap: () {
 
-                                                Future.delayed(const Duration(milliseconds: 333), () {
+                                                    Future.delayed(const Duration(milliseconds: 333), () {
 
-                                                  navigateTo(context, HueToHue(maximumLevels: maximumLevels));
+                                                      navigateTo(context, HueToHue(maximumLevels: maximumLevels));
 
-                                                });
+                                                    });
 
-                                              },
-                                              child: const Image(
-                                                image: AssetImage("blob_play.png"),
-                                                height: 399,
-                                                width: 399,
+                                                  },
+                                                  child: const Image(
+                                                    image: AssetImage("blob_play.png"),
+                                                    height: 399,
+                                                    width: 399,
+                                                  )
                                               )
+                                          ),
+                                          child: const Image(
+                                            image: AssetImage("blob_play.png"),
+                                            height: 399,
+                                            width: 399,
                                           )
-                                      ),
-                                      child: const Image(
-                                        image: AssetImage("blob_play.png"),
-                                        height: 399,
-                                        width: 399,
                                       )
-                                    )
-                                )
+                                  )
+                              )
                             )
                           ),
                           /* End - Stroke | Play */
@@ -525,7 +531,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
 
     FirebaseFirestore.instance
         .collection(allLevelPath())
-        .get(const GetOptions(source: Source.server)).then((collections) => {
+        .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
           Future.delayed(Duration.zero, () {
 
             if (collections.docs.isNotEmpty) {
@@ -534,6 +540,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
               maximumLevels = collections.size;
 
               setState(() {
+
+                playButtonOpacity = 1.0;
 
                 maximumLevels;
 
