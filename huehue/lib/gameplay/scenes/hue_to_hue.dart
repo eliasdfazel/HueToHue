@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 5:06 AM
+ * Last modified 1/8/23, 6:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -40,7 +40,7 @@ class HueToHue extends StatefulWidget {
   State<HueToHue> createState() => _HueToHueState();
 }
 
-class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
+class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
 
   Future gameplayTimer = Future(() {
 
@@ -426,6 +426,36 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
     );
   }
 
+  @override
+  void startNextPlay() {
+    debugPrint("Start Next Level");
+
+    currentPoints = 0;
+
+    retrieveGameData(currentLevels + 1);
+
+    setState(() {
+
+      gameStatuesPlaceholder = Container();
+
+    });
+
+  }
+
+  @override
+  void retryPlay() {
+    debugPrint("Retry Current Level");
+
+    retrieveGameData(currentLevels);
+
+    setState(() {
+
+      gameStatuesPlaceholder = Container();
+
+    });
+
+  }
+
   void initializeGameInformation() async {
 
     preferencesIO.retrieveContinuously().then((value) => {
@@ -635,8 +665,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
         if (currentPoints == 8) {
           debugPrint("Player Wins!");
 
-          currentPoints = 0;
-
           if (gameContinuously) {
 
             levelsOpacity = 1.0;
@@ -657,6 +685,14 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
           } else {
 
+            setState(() {
+
+              gameStatuesPlaceholder = gameStatues.gameWinScene(this);
+
+            });
+
+            animationController?.stop();
+
           }
 
         }
@@ -675,7 +711,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   void startTimer(int levelTimer) {
 
-    int defaultTimeout = kDebugMode ? 3000 : levelTimer;
+    int defaultTimeout = kDebugMode ? 13000 : levelTimer;
 
     gameplayTimer = Future.delayed(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
@@ -684,7 +720,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
         setState(() {
 
-          gameStatuesPlaceholder = gameStatues.gameOverScene();
+          gameStatuesPlaceholder = gameStatues.gameOverScene(this);
 
         });
 

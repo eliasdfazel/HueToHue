@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 3:33 AM
+ * Last modified 1/8/23, 5:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -425,9 +425,9 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                       width: 333,
                       alignment: Alignment.center,
                       child: LoadingAnimationWidget.discreteCircle(
-                          color: ColorsResources.goldenColor,
+                          color: ColorsResources.cyan,
                           secondRingColor: ColorsResources.primaryColorLighter,
-                          thirdRingColor: ColorsResources.cyan,
+                          thirdRingColor: ColorsResources.goldenColor,
                           size: 73
                       )
                   )
