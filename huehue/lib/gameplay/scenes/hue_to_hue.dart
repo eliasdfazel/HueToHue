@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:52 AM
+ * Last modified 1/8/23, 6:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -689,7 +689,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     setState(() {
 
       pointsOpacity = 0.37;
-      levelsOpacity = 0.37;
+
+      if (gameContinuously) {
+
+        levelsOpacity = 0.37;
+
+      }
 
     });
 
