@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:30 AM
+ * Last modified 1/8/23, 2:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,7 +58,5 @@ class LevelsDataStructure {
 
     return levelsDocumentData[LevelsDataStructure.levelTimerName];
   }
-
-
 
 }

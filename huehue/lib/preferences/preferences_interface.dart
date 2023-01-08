@@ -2,25 +2,29 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 1:21 AM
+ * Last modified 1/8/23, 3:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/util/ui/SwitchPreferences.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
+import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class PreferencesInterface extends StatefulWidget {
@@ -31,7 +35,9 @@ class PreferencesInterface extends StatefulWidget {
   State<PreferencesInterface> createState() => _PreferencesInterfaceState();
 }
 
-class _PreferencesInterfaceState extends State<PreferencesInterface> {
+class _PreferencesInterfaceState extends State<PreferencesInterface> with SynchronizationStatus {
+
+  SyncIO syncIO = SyncIO();
 
   PreferencesIO preferencesIO = PreferencesIO();
 
@@ -51,6 +57,8 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
           ]
       )
   );
+
+  Widget waitingAnimationPlaceholder = Container();
 
   @override
   void initState() {
@@ -332,12 +340,16 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                     image: AssetImage("squircle.png"),
                                     height: 73,
                                     width: 73,
-                                  ),
+                                  )
                                 )
                             ),
                             /* End - Login */
 
                             /* End - Content */
+
+                            /* Start - Syncing... */
+                            waitingAnimationPlaceholder
+                            /* End - Syncing... */
 
                           ],
                         )
@@ -348,9 +360,96 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
     );
   }
 
-  void startLoginProcess() {
+  void startLoginProcess() async {
 
+    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
 
+    final GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
+
+    final googleCredentials = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication?.accessToken,
+      idToken: googleSignInAuthentication?.idToken,
+    );
+
+     FirebaseAuth.instance.signInWithCredential(googleCredentials).then((userCredentials) => {
+
+       Future.delayed(const Duration(milliseconds: 73), () {
+
+         syncIO.startSyncingProcess(preferencesIO, userCredentials.user!.uid, this);
+
+         setState(() {
+
+           waitingAnimationPlaceholder = syncWaitingDesign();
+
+           loginPlaceholder = WidgetMask(
+               blendMode: BlendMode.srcIn,
+               childSaveLayer: true,
+               mask: SizedBox(
+                   height: 63,
+                   width: 63,
+                   child: Center(
+                       child: Image.network(
+                           userCredentials.user!.photoURL!,
+                           fit: BoxFit.cover
+                       )
+                   )
+               ),
+               child: const Image(
+                 image: AssetImage("squircle.png"),
+                 height: 63,
+                 width: 63,
+               )
+           );
+
+         });
+
+       })
+
+     });
+
+  }
+
+  Widget syncWaitingDesign() {
+
+    return Container(
+      color: ColorsResources.primaryColorDarkest.withOpacity(0.91),
+      child: SizedBox(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          child: Center(
+              child: SizedBox(
+                  height: 333,
+                  width: 333,
+                  child: Container(
+                      height: 333,
+                      width: 333,
+                      alignment: Alignment.center,
+                      child: LoadingAnimationWidget.discreteCircle(
+                          color: ColorsResources.goldenColor,
+                          secondRingColor: ColorsResources.primaryColorLighter,
+                          thirdRingColor: ColorsResources.cyan,
+                          size: 73
+                      )
+                  )
+              )
+          )
+      )
+    );
+  }
+
+  @override
+  void syncCompleted(int syncedCurrentLevel) {
+
+    setState(() {
+
+      waitingAnimationPlaceholder = Container();
+
+    });
+
+  }
+
+  @override
+  void syncError() {
 
   }
 

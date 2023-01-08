@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/7/23, 10:44 AM
+ * Last modified 1/8/23, 3:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
@@ -20,6 +21,7 @@ import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
+import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system_bars.dart';
@@ -35,7 +37,9 @@ class DashboardInterface extends StatefulWidget {
   State<DashboardInterface> createState() => _DashboardInterfaceState();
 }
 
-class _DashboardInterfaceState extends State<DashboardInterface> {
+class _DashboardInterfaceState extends State<DashboardInterface> with SynchronizationStatus {
+
+  SyncIO syncIO = SyncIO();
 
   int maximumLevels = 7;
 
@@ -59,6 +63,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     retrievePreferences();
 
     cacheGameplayData();
+
+    syncCheckpoint();
 
   }
 
@@ -481,6 +487,20 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
     );
   }
 
+  @override
+  void syncCompleted(int syncedCurrentLevel) {
+
+    setState(() {
+
+      currentLevel = syncedCurrentLevel.toString();
+
+    });
+
+  }
+
+  @override
+  void syncError() {}
+
   void retrievePreferences() async {
 
     currentLevel = (await preferencesIO.retrieveCurrentLevel()).toString();
@@ -646,5 +666,17 @@ class _DashboardInterfaceState extends State<DashboardInterface> {
       )
     );
   }
+
+  void syncCheckpoint() {
+
+    if (FirebaseAuth.instance.currentUser != null) {
+
+      syncIO.startSyncingProcess(preferencesIO, FirebaseAuth.instance.currentUser!.uid, this);
+
+    }
+
+  }
+
+
 
 }
