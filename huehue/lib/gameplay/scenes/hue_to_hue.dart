@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:21 AM
+ * Last modified 1/8/23, 6:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -222,30 +222,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
 
                                               },
-                                              child: SizedBox(
+                                              child: const SizedBox(
                                                   height: 73,
-                                                  width: 73,
-                                                  child: Center(
-                                                      child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                                          child: Text(
-                                                            currentLevels.toString(),
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                                color: ColorsResources.premiumLight,
-                                                                fontSize: 31,
-                                                                fontFamily: "Electric",
-                                                                shadows: [
-                                                                  Shadow(
-                                                                      color: ColorsResources.white.withOpacity(0.19),
-                                                                      blurRadius: 7,
-                                                                      offset: const Offset(0, 3)
-                                                                  )
-                                                                ]
-                                                            ),
-                                                          )
-                                                      )
-                                                  )
+                                                  width: 73
                                               )
                                           )
                                       ),
@@ -256,6 +235,47 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
                                       ),
                                     )
                                 )
+                            ),
+                            Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: AnimatedOpacity(
+                                opacity: levelsOpacity,
+                                duration: const Duration(milliseconds: 1357),
+                                child: SizedBox(
+                                    height: 73,
+                                    width: 73,
+                                    child: Center(
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                            child: AnimatedSwitcher(
+                                                duration: const Duration(milliseconds: 333),
+                                                transitionBuilder: (Widget child, Animation<double> animation) {
+
+                                                  return FadeTransition(opacity: animation, child: child);
+                                                },
+                                                child: Text(
+                                                  currentLevels.toString(),
+                                                  textAlign: TextAlign.center,
+                                                  key: ValueKey<int>(currentLevels),
+                                                  style: TextStyle(
+                                                      color: ColorsResources.premiumLight,
+                                                      fontSize: 31,
+                                                      fontFamily: "Electric",
+                                                      shadows: [
+                                                        Shadow(
+                                                            color: ColorsResources.white.withOpacity(0.19),
+                                                            blurRadius: 7,
+                                                            offset: const Offset(0, 3)
+                                                        )
+                                                      ]
+                                                  ),
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                              )
                             ),
                             Positioned(
                                 bottom: 119,
@@ -336,30 +356,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
 
                                               },
-                                              child: SizedBox(
+                                              child: const SizedBox(
                                                   height: 73,
-                                                  width: 73,
-                                                  child: Center(
-                                                      child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                                          child: Text(
-                                                            currentPoints.toString(),
-                                                            textAlign: TextAlign.center,
-                                                            style: TextStyle(
-                                                                color: ColorsResources.premiumLight,
-                                                                fontSize: 31,
-                                                                fontFamily: "Electric",
-                                                                shadows: [
-                                                                  Shadow(
-                                                                      color: ColorsResources.white.withOpacity(0.19),
-                                                                      blurRadius: 7,
-                                                                      offset: const Offset(0, 3)
-                                                                  )
-                                                                ]
-                                                            ),
-                                                          )
-                                                      )
-                                                  )
+                                                  width: 73
                                               )
                                           )
                                       ),
@@ -370,6 +369,47 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
                                       ),
                                     )
                                 )
+                            ),
+                            Positioned(
+                              top: 37,
+                              left: 37,
+                              child: AnimatedOpacity(
+                                opacity: pointsOpacity,
+                                duration: const Duration(milliseconds: 1357),
+                                child: SizedBox(
+                                    height: 73,
+                                    width: 73,
+                                    child: Center(
+                                        child: Padding(
+                                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                            child: AnimatedSwitcher(
+                                                duration: const Duration(milliseconds: 333),
+                                                transitionBuilder: (Widget child, Animation<double> animation) {
+
+                                                  return FadeTransition(opacity: animation, child: child);
+                                                },
+                                                child: Text(
+                                                  currentPoints.toString(),
+                                                  key: ValueKey<int>(currentPoints),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: ColorsResources.premiumLight,
+                                                      fontSize: 31,
+                                                      fontFamily: "Electric",
+                                                      shadows: [
+                                                        Shadow(
+                                                            color: ColorsResources.white.withOpacity(0.19),
+                                                            blurRadius: 7,
+                                                            offset: const Offset(0, 3)
+                                                        )
+                                                      ]
+                                                  ),
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                              )
                             ),
                             Positioned(
                                 top: 119,
