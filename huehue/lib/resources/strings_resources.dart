@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/3/23, 9:12 AM
+ * Last modified 1/8/23, 1:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -30,6 +30,11 @@ class StringsResources {
     return "off";
   }
 
+  static String loginTitle() {
+
+    return "login";
+  }
+
   static String switchTitleContinuously() {
 
     return "continuously";
@@ -38,6 +43,16 @@ class StringsResources {
   static String switchDescriptionContinuously() {
 
     return "Continuously Level Up...\nOr Start Next Level Manually.";
+  }
+
+  static String switchTitleSounds() {
+
+    return "Sounds";
+  }
+
+  static String switchDescriptionSounds() {
+
+    return "Turn On / Off All Sounds...\nBackground Music, Sound Effects.";
   }
 
 }

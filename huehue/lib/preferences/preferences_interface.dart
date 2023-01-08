@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 4:10 AM
+ * Last modified 1/8/23, 1:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -13,7 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-import 'package:huehue/preferences/PreferencesKeys.dart';
+import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/util/ui/SwitchPreferences.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -34,6 +34,23 @@ class PreferencesInterface extends StatefulWidget {
 class _PreferencesInterfaceState extends State<PreferencesInterface> {
 
   PreferencesIO preferencesIO = PreferencesIO();
+
+  Widget loginPlaceholder = Text(
+      StringsResources.loginTitle(),
+      style: TextStyle(
+          color: ColorsResources.premiumLight,
+          fontSize: 17,
+          fontFamily: "Nasa",
+          letterSpacing: 1.3,
+          shadows: [
+            Shadow(
+                color: ColorsResources.white.withOpacity(0.37),
+                blurRadius: 13,
+                offset: const Offset(0, 3)
+            )
+          ]
+      )
+  );
 
   @override
   void initState() {
@@ -173,8 +190,18 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
 
                                   /* Start - Continuously Switch */
                                   SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.continuously,
-                                      titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously())
+                                      titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously()),
                                   /* End - Continuously Switch */
+
+                                  const Divider(
+                                    height: 37,
+                                    color: Colors.transparent
+                                  ),
+
+                                  /* Start - Sounds Switch */
+                                  SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.sounds,
+                                      titlePreferences: StringsResources.switchTitleSounds(), descriptionPreferences: StringsResources.switchDescriptionSounds())
+                                  /* End - Sounds Switch */
 
                                 ],
                               )
@@ -248,7 +275,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                             ),
                             /* End - Back */
 
-                            /* Start - Branding */
+                            /* Start - Login */
                             Positioned(
                                 top: 37,
                                 right: 37,
@@ -289,13 +316,15 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                           splashFactory: InkRipple.splashFactory,
                                           onTap: () {
 
-
+                                            startLoginProcess();
 
                                           },
-                                          child: const Image(
-                                            image: AssetImage("logo.png"),
+                                          child: SizedBox(
                                             height: 73,
                                             width: 73,
+                                            child: Center(
+                                              child: loginPlaceholder
+                                            )
                                           )
                                       )
                                   ),
@@ -306,7 +335,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
                                   ),
                                 )
                             ),
-                            /* End - Branding */
+                            /* End - Login */
 
                             /* End - Content */
 
@@ -317,6 +346,12 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> {
             )
         )
     );
+  }
+
+  void startLoginProcess() {
+
+
+
   }
 
 }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 4:25 AM
+ * Last modified 1/8/23, 1:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,7 +11,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:huehue/preferences/PreferencesKeys.dart';
+import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -109,7 +109,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
               borderRadius: BorderRadius.circular(13),
               child: Blur(
                 blur: 37,
-                blurColor: ColorsResources.primaryColorDarkest,
+                blurColor: ColorsResources.black,
                 colorOpacity: 0.13,
                 overlay: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -248,7 +248,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
                     child: Align(
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          StringsResources.switchDescriptionContinuously(),
+                          widget.descriptionPreferences,
                           textAlign: TextAlign.start,
                           maxLines: 2,
                           style: const TextStyle(
@@ -282,6 +282,15 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
 
         break;
       }
+      case PreferencesKeys.sounds: {
+
+        bool sounds = await widget.preferencesIO.retrieveSounds();
+        debugPrint("Initial Sounds: $sounds");
+
+        sounds ? animationController?.forward() : animationController?.reverse();
+
+        break;
+      }
     }
 
   }
@@ -295,6 +304,15 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
         debugPrint("Continuously: $continuouslyValue | Switching It...");
 
         continuouslyValue ? widget.preferencesIO.storeContinuously(false) : widget.preferencesIO.storeContinuously(true);
+
+        break;
+      }
+      case PreferencesKeys.sounds: {
+
+        bool soundsValue = await widget.preferencesIO.retrieveSounds();
+        debugPrint("Sounds: $soundsValue | Switching It...");
+
+        soundsValue ? widget.preferencesIO.storeSounds(false) : widget.preferencesIO.storeSounds(true);
 
         break;
       }

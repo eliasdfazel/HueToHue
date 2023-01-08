@@ -2,14 +2,14 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/4/23, 9:05 AM
+ * Last modified 1/8/23, 1:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:flutter/cupertino.dart';
-import 'package:huehue/preferences/PreferencesKeys.dart';
+import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesIO {
@@ -48,6 +48,25 @@ class PreferencesIO {
 
       await value.setBool(PreferencesKeys.continuously, continuously).then((value) => {
         debugPrint("Continuously Stored Successfully: $continuously")
+      })
+
+    });
+
+  }
+
+  Future<bool> retrieveSounds() async {
+
+    bool sounds = (await sharedPreferences).getBool(PreferencesKeys.sounds) ?? true;
+
+    return sounds;
+  }
+
+  Future storeSounds(bool sounds) async {
+
+    sharedPreferences.then((value) async => {
+
+      await value.setBool(PreferencesKeys.sounds, sounds).then((value) => {
+        debugPrint("Continuously Stored Successfully: $sounds")
       })
 
     });

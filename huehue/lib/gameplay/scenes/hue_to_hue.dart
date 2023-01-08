@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/7/23, 8:31 AM
+ * Last modified 1/8/23, 12:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -454,10 +454,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
     GetOptions getOptions = const GetOptions(source: Source.cache);
 
-    if (gameContinuously) {
-      getOptions = const GetOptions(source: Source.server);
-    }
-
     FirebaseFirestore.instance
       .doc(levelPath(currentLevels))
       .get(getOptions).then((DocumentSnapshot documentSnapshot) => {
@@ -478,6 +474,10 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
         }
 
       });
+
+    FirebaseFirestore.instance
+        .doc(levelPath(currentLevels + 1))
+        .get(const GetOptions(source: Source.serverAndCache));
 
   }
 
