@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 4:39 AM
+ * Last modified 1/8/23, 5:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,9 +27,9 @@ class GameStatues {
 
                   /* Start - Blurry Background */
                   const Blur(
-                    blur: 31.0,
+                    blur: 19.0,
                     blurColor: ColorsResources.primaryColorDarkest,
-                    colorOpacity: 0.19,
+                    colorOpacity: 0.73,
                     child: SizedBox(
                       height: double.maxFinite,
                       width: double.maxFinite,
@@ -38,10 +38,12 @@ class GameStatues {
                   /* End - Blurry Background */
 
                   Positioned(
-                    bottom: -37,
+                    bottom: -137,
+                    left: 0,
+                    right: 0,
                     child: SizedBox(
-                        height: 399,
-                        width: 399,
+                        height: 513,
+                        width: double.maxFinite,
                         child: Stack(
                           children: [
 
@@ -64,16 +66,14 @@ class GameStatues {
 
                                         },
                                         child: const Image(
-                                          image: AssetImage("blob_play.png"),
-                                          height: 399,
-                                          width: 399,
+                                          image: AssetImage("restart_blob_play.png"),
+                                          width: double.maxFinite,
                                         )
                                     )
                                 ),
                                 child: const Image(
-                                  image: AssetImage("blob_play.png"),
-                                  height: 399,
-                                  width: 399,
+                                  image: AssetImage("restart_blob_play.png"),
+                                  width: double.maxFinite,
                                 )
                             )
 

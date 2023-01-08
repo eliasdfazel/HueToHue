@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 4:40 AM
+ * Last modified 1/8/23, 5:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -42,7 +42,9 @@ class HueToHue extends StatefulWidget {
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
-  Timer? gameplayTimer;
+  Future gameplayTimer = Future(() {
+
+  });
 
   PreferencesIO preferencesIO = PreferencesIO();
 
@@ -80,8 +82,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
   void dispose() {
 
     animationController?.dispose();
-
-    gameplayTimer?.cancel();
 
     super.dispose();
   }
@@ -479,6 +479,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
             initializeGameplay(levelsDataStructure!.gradientDuration(), levelsDataStructure!.gradientLayers(), levelsDataStructure!.allColors());
 
+            startTimer(levelsDataStructure!.levelTimer());
+
           })
 
         } else {
@@ -610,8 +612,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   void processPlayAction(List<Color> gameplayGradientColors, List<Color> shapedGradientColor) async {
 
-    startTimer();
-
     bool testingMode = kDebugMode;
 
     setState(() {
@@ -673,13 +673,22 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   }
 
-  void startTimer() {
+  void startTimer(int levelTimer) {
 
-    gameplayTimer = Timer(Duration(milliseconds: levelsDataStructure?.levelTimer() ?? 7777), () {
+    int defaultTimeout = kDebugMode ? 3000 : levelTimer;
 
-      if (currentPoints < 8) {
+    gameplayTimer = Future.delayed(Duration(milliseconds: defaultTimeout), () {
+      debugPrint("Level Timed Out!");
 
-        gameStatuesPlaceholder = gameStatues.gameOverScene();
+      if (currentPoints < 7) {
+
+        setState(() {
+
+          gameStatuesPlaceholder = gameStatues.gameOverScene();
+
+        });
+
+        animationController?.stop();
 
       } else {
 
