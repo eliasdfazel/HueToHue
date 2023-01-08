@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:17 AM
+ * Last modified 1/8/23, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,9 +15,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
-import 'package:huehue/gameplay/scenes/chaotic_hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -25,7 +25,7 @@ import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
-import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -647,8 +647,37 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
                   onTap: () {
 
                     Future.delayed(const Duration(milliseconds: 333), () {
+                      FirebaseAnalytics.instance.logEvent(name: "Chaotic Coming Soon...");
 
-                      navigateTo(context, ChaoticHueToHue(maximumLevels: maximumLevels));
+                      showToast(
+                        "coming soon...",
+                        textStyle: TextStyle(
+                          color: ColorsResources.premiumLight,
+                          fontSize: 17,
+                          fontFamily: "Electric",
+                          letterSpacing: 1.3,
+                          shadows: [
+                            Shadow(
+                              color: ColorsResources.white.withOpacity(0.31),
+                              blurRadius: 13,
+                              offset: const Offset(0, 3)
+                            )
+                          ]
+                        ),
+                        context: context,
+                        fullWidth: true,
+                        position: const StyledToastPosition(align: Alignment.bottomCenter, offset: 131),
+                        backgroundColor: ColorsResources.primaryColorDarker.withOpacity(0.73),
+                        borderRadius: BorderRadius.circular(19),
+                        animation: StyledToastAnimation.slideFromBottomFade,
+                        reverseAnimation: StyledToastAnimation.slideToBottomFade,
+                        curve: Curves.easeIn,
+                        reverseCurve: Curves.easeOut,
+                        isIgnoring: false,
+                        duration: const Duration(milliseconds: 3333),
+                      );
+
+                      // navigateTo(context, ChaoticHueToHue(maximumLevels: maximumLevels));
 
                     });
 

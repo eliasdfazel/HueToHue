@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:17 AM
+ * Last modified 1/8/23, 6:21 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -27,7 +27,7 @@ import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/numbers.dart';
-import 'package:huehue/utils/ui/system_bars.dart';
+import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:widget_mask/widget_mask.dart';
 
