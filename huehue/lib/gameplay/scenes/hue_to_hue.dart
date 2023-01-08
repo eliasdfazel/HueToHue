@@ -2,11 +2,13 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 3:37 AM
+ * Last modified 1/8/23, 4:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:async';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/data/levels_data_structure.dart';
+import 'package:huehue/gameplay/scenes/elements/GameStatues.dart';
 import 'package:huehue/gameplay/scenes/elements/gradients_shapes.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -39,6 +42,8 @@ class HueToHue extends StatefulWidget {
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
+  Timer? gameplayTimer;
+
   PreferencesIO preferencesIO = PreferencesIO();
 
   GradientsShapes gradientsShapes = GradientsShapes(levelsDataStructure: null);
@@ -61,6 +66,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   bool gameContinuously = false;
 
+  GameStatues gameStatues = GameStatues();
+  Widget gameStatuesPlaceholder = Container();
+
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     navigatePop(context);
@@ -72,6 +80,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
   void dispose() {
 
     animationController?.dispose();
+
+    gameplayTimer?.cancel();
 
     super.dispose();
   }
@@ -403,7 +413,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
                                       )
                                   )
                               )
-                            )
+                            ),
+
+                            gameStatuesPlaceholder
 
                           ]
                       )
@@ -598,6 +610,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
   void processPlayAction(List<Color> gameplayGradientColors, List<Color> shapedGradientColor) async {
 
+    startTimer();
+
     bool testingMode = kDebugMode;
 
     setState(() {
@@ -656,6 +670,24 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin  {
 
 
     }
+
+  }
+
+  void startTimer() {
+
+    gameplayTimer = Timer(Duration(milliseconds: levelsDataStructure?.levelTimer() ?? 7777), () {
+
+      if (currentPoints < 8) {
+
+        gameStatuesPlaceholder = gameStatues.gameOverScene();
+
+      } else {
+
+
+
+      }
+
+    });
 
   }
 
