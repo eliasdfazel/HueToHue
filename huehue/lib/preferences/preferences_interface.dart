@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 5:19 AM
+ * Last modified 1/8/23, 6:11 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -68,6 +68,31 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    if (FirebaseAuth.instance.currentUser != null) {
+
+      loginPlaceholder = WidgetMask(
+          blendMode: BlendMode.srcIn,
+          childSaveLayer: true,
+          mask: SizedBox(
+              height: 63,
+              width: 63,
+              child: Center(
+                  child: Image.network(
+                      FirebaseAuth.instance.currentUser!.photoURL!,
+                      fit: BoxFit.cover
+                  )
+              )
+          ),
+          child: const Image(
+            image: AssetImage("squircle.png"),
+            height: 63,
+            width: 63,
+          )
+      );
+
+    }
+
   }
 
   @override
