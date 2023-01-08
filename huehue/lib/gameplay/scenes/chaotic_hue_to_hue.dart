@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 3:37 AM
+ * Last modified 1/8/23, 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -78,6 +79,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   @override
   void initState() {
+    FirebaseAnalytics.instance.logEvent(name: "Chaotic Hue To Hue");
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

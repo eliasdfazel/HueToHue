@@ -2,13 +2,14 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:11 AM
+ * Last modified 1/8/23, 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -62,6 +63,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
   @override
   void initState() {
+    FirebaseAnalytics.instance.logEvent(name: "Preferences");
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

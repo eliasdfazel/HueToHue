@@ -2,13 +2,14 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 1:19 AM
+ * Last modified 1/8/23, 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'package:blur/blur.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/preferences/data/PreferencesKeys.dart';
@@ -299,6 +300,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
 
     switch (widget.preferencesKey) {
       case PreferencesKeys.continuously: {
+        FirebaseAnalytics.instance.logEvent(name: "Continuously");
 
         bool continuouslyValue = await widget.preferencesIO.retrieveContinuously();
         debugPrint("Continuously: $continuouslyValue | Switching It...");
@@ -308,6 +310,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
         break;
       }
       case PreferencesKeys.sounds: {
+        FirebaseAnalytics.instance.logEvent(name: "Sounds");
 
         bool soundsValue = await widget.preferencesIO.retrieveSounds();
         debugPrint("Sounds: $soundsValue | Switching It...");

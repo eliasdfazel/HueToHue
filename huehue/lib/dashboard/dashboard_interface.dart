@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 4:39 AM
+ * Last modified 1/8/23, 6:17 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -10,6 +10,7 @@
 
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -456,6 +457,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
                                         splashColor: ColorsResources.primaryColor,
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () {
+                                          FirebaseAnalytics.instance.logEvent(name: "Geeks Empire Links");
 
                                           launchUrl(Uri.parse(StringsResources.linksGeeksEmpire()), mode: LaunchMode.externalApplication);
 
