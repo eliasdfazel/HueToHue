@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "942557431731",
+    "firebase_url": "https://hue-to-hue-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "hue-to-hue",
     "storage_bucket": "hue-to-hue.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "942557431731-lun1ggsgt8tc1n4jgjc25plqim3d02io.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.huehue",
+            "certificate_hash": "6fa2d23f54167ebdfcb1ce7cb183c0f709f8934e"
+          }
+        },
+        {
+          "client_id": "942557431731-sno4m0poeitn6bmb885u4rq8i2c3qesg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.huehue",
+            "certificate_hash": "f58663ae6a0d1520a7cdc82a9067c700203aff17"
+          }
+        },
         {
           "client_id": "942557431731-ett7tmff16lds5vjh44hv6spo0da5qp4.apps.googleusercontent.com",
           "client_type": 3
