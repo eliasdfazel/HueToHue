@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:54 AM
+ * Last modified 1/8/23, 6:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -491,6 +491,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     retrieveGameData(currentLevels);
 
     setState(() {
+
+      currentPoints = 0;
 
       gameStatuesPlaceholder = Container();
 
