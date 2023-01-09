@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 3:54 AM
+ * Last modified 1/9/23, 9:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -81,7 +81,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   @override
   void initState() {
-    FirebaseAnalytics.instance.logEvent(name: "Chaotic Hue To Hue");
+    FirebaseAnalytics.instance.logEvent(name: "ChaoticHueToHue");
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 

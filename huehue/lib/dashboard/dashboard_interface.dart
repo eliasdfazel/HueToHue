@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 7:15 AM
+ * Last modified 1/9/23, 9:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -475,7 +475,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                         splashColor: ColorsResources.primaryColor,
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () {
-                                          FirebaseAnalytics.instance.logEvent(name: "Geeks Empire Links");
+                                          FirebaseAnalytics.instance.logEvent(name: "GeeksEmpireLinks");
 
                                           launchUrl(Uri.parse(StringsResources.linksGeeksEmpire()), mode: LaunchMode.externalApplication);
 
@@ -672,7 +672,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                   onTap: () {
 
                     Future.delayed(const Duration(milliseconds: 333), () {
-                      FirebaseAnalytics.instance.logEvent(name: "Chaotic Coming Soon...");
+                      FirebaseAnalytics.instance.logEvent(name: "ChaoticComingSoon");
 
                       showToast(
                         "coming soon...",

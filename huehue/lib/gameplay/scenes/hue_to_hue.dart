@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 7:38 AM
+ * Last modified 1/9/23, 9:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,7 +20,7 @@ import 'package:flutter/services.dart';
 import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/data/levels_data_structure.dart';
-import 'package:huehue/gameplay/scenes/elements/GameStatues.dart';
+import 'package:huehue/gameplay/scenes/elements/game_statues.dart';
 import 'package:huehue/gameplay/scenes/elements/gradients_shapes.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -103,7 +103,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   @override
   void initState() {
-    FirebaseAnalytics.instance.logEvent(name: "Hue To Hue");
+    FirebaseAnalytics.instance.logEvent(name: "HueToHue");
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
