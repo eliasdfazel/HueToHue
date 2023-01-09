@@ -2,18 +2,27 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/5/23, 7:23 AM
+ * Last modified 1/9/23, 4:55 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-String allLevelPath() {
+class GameplayPaths {
 
-  return "/HueToHue/Gameplay/Levels";
-}
+  String allLevelPath() {
 
-String levelPath(int currentLevel) {
+    return "/HueToHue/Gameplay/Levels";
+  }
 
-  return "/HueToHue/Gameplay/Levels/${currentLevel.toString()}";
+  String levelPath(int currentLevel) {
+
+    return "/HueToHue/Gameplay/Levels/${currentLevel.toString()}";
+  }
+
+  String soundsPath() {
+
+    return "/HueToHue/Gameplay/Assets/Sounds";
+  }
+
 }

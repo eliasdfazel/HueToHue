@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:42 AM
+ * Last modified 1/9/23, 4:19 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:huehue/gameplay/assets/assets_io.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
@@ -39,6 +40,10 @@ class DashboardInterface extends StatefulWidget {
 }
 
 class _DashboardInterfaceState extends State<DashboardInterface> with SynchronizationStatus {
+
+  GameplayPaths gameplayPaths = GameplayPaths();
+
+  AssetsIO assetsIO = AssetsIO();
 
   SyncIO syncIO = SyncIO();
 
@@ -66,6 +71,8 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
     cacheGameplayData();
 
     syncCheckpoint();
+
+    assetsIO.retrieveAllSounds();
 
   }
 
@@ -524,7 +531,7 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
     });
 
     FirebaseFirestore.instance
-        .collection(allLevelPath())
+        .collection(gameplayPaths.allLevelPath())
         .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
 
           Future.delayed(Duration.zero, () {

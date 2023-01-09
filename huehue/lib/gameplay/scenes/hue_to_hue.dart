@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 3:46 AM
+ * Last modified 1/9/23, 5:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -43,9 +43,7 @@ class HueToHue extends StatefulWidget {
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
 
-  Future gameplayTimer = Future(() {
-
-  });
+  GameplayPaths gameplayPaths = GameplayPaths();
 
   PreferencesIO preferencesIO = PreferencesIO();
 
@@ -541,7 +539,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     GetOptions getOptions = const GetOptions(source: Source.cache);
 
     FirebaseFirestore.instance
-      .doc(levelPath(currentLevels))
+      .doc(gameplayPaths.levelPath(currentLevels))
       .get(getOptions).then((DocumentSnapshot documentSnapshot) => {
 
         if (documentSnapshot.exists) {
@@ -558,13 +556,13 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
           })
 
         } else {
-          debugPrint("Error | ${levelPath(currentLevels)}")
+          debugPrint("Error | ${gameplayPaths.levelPath(currentLevels)}")
         }
 
       });
 
     FirebaseFirestore.instance
-        .doc(levelPath(currentLevels + 1))
+        .doc(gameplayPaths.levelPath(currentLevels + 1))
         .get(const GetOptions(source: Source.serverAndCache));
 
   }
@@ -762,7 +760,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     int defaultTimeout = kDebugMode ? 13000 : levelTimer;
 
-    gameplayTimer = Future.delayed(Duration(milliseconds: defaultTimeout), () {
+    Future.delayed(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
 
       if (currentPoints < 7) {
@@ -785,10 +783,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void startBackgroundMusic() {
 
-
-
-  }
 
 }

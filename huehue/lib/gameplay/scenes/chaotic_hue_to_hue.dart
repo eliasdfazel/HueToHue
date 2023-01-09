@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:21 AM
+ * Last modified 1/9/23, 3:54 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -39,6 +39,8 @@ class ChaoticHueToHue extends StatefulWidget {
 }
 
 class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin  {
+
+  GameplayPaths gameplayPaths = GameplayPaths();
 
   PreferencesIO preferencesIO = PreferencesIO();
 
@@ -461,7 +463,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
     }
 
     FirebaseFirestore.instance
-      .doc(levelPath(currentLevels))
+      .doc(gameplayPaths.levelPath(currentLevels))
       .get(getOptions).then((DocumentSnapshot documentSnapshot) => {
 
         if (documentSnapshot.exists) {
@@ -476,7 +478,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
           })
 
         } else {
-          debugPrint("Error | ${levelPath(currentLevels)}")
+          debugPrint("Error | ${gameplayPaths.levelPath(currentLevels)}")
         }
 
       });
