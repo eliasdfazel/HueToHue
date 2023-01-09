@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:58 AM
+ * Last modified 1/9/23, 5:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -762,12 +762,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
       });
 
-
     } else {
       debugPrint("Player Loses!");
-
-
-
     }
 
   }
