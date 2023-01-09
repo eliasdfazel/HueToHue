@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:59 AM
+ * Last modified 1/9/23, 6:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -74,7 +74,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   AnimationController? animationController;
 
-  bool gameSounds = false;
+  bool gameSoundsOn = false;
   bool gameContinuously = false;
 
   GameStatues gameStatues = GameStatues();
@@ -717,6 +717,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     if (listEquals(gameplayGradientColors, shapedGradientColor) || testingMode) {
       debugPrint("Player Wins!");
 
+      playPointsSound();
+
       setState(() {
 
         pointsOpacity = 1.0;
@@ -800,7 +802,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     preferencesIO.retrieveSounds().then((value) => {
 
       Future(() async {
-        gameSounds = value;
+        gameSoundsOn = value;
 
         if (value) {
 
@@ -813,6 +815,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await pointsSound.setFilePath(pointsSoundPath);
 
+            pointsSound.setVolume(0.37);
             pointsSound.stop();
 
           }
@@ -825,6 +828,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await levelsSound.setFilePath(levelsSoundPath);
 
+            levelsSound.setVolume(0.37);
             levelsSound.stop();
 
           }
@@ -837,6 +841,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await transitionsSound.setFilePath(transitionsSoundPath);
 
+            transitionsSound.setVolume(0.37);
             transitionsSound.stop();
 
           }
@@ -847,6 +852,46 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       })
 
     });
+
+  }
+
+  void playPointsSound() {
+
+    if (gameSoundsOn) {
+
+      pointsSound.play();
+
+      pointsSound.playerStateStream.listen((state) {
+
+        if (state.playing) {
+
+        } else {
+
+        }
+
+        switch (state.processingState) {
+          case ProcessingState.idle: {
+            break;
+          }
+          case ProcessingState.loading: {
+            break;
+          }
+          case ProcessingState.buffering: {
+            break;
+          }
+          case ProcessingState.ready: {
+            break;
+          }
+          case ProcessingState.completed: {
+            debugPrint("Point Sound Finished");
+
+            break;
+          }
+        }
+
+      });
+
+    }
 
   }
 

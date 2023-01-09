@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:21 AM
+ * Last modified 1/9/23, 6:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,7 @@ import 'package:blur/blur.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -316,6 +317,8 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
         debugPrint("Sounds: $soundsValue | Switching It...");
 
         soundsValue ? widget.preferencesIO.storeSounds(false) : widget.preferencesIO.storeSounds(true);
+
+        soundsValue ? DashboardInterfaceState.backgroundAudioPlayer.pause() : DashboardInterfaceState.backgroundAudioPlayer.play() ;
 
         break;
       }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:51 AM
+ * Last modified 1/9/23, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -90,7 +90,11 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
   @override
   Widget build(BuildContext context) {
 
-    backgroundAudioPlayer.setVolume(0.31);
+    // if (!backgroundAudioPlayer.playing) {
+    //
+    //   backgroundAudioPlayer.play();
+    //
+    // }
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -779,8 +783,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                 case ProcessingState.completed: {
                   debugPrint("Background Music Finished | Start Replaying...");
 
-                  backgroundAudioPlayer.stop();
-                  backgroundAudioPlayer.play();
+
 
                   break;
                 }
