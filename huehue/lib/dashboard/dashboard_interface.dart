@@ -2,11 +2,13 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 4:19 AM
+ * Last modified 1/9/23, 5:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
+
+import 'dart:io';
 
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,7 +29,9 @@ import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -36,10 +40,12 @@ class DashboardInterface extends StatefulWidget {
   const DashboardInterface({super.key});
 
   @override
-  State<DashboardInterface> createState() => _DashboardInterfaceState();
+  State<DashboardInterface> createState() => DashboardInterfaceState();
 }
 
-class _DashboardInterfaceState extends State<DashboardInterface> with SynchronizationStatus {
+class DashboardInterfaceState extends State<DashboardInterface> with SynchronizationStatus, AssetsStatus {
+
+  static final backgroundAudioPlayer = AudioPlayer();
 
   GameplayPaths gameplayPaths = GameplayPaths();
 
@@ -58,6 +64,11 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
   Widget waitingAnimationPlaceholder = Container();
 
   @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   void initState() {
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
@@ -72,12 +83,14 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
 
     syncCheckpoint();
 
-    assetsIO.retrieveAllSounds();
+    assetsIO.retrieveAllSounds(this);
 
   }
 
   @override
   Widget build(BuildContext context) {
+
+    backgroundAudioPlayer.setVolume(0.31);
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -510,6 +523,13 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
   @override
   void syncError() {}
 
+  @override
+  void assetsDownloaded() {
+
+    startBackgroundMusic();
+
+  }
+
   void retrievePreferences() async {
 
     currentLevel = (await preferencesIO.retrieveCurrentLevel()).toString();
@@ -714,5 +734,72 @@ class _DashboardInterfaceState extends State<DashboardInterface> with Synchroniz
     }
 
   }
+
+  void startBackgroundMusic() async {
+
+    preferencesIO.retrieveSounds().then((value) => {
+
+      Future(() async {
+
+        if (value) {
+
+          final assetsDirectory = await getApplicationSupportDirectory();
+
+          final backgroundMusicPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.backgroundMusic}";
+          final file = File(backgroundMusicPath);
+
+          if (file.existsSync()) {
+            debugPrint("Background Music Playing...");
+
+            await backgroundAudioPlayer.setFilePath(backgroundMusicPath);
+
+            backgroundAudioPlayer.play();
+
+            backgroundAudioPlayer.playerStateStream.listen((state) {
+
+              if (state.playing) {
+
+              } else {
+
+              }
+
+              switch (state.processingState) {
+                case ProcessingState.idle: {
+                  break;
+                }
+                case ProcessingState.loading: {
+                  break;
+                }
+                case ProcessingState.buffering: {
+                  break;
+                }
+                case ProcessingState.ready: {
+                  break;
+                }
+                case ProcessingState.completed: {
+                  debugPrint("Background Music Finished | Start Replaying...");
+
+                  backgroundAudioPlayer.stop();
+                  backgroundAudioPlayer.play();
+
+                  break;
+                }
+              }
+
+            });
+
+          } else {
+
+          }
+
+        }
+
+      })
+
+    });
+
+  }
+
+
 
 }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 4:58 AM
+ * Last modified 1/9/23, 5:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,11 +15,15 @@ import 'package:flutter/widgets.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:path_provider/path_provider.dart';
 
+abstract class AssetsStatus {
+  void assetsDownloaded();
+}
+
 class AssetsIO {
 
   GameplayPaths gameplayPaths = GameplayPaths();
 
-  void retrieveAllSounds() async {
+  void retrieveAllSounds(AssetsStatus assetsStatus) async {
 
     final soundsAssetsPath = FirebaseStorage.instance.ref(gameplayPaths.soundsPath());
 
@@ -48,6 +52,11 @@ class AssetsIO {
                   break;
                 case TaskState.success:
                   debugPrint("${storageReference.name} Downloaded Successfully!");
+
+                  if (storageReference.name == GameplayPaths.backgroundMusic) {
+                    assetsStatus.assetsDownloaded();
+                  }
+
                   break;
                 case TaskState.canceled:
                   debugPrint("Canceled | ${taskSnapshot.metadata}");
@@ -66,6 +75,11 @@ class AssetsIO {
 
           } else {
             debugPrint("File: ${storageReference.name} Already Exists!");
+
+            if (storageReference.name == GameplayPaths.backgroundMusic) {
+              assetsStatus.assetsDownloaded();
+            }
+
           }
 
         }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:00 AM
+ * Last modified 1/9/23, 5:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,6 +16,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/data/levels_data_structure.dart';
 import 'package:huehue/gameplay/scenes/elements/GameStatues.dart';
@@ -72,6 +73,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
+    DashboardInterfaceState.backgroundAudioPlayer.setVolume(0.31);
+
     navigatePop(context);
 
     return true;
@@ -100,6 +103,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     initializeGameInformation();
 
     BackButtonInterceptor.add(aInterceptor);
+
+    DashboardInterfaceState.backgroundAudioPlayer.setVolume(1);
 
   }
 
@@ -782,7 +787,5 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     });
 
   }
-
-
 
 }
