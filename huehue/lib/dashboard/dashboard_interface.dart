@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 6:37 AM
+ * Last modified 1/9/23, 7:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -83,18 +83,12 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
     syncCheckpoint();
 
-    assetsIO.retrieveAllSounds(this);
+    assetsCheckpoint();
 
   }
 
   @override
   Widget build(BuildContext context) {
-
-    // if (!backgroundAudioPlayer.playing) {
-    //
-    //   backgroundAudioPlayer.play();
-    //
-    // }
 
     return MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -729,6 +723,25 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     );
   }
 
+  void assetsCheckpoint() async {
+
+    final assetsDirectory = await getApplicationSupportDirectory();
+
+    final filePath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.backgroundMusic}";
+    final file = File(filePath);
+
+    if (file.existsSync()) {
+
+      startBackgroundMusic();
+
+    } else {
+
+      assetsIO.retrieveAllSounds(this);
+
+    }
+
+  }
+
   void syncCheckpoint() {
 
     if (FirebaseAuth.instance.currentUser != null) {
@@ -757,6 +770,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
             await backgroundAudioPlayer.setFilePath(backgroundMusicPath);
 
+            backgroundAudioPlayer.setVolume(0.31);
             backgroundAudioPlayer.play();
 
             backgroundAudioPlayer.playerStateStream.listen((state) {
@@ -783,7 +797,10 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                 case ProcessingState.completed: {
                   debugPrint("Background Music Finished | Start Replaying...");
 
+                  backgroundAudioPlayer.setFilePath(backgroundMusicPath);
 
+                  backgroundAudioPlayer.setVolume(0.31);
+                  backgroundAudioPlayer.play();
 
                   break;
                 }

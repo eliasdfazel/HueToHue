@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 6:33 AM
+ * Last modified 1/9/23, 7:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,6 +46,8 @@ class HueToHue extends StatefulWidget {
 }
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
+
+  Directory? assetsDirectory;
 
   final AudioPlayer pointsSound = AudioPlayer();
   final AudioPlayer levelsSound = AudioPlayer();
@@ -772,7 +774,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void startTimer(int levelTimer) {
 
-    int defaultTimeout = kDebugMode ? 13000 : levelTimer;
+    int defaultTimeout = kDebugMode ? 73000 : levelTimer;
 
     Future.delayed(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
@@ -806,43 +808,40 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
         if (value) {
 
-          final assetsDirectory = await getApplicationSupportDirectory();
+          assetsDirectory = await getApplicationSupportDirectory();
 
           /* Start - Points */
-          final pointsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}";
+          final pointsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}";
 
           if (File(pointsSoundPath).existsSync()) {
 
             await pointsSound.setFilePath(pointsSoundPath);
 
-            pointsSound.setVolume(0.37);
-            pointsSound.stop();
+            pointsSound.setVolume(0.31);
 
           }
           /* End - Points */
 
           /* Start - Points */
-          final levelsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}";
+          final levelsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}";
 
           if (File(levelsSoundPath).existsSync()) {
 
             await levelsSound.setFilePath(levelsSoundPath);
 
-            levelsSound.setVolume(0.37);
-            levelsSound.stop();
+            levelsSound.setVolume(0.31);
 
           }
           /* End - Points */
 
           /* Start - Transitions */
-          final transitionsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}";
+          final transitionsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}";
 
           if (File(transitionsSoundPath).existsSync()) {
 
             await transitionsSound.setFilePath(transitionsSoundPath);
 
-            transitionsSound.setVolume(0.37);
-            transitionsSound.stop();
+            transitionsSound.setVolume(0.31);
 
           }
           /* End - Transitions */
@@ -859,37 +858,36 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     if (gameSoundsOn) {
 
+      pointsSound.setLoopMode(LoopMode.off);
       pointsSound.play();
 
-      pointsSound.playerStateStream.listen((state) {
+      pointsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}");
 
-        if (state.playing) {
+    }
 
-        } else {
+  }
 
-        }
+  void playLevelsSound() {
 
-        switch (state.processingState) {
-          case ProcessingState.idle: {
-            break;
-          }
-          case ProcessingState.loading: {
-            break;
-          }
-          case ProcessingState.buffering: {
-            break;
-          }
-          case ProcessingState.ready: {
-            break;
-          }
-          case ProcessingState.completed: {
-            debugPrint("Point Sound Finished");
+    if (gameSoundsOn) {
 
-            break;
-          }
-        }
+      levelsSound.setLoopMode(LoopMode.off);
+      levelsSound.play();
 
-      });
+      levelsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}");
+
+    }
+
+  }
+
+  void playTransitionsSound() {
+
+    if (gameSoundsOn) {
+
+      transitionsSound.setLoopMode(LoopMode.off);
+      transitionsSound.play();
+
+      transitionsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}");
 
     }
 
