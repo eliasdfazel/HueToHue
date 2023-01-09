@@ -2,13 +2,14 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:46 AM
+ * Last modified 1/9/23, 5:58 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
 import 'dart:async';
+import 'dart:io';
 
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +30,9 @@ import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/numbers.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 class HueToHue extends StatefulWidget {
@@ -43,6 +46,11 @@ class HueToHue extends StatefulWidget {
 }
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
+
+  final AudioPlayer pointsSound = AudioPlayer();
+  final AudioPlayer levelsSound = AudioPlayer();
+
+  final AudioPlayer transitionsSound = AudioPlayer();
 
   GameplayPaths gameplayPaths = GameplayPaths();
 
@@ -66,6 +74,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   AnimationController? animationController;
 
+  bool gameSounds = false;
   bool gameContinuously = false;
 
   GameStatues gameStatues = GameStatues();
@@ -105,6 +114,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     BackButtonInterceptor.add(aInterceptor);
 
     DashboardInterfaceState.backgroundAudioPlayer.setVolume(1);
+
+    initializeSounds();
 
   }
 
@@ -783,6 +794,61 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
 
       }
+
+    });
+
+  }
+
+  void initializeSounds() async {
+
+    preferencesIO.retrieveSounds().then((value) => {
+
+      Future(() async {
+        gameSounds = value;
+
+        if (value) {
+
+          final assetsDirectory = await getApplicationSupportDirectory();
+
+          /* Start - Points */
+          final pointsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}";
+
+          if (File(pointsSoundPath).existsSync()) {
+
+            await pointsSound.setFilePath(pointsSoundPath);
+
+            pointsSound.stop();
+
+          }
+          /* End - Points */
+
+          /* Start - Points */
+          final levelsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}";
+
+          if (File(levelsSoundPath).existsSync()) {
+
+            await levelsSound.setFilePath(levelsSoundPath);
+
+            levelsSound.stop();
+
+          }
+          /* End - Points */
+
+          /* Start - Transitions */
+          final transitionsSoundPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}";
+
+          if (File(transitionsSoundPath).existsSync()) {
+
+            await transitionsSound.setFilePath(transitionsSoundPath);
+
+            transitionsSound.stop();
+
+          }
+          /* End - Transitions */
+
+        }
+
+      })
 
     });
 

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:46 AM
+ * Last modified 1/9/23, 5:51 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -799,7 +799,5 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     });
 
   }
-
-
 
 }
