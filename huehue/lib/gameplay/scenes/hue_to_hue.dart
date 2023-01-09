@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 7:33 AM
+ * Last modified 1/9/23, 7:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -490,11 +490,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
   void startNextPlay() {
     debugPrint("Start Next Level");
 
-    currentPoints = 0;
-
     retrieveGameData(currentLevels + 1);
 
     setState(() {
+
+      currentPoints = 0;
 
       gameStatuesPlaceholder = Container();
 
@@ -742,6 +742,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             levelsOpacity = 1.0;
 
+            currentPoints = 0;
+
             currentLevels += 1;
 
             if (currentLevels > widget.maximumLevels) {
@@ -874,12 +876,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void playPointsSound() {
+  void playPointsSound() async {
 
     if (gameSoundsOn) {
 
       pointsSound.setLoopMode(LoopMode.off);
-      pointsSound.play();
+      await pointsSound.play();
 
       pointsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}");
 
@@ -887,12 +889,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void playLevelsSound() {
+  void playLevelsSound() async {
 
     if (gameSoundsOn) {
 
       levelsSound.setLoopMode(LoopMode.off);
-      levelsSound.play();
+      await levelsSound.play();
 
       levelsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}");
 
@@ -900,12 +902,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void playTransitionsSound() {
+  void playTransitionsSound() async {
 
     if (gameSoundsOn) {
 
       transitionsSound.setLoopMode(LoopMode.off);
-      transitionsSound.play();
+      await transitionsSound.play();
 
       transitionsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}");
 
@@ -913,12 +915,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void playGameOverSound() {
+  void playGameOverSound() async {
 
     if (gameSoundsOn) {
 
       gameOverSound.setLoopMode(LoopMode.off);
-      gameOverSound.play();
+      await gameOverSound.play();
 
       gameOverSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}");
 
