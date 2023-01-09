@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 7:18 AM
+ * Last modified 1/9/23, 7:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,6 +53,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
   final AudioPlayer levelsSound = AudioPlayer();
 
   final AudioPlayer transitionsSound = AudioPlayer();
+
+  final AudioPlayer gameOverSound = AudioPlayer();
 
   GameplayPaths gameplayPaths = GameplayPaths();
 
@@ -732,7 +734,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
         if (currentPoints == 8) {
           debugPrint("Player Wins!");
 
+          playLevelsSound();
+
           if (gameContinuously) {
+
+            playTransitionsSound();
 
             levelsOpacity = 1.0;
 
@@ -774,12 +780,14 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void startTimer(int levelTimer) {
 
-    int defaultTimeout = kDebugMode ? 73000 : levelTimer;
+    int defaultTimeout = kDebugMode ? 3000 : levelTimer;
 
     Future.delayed(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
 
       if (currentPoints < 7) {
+
+        playGameOverSound();
 
         setState(() {
 
@@ -846,6 +854,18 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
           }
           /* End - Transitions */
 
+          /* Start - Game Over */
+          final gameOverSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}";
+
+          if (File(transitionsSoundPath).existsSync()) {
+
+            await gameOverSound.setFilePath(gameOverSoundPath);
+
+            gameOverSound.setVolume(0.19);
+
+          }
+          /* End - Game Over */
+
         }
 
       })
@@ -888,6 +908,19 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       transitionsSound.play();
 
       transitionsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}");
+
+    }
+
+  }
+
+  void playGameOverSound() {
+
+    if (gameSoundsOn) {
+
+      gameOverSound.setLoopMode(LoopMode.off);
+      gameOverSound.play();
+
+      gameOverSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}");
 
     }
 
