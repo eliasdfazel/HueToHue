@@ -55,6 +55,8 @@ dependencies:
 
 
   ####### ####### #######
+  games_services: ^3.0.0
+
   google_sign_in: ^5.4.2
   ####### ####### #######
 

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 7:08 AM
+ * Last modified 1/10/23, 9:10 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -64,6 +64,11 @@ public final class GeneratedPluginRegistrant {
       flutterEngine.getPlugins().add(new net.jonhanson.flutter_native_splash.FlutterNativeSplashPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin flutter_native_splash, net.jonhanson.flutter_native_splash.FlutterNativeSplashPlugin", e);
+    }
+    try {
+      flutterEngine.getPlugins().add(new com.abedalkareem.games_services.GamesServicesPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin games_services, com.abedalkareem.games_services.GamesServicesPlugin", e);
     }
     try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.googlesignin.GoogleSignInPlugin());
