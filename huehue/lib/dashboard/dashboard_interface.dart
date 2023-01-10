@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:53 AM
+ * Last modified 1/10/23, 5:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,7 @@ import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
@@ -28,6 +29,7 @@ import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
+import 'package:huehue/utils/operations/lifecycler.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -84,6 +86,20 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     syncCheckpoint();
 
     assetsIO.retrieveAllSounds(this);
+
+    WidgetsBinding.instance.addObserver(
+        LifecycleEventHandler(resumeCallBack: () async => setState(() {
+          debugPrint("Dashboard Resumed");
+
+          backgroundAudioPlayer.play();
+
+        }), suspendingCallBack: () async => setState(() {
+          debugPrint("Dashboard Suspended");
+
+          backgroundAudioPlayer.pause();
+
+        }))
+    );
 
   }
 
@@ -806,3 +822,4 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
   }
 
 }
+
