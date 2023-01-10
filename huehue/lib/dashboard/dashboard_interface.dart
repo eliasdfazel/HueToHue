@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:00 AM
+ * Last modified 1/10/23, 4:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -743,7 +743,9 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
           final assetsDirectory = await getApplicationSupportDirectory();
 
-          final backgroundMusicPath = "${assetsDirectory.path}/${gameplayPaths.prepareBackgroundMusicPath()}";
+          String backgroundMusic = await gameplayPaths.prepareBackgroundMusicPath();
+
+          final backgroundMusicPath = "${assetsDirectory.path}/$backgroundMusic";
           final file = File(backgroundMusicPath);
 
           if (file.existsSync()) {
