@@ -51,7 +51,7 @@ android {
         targetSdkVersion 33
 
         versionCode 1
-        versionName "0.1.9.2023"
+        versionName "0.1.10.2023"
     }
 
     signingConfigs {
