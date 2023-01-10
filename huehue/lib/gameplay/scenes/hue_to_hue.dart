@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:39 AM
+ * Last modified 1/10/23, 5:05 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -58,6 +58,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   final AudioPlayer gameOverSound = AudioPlayer();
 
+  final double gameplayVolume = 0.13;
+
   GameplayPaths gameplayPaths = GameplayPaths();
 
   PreferencesIO preferencesIO = PreferencesIO();
@@ -88,7 +90,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
-    DashboardInterfaceState.backgroundAudioPlayer.setVolume(0.31);
+    decreaseVolume();
 
     navigatePop(context);
 
@@ -121,7 +123,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     BackButtonInterceptor.add(aInterceptor);
 
-    DashboardInterfaceState.backgroundAudioPlayer.setVolume(1);
+    increaseVolume();
 
     initializeSounds();
 
@@ -831,7 +833,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await pointsSound.setFilePath(pointsSoundPath);
 
-            pointsSound.setVolume(0.31);
+            pointsSound.setVolume(gameplayVolume);
 
           }
           /* End - Points */
@@ -843,7 +845,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await levelsSound.setFilePath(levelsSoundPath);
 
-            levelsSound.setVolume(0.31);
+            levelsSound.setVolume(gameplayVolume);
 
           }
           /* End - Points */
@@ -855,7 +857,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await transitionsSound.setFilePath(transitionsSoundPath);
 
-            transitionsSound.setVolume(0.31);
+            transitionsSound.setVolume(gameplayVolume);
 
           }
           /* End - Transitions */
@@ -867,7 +869,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             await gameOverSound.setFilePath(gameOverSoundPath);
 
-            gameOverSound.setVolume(0.19);
+            gameOverSound.setVolume(gameplayVolume);
 
           }
           /* End - Game Over */
@@ -931,6 +933,30 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
       await gameOverSound.stop();
       gameOverSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}");
+
+    }
+
+  }
+
+  void increaseVolume() async {
+
+    for (double i = gameplayVolume; i <= 100; i++) {
+
+      await Future.delayed(const Duration(milliseconds: 13));
+
+      DashboardInterfaceState.backgroundAudioPlayer.setVolume(i / 100);
+
+    }
+
+  }
+
+  void decreaseVolume() async {
+
+    for (double i = 100; i >= gameplayVolume; i--) {
+
+      await Future.delayed(const Duration(milliseconds: 13));
+
+      DashboardInterfaceState.backgroundAudioPlayer.setVolume(i / 100);
 
     }
 

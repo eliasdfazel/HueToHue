@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:36 AM
+ * Last modified 1/10/23, 4:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -779,6 +779,8 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                 }
                 case ProcessingState.completed: {
                   debugPrint("Background Music Finished | Start Replaying...");
+
+                  backgroundAudioPlayer.stop();
 
                   backgroundAudioPlayer.setFilePath(backgroundMusicPath);
 
