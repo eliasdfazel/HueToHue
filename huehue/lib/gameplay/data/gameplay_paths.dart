@@ -2,15 +2,18 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 7:28 AM
+ * Last modified 1/10/23, 4:02 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'dart:io';
+import 'dart:mathr/common.dart';
+
 class GameplayPaths {
 
-  static const String backgroundMusic = "background_music.mp3";
+  static const String backgroundMusic = "background_music";
 
   static const String pointsSound = "points_sound.wav";
   static const String levelsSound = "levels_sound.wav";
@@ -32,6 +35,22 @@ class GameplayPaths {
   String soundsPath() {
 
     return "/HueToHue/Gameplay/Assets/Sounds";
+  }
+
+  Future<String> prepareBackgroundMusicPath() async {
+
+    String backgroundMusicPath = "${soundsPath()}/${backgroundMusic}_0.mp3";
+
+    Directory allSoundsDirectory = Directory(soundsPath());
+
+    if (allSoundsDirectory.existsSync()) {
+
+      List<FileSystemEntity> allSoundsFiles = allSoundsDirectory.listSync(recursive: true);
+      backgroundMusicPath = allSoundsFiles[Random().nextInt(allSoundsFiles.length - 1)].path;
+
+    }
+
+    return backgroundMusicPath;
   }
 
 }

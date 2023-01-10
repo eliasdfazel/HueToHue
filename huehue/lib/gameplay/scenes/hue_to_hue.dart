@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 9:33 AM
+ * Last modified 1/10/23, 3:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -45,7 +45,7 @@ class HueToHue extends StatefulWidget {
   State<HueToHue> createState() => _HueToHueState();
 }
 
-class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
+class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener, WidgetsBindingObserver {
 
   Directory? assetsDirectory;
 
@@ -98,6 +98,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     animationController?.dispose();
 
+    WidgetsBinding.instance.removeObserver(this);
+
     super.dispose();
   }
 
@@ -111,6 +113,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     super.initState();
 
+    WidgetsBinding.instance.addObserver(this);
+
     retrieveGameData(currentLevels);
 
     initializeGameInformation();
@@ -121,6 +125,14 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     initializeSounds();
 
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      debugPrint("Gameplay Lifecycle: ${state}");
+
+    });
   }
 
   @override

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 9:33 AM
+ * Last modified 1/10/23, 4:00 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -83,7 +83,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
     syncCheckpoint();
 
-    assetsCheckpoint();
+    assetsIO.retrieveAllSounds(this);
 
   }
 
@@ -723,25 +723,6 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     );
   }
 
-  void assetsCheckpoint() async {
-
-    final assetsDirectory = await getApplicationSupportDirectory();
-
-    final filePath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.backgroundMusic}";
-    final file = File(filePath);
-
-    if (file.existsSync()) {
-
-      startBackgroundMusic();
-
-    } else {
-
-      assetsIO.retrieveAllSounds(this);
-
-    }
-
-  }
-
   void syncCheckpoint() {
 
     if (FirebaseAuth.instance.currentUser != null) {
@@ -762,7 +743,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
           final assetsDirectory = await getApplicationSupportDirectory();
 
-          final backgroundMusicPath = "${assetsDirectory.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.backgroundMusic}";
+          final backgroundMusicPath = "${assetsDirectory.path}/${gameplayPaths.prepareBackgroundMusicPath()}";
           final file = File(backgroundMusicPath);
 
           if (file.existsSync()) {

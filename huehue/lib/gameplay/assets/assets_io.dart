@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/9/23, 5:26 AM
+ * Last modified 1/10/23, 3:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -53,7 +53,7 @@ class AssetsIO {
                 case TaskState.success:
                   debugPrint("${storageReference.name} Downloaded Successfully!");
 
-                  if (storageReference.name == GameplayPaths.backgroundMusic) {
+                  if (storageReference.name.contains(GameplayPaths.backgroundMusic)) {
                     assetsStatus.assetsDownloaded();
                   }
 
@@ -76,7 +76,7 @@ class AssetsIO {
           } else {
             debugPrint("File: ${storageReference.name} Already Exists!");
 
-            if (storageReference.name == GameplayPaths.backgroundMusic) {
+            if (storageReference.name.contains(GameplayPaths.backgroundMusic)) {
               assetsStatus.assetsDownloaded();
             }
 
