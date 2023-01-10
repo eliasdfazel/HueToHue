@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:09 AM
+ * Last modified 1/10/23, 4:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -691,7 +691,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                         ),
                         context: context,
                         fullWidth: true,
-                        position: const StyledToastPosition(align: Alignment.bottomCenter, offset: 131),
+                        position: const StyledToastPosition(align: Alignment.bottomCenter, offset: 173),
                         backgroundColor: ColorsResources.primaryColorDarker.withOpacity(0.73),
                         borderRadius: BorderRadius.circular(19),
                         animation: StyledToastAnimation.slideFromBottomFade,

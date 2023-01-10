@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 4:34 AM
+ * Last modified 1/10/23, 4:39 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -887,6 +887,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       pointsSound.setLoopMode(LoopMode.off);
       await pointsSound.play();
 
+      await pointsSound.stop();
       pointsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.pointsSound}");
 
     }
@@ -900,6 +901,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       levelsSound.setLoopMode(LoopMode.off);
       await levelsSound.play();
 
+      await levelsSound.stop();
       levelsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}");
 
     }
@@ -913,6 +915,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       transitionsSound.setLoopMode(LoopMode.off);
       await transitionsSound.play();
 
+      await transitionsSound.stop();
       transitionsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}");
 
     }
@@ -926,6 +929,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
       gameOverSound.setLoopMode(LoopMode.off);
       await gameOverSound.play();
 
+      await gameOverSound.stop();
       gameOverSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}");
 
     }
