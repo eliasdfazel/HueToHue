@@ -9,7 +9,7 @@
  */
 
 import 'dart:io';
-import 'dart:mathr/common.dart';
+import 'dart:math';
 
 class GameplayPaths {
 
