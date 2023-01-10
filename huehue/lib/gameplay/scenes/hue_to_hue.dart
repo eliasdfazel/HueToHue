@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 3:37 AM
+ * Last modified 1/10/23, 4:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -46,6 +46,8 @@ class HueToHue extends StatefulWidget {
 }
 
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener, WidgetsBindingObserver {
+
+  Timer? gameplayTimer;
 
   Directory? assetsDirectory;
 
@@ -98,7 +100,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     animationController?.dispose();
 
-    WidgetsBinding.instance.removeObserver(this);
+    gameplayTimer?.cancel();
 
     super.dispose();
   }
@@ -113,8 +115,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     super.initState();
 
-    WidgetsBinding.instance.addObserver(this);
-
     retrieveGameData(currentLevels);
 
     initializeGameInformation();
@@ -125,14 +125,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     initializeSounds();
 
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    setState(() {
-      debugPrint("Gameplay Lifecycle: ${state}");
-
-    });
   }
 
   @override
@@ -796,7 +788,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     int defaultTimeout = kDebugMode ? 13000 : levelTimer;
 
-    Future.delayed(Duration(milliseconds: defaultTimeout), () {
+    gameplayTimer = Timer(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
 
       if (currentPoints < 7) {
