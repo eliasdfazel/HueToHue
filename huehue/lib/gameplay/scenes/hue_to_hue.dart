@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:11 AM
+ * Last modified 1/10/23, 5:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -28,6 +28,7 @@ import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
+import 'package:huehue/utils/operations/lifecycler.dart';
 import 'package:huehue/utils/operations/numbers.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
@@ -117,15 +118,29 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     super.initState();
 
+    BackButtonInterceptor.add(aInterceptor);
+
     retrieveGameData(currentLevels);
 
     initializeGameInformation();
 
-    BackButtonInterceptor.add(aInterceptor);
-
     increaseVolume();
 
     initializeSounds();
+
+    WidgetsBinding.instance.addObserver(
+        LifecycleEventHandler(resumeCallBack: () async => setState(() {
+          debugPrint("Lifecycle Gameplay Resumed");
+
+          retrieveGameData(currentLevels);
+
+        }), suspendingCallBack: () async => setState(() {
+          debugPrint("Lifecycle Gameplay Suspended");
+
+          gameplayTimer?.cancel();
+
+        }))
+    );
 
   }
 

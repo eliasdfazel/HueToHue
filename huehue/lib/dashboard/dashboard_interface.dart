@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:27 AM
+ * Last modified 1/10/23, 5:40 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -89,12 +89,12 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
     WidgetsBinding.instance.addObserver(
         LifecycleEventHandler(resumeCallBack: () async => setState(() {
-          debugPrint("Dashboard Resumed");
+          debugPrint("Lifecycle Dashboard Resumed");
 
           backgroundAudioPlayer.play();
 
         }), suspendingCallBack: () async => setState(() {
-          debugPrint("Dashboard Suspended");
+          debugPrint("Lifecycle Dashboard Suspended");
 
           backgroundAudioPlayer.pause();
 
@@ -769,7 +769,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
             await backgroundAudioPlayer.setFilePath(backgroundMusicPath);
 
-            backgroundAudioPlayer.setVolume(0.31);
+            backgroundAudioPlayer.setVolume(0.13);
             backgroundAudioPlayer.play();
 
             backgroundAudioPlayer.playerStateStream.listen((state) {
@@ -800,7 +800,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                   backgroundAudioPlayer.setFilePath(backgroundMusicPath);
 
-                  backgroundAudioPlayer.setVolume(0.31);
+                  backgroundAudioPlayer.setVolume(0.13);
                   backgroundAudioPlayer.play();
 
                   break;

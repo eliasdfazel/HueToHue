@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:11 AM
+ * Last modified 1/10/23, 5:38 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -117,11 +117,11 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
     super.initState();
 
+    BackButtonInterceptor.add(aInterceptor);
+
     retrieveGameData(currentLevels);
 
     initializeGameInformation();
-
-    BackButtonInterceptor.add(aInterceptor);
 
     increaseVolume();
 
