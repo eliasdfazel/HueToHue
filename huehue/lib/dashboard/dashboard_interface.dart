@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:40 AM
+ * Last modified 1/11/23, 7:09 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:games_services/games_services.dart';
 import 'package:huehue/gameplay/assets/assets_io.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
@@ -78,6 +79,10 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    if (!kDebugMode) {
+      GamesServices.signIn();
+    }
 
     retrievePreferences();
 
