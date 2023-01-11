@@ -21,7 +21,7 @@ import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/data/levels_data_structure.dart';
 import 'package:huehue/gameplay/scenes/elements/game_statues.dart';
-import 'package:huehue/gameplay/scenes/elements/gradients_shapes.dart';
+import 'package:huehue/gameplay/scenes/elements/gradients_blobs.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -655,6 +655,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     int gradientIndex = 0;
 
+    if (kDebugMode) {
+
+      animationDuration = 1777;
+
+    }
+
     animationController!.duration = Duration(milliseconds: animationDuration);
 
     Color previousColor = endColor;
@@ -805,7 +811,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void startTimer(int levelTimer) {
 
-    int defaultTimeout = kDebugMode ? 37000 : levelTimer;
+    int defaultTimeout = kDebugMode ? 73000 : levelTimer;
+
+    gameplayTimer?.cancel();
 
     gameplayTimer = Timer(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
