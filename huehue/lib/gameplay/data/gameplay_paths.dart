@@ -12,6 +12,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 
 class GameplayPaths {
 
@@ -41,18 +42,33 @@ class GameplayPaths {
 
   Future<String> prepareBackgroundMusicPath() async {
 
-    String backgroundMusicPath = "${soundsPath()}/${backgroundMusic}_0.mp3";
+    final assetsDirectory = await getApplicationSupportDirectory();
 
-    Directory allSoundsDirectory = Directory(soundsPath());
+    String backgroundMusicPath = "$assetsDirectory/${soundsPath()}/${backgroundMusic}_0.mp3";
+
+    Directory allSoundsDirectory = Directory("${assetsDirectory.path}/${soundsPath()}");
 
     if (allSoundsDirectory.existsSync()) {
 
       List<FileSystemEntity> allSoundsFiles = allSoundsDirectory.listSync(recursive: true);
-      backgroundMusicPath = allSoundsFiles[Random().nextInt(allSoundsFiles.length - 1)].path;
+
+      List<FileSystemEntity> allBackgroundMusics = [];
+
+      for (var aSoundFile in allSoundsFiles) {
+
+        if (aSoundFile.path.contains(backgroundMusic)) {
+
+          allBackgroundMusics.add(aSoundFile);
+
+        }
+
+      }
+
+      backgroundMusicPath = allBackgroundMusics[Random().nextInt(allBackgroundMusics.length)].path;
 
     }
 
-    debugPrint("Background Music To Play: ${backgroundMusicPath}");
+    debugPrint("Background Music To Play: $backgroundMusicPath");
     return backgroundMusicPath;
   }
 

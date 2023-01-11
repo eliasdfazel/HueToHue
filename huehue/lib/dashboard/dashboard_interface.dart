@@ -34,7 +34,6 @@ import 'package:huehue/utils/operations/lifecycler.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -762,17 +761,14 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
         if (value) {
 
-          final assetsDirectory = await getApplicationSupportDirectory();
-
           String backgroundMusic = await gameplayPaths.prepareBackgroundMusicPath();
 
-          final backgroundMusicPath = "${assetsDirectory.path}/$backgroundMusic";
-          final file = File(backgroundMusicPath);
+          final file = File(backgroundMusic);
 
           if (file.existsSync()) {
             debugPrint("Background Music Playing...");
 
-            await backgroundAudioPlayer.setFilePath(backgroundMusicPath);
+            await backgroundAudioPlayer.setFilePath(backgroundMusic);
 
             backgroundAudioPlayer.setVolume(0.13);
             backgroundAudioPlayer.play();
@@ -803,7 +799,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                   backgroundAudioPlayer.stop();
 
-                  backgroundAudioPlayer.setFilePath(backgroundMusicPath);
+                  backgroundAudioPlayer.setFilePath(backgroundMusic);
 
                   backgroundAudioPlayer.setVolume(0.13);
                   backgroundAudioPlayer.play();
