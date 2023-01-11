@@ -789,6 +789,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
           } else {
 
+            preferencesIO.storeCurrentLevel(currentLevels);
+
             setState(() {
 
               gameStatuesPlaceholder = gameStatues.gameWinScene(this);
