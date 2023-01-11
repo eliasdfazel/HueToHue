@@ -12,7 +12,51 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-Color randomColor(List<Color> allColors) {
+class ColorsUtils {
 
-  return allColors[Random().nextInt(allColors.length)];
+  Color randomColor(List<Color> allColors) {
+
+    return allColors[Random().nextInt(allColors.length)];
+  }
+
+  bool gradientSimilarity(List<Color> colorListOne, List<Color> colorListTwo, {int similarityOffset = 37}) {
+
+    bool similarityResult = false;
+
+    if (colorListOne.isNotEmpty && colorListTwo.isNotEmpty) {
+
+      if (colorListOne.length == colorListTwo.length) {
+
+        for (int colorIndex = 0; colorIndex < colorListOne.length; colorIndex++) {
+
+          similarityResult = colorsSimilarity(colorListOne[colorIndex], colorListTwo[colorIndex]);
+
+        }
+
+      }
+
+    }
+
+    return similarityResult;
+  }
+
+  /// Check If Two Colors Are Similar By An Offset 0 - 255
+  /// 0 - Completely Similar
+  /// 255 - Not Similar At All
+  /// Default Offset is 37
+  bool colorsSimilarity(Color colorOne, Color colorTwo, {int similarityOffset = 37}) {
+
+    bool similarityResult = false;
+
+    if ((colorOne.red - colorTwo.red).abs() <= similarityOffset
+        && (colorOne.green - colorTwo.green).abs() <= similarityOffset
+        && (colorOne.blue - colorTwo.blue).abs() <= similarityOffset) {
+
+      similarityResult = true;
+
+    }
+
+    return similarityResult;
+  }
+
 }

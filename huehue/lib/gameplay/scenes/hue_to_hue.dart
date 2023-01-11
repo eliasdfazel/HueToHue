@@ -69,6 +69,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   LevelsDataStructure? levelsDataStructure;
 
+  ColorsUtils colorsUtils = ColorsUtils();
+
   List<Color> gradientColors = [ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest];
 
   List<Color> allLevelColors = [];
@@ -640,7 +642,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     Future.delayed(const Duration(milliseconds: 1111), () {
 
-      animateColor(animationDuration, gradientLayersCount, allColors, randomColor(allColors), randomColor(allColors));
+      animateColor(animationDuration, gradientLayersCount, allColors, colorsUtils.randomColor(allColors), colorsUtils.randomColor(allColors));
 
     });
 
@@ -700,7 +702,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
           if (gradientIndex == gradientLayersCount) {
             debugPrint("Animation Status Restart");
 
-            animateColor(animationDuration, gradientLayersCount, allColors, endColor, randomColor(allColors));
+            animateColor(animationDuration, gradientLayersCount, allColors, endColor, colorsUtils.randomColor(allColors));
 
           } else {
 
@@ -739,7 +741,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     });
 
-    if (listEquals(gameplayGradientColors, shapedGradientColor) || testingMode) {
+    if (colorsUtils.gradientSimilarity(gameplayGradientColors, shapedGradientColor, similarityOffset: 37) || testingMode) {
       debugPrint("Player Wins!");
 
       playPointsSound();

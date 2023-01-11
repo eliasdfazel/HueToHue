@@ -28,8 +28,9 @@ class GradientsShapes extends StatefulWidget {
 
 class _GradientsShapesState extends State<GradientsShapes>  {
 
-  BlobController blobController = BlobController();
+  ColorsUtils colorsUtils = ColorsUtils();
 
+  BlobController blobController = BlobController();
 
   @override
   void dispose() {
@@ -53,7 +54,7 @@ class _GradientsShapesState extends State<GradientsShapes>  {
 
     if (widget.levelsDataStructure != null) {
 
-      widget.randomShapedColor = List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => randomColor(widget.levelsDataStructure!.allColors()));
+      widget.randomShapedColor = List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => colorsUtils.randomColor(widget.levelsDataStructure!.allColors()));
 
       blobShape = Align(
           alignment: Alignment.topCenter,
