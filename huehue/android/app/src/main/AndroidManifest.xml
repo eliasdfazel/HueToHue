@@ -2,7 +2,7 @@
   ~ Copyright © 2023 By Geeks Empire.
   ~
   ~ Created by Elias Fazel
-  ~ Last modified 1/2/23, 4:10 AM
+  ~ Last modified 1/11/23, 6:51 AM
   ~
   ~ Licensed Under MIT License.
   ~ https://opensource.org/licenses/MIT
@@ -40,5 +40,13 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+        <meta-data
+                android:name="com.google.android.gms.games.APP_ID"
+                android:value="942557431731" />
+
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
     </application>
 </manifest>
