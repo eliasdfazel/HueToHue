@@ -54,8 +54,6 @@ class _GradientsShapesState extends State<GradientsShapes>  {
 
     if (widget.levelsDataStructure != null) {
 
-      widget.randomShapedColor = List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => colorsUtils.randomColor(widget.levelsDataStructure!.allColors()));
-
       blobShape = Align(
           alignment: Alignment.topCenter,
           child: Blob.random(
@@ -66,9 +64,9 @@ class _GradientsShapesState extends State<GradientsShapes>  {
               styles: BlobStyles(
                   fillType: BlobFillType.fill,
                   gradient: LinearGradient(
-                      colors: widget.randomShapedColor,
+                      colors: List.generate(widget.levelsDataStructure!.gradientLayers(), (index) => colorsUtils.randomColor(widget.levelsDataStructure!.allColors())),
                       transform: GradientRotation(degreeToRadian(137))
-                  ).createShader(Rect.zero)
+                  ).createShader(const Rect.fromLTRB(0, 0, 333, 333))
               )
           )
       );
