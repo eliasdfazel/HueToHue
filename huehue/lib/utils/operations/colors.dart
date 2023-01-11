@@ -59,4 +59,29 @@ class ColorsUtils {
     return similarityResult;
   }
 
+  List<Color> prepareBlobGradient(List<Color> allColors, int gradientLayerCount) {
+
+    List<Color> blobColors = [];
+
+    int randomLayer = Random().nextInt(gradientLayerCount);
+
+    Color startingSection = randomColor(allColors);
+
+    for (int i = 0; i < randomLayer; i++) {
+
+      blobColors.add(startingSection);
+
+    }
+
+    Color endingSection = randomColor(allColors);
+
+    for (int i = randomLayer; i < gradientLayerCount; i++) {
+
+      blobColors.add(endingSection);
+
+    }
+
+    return blobColors;
+  }
+
 }

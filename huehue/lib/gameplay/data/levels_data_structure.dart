@@ -48,7 +48,7 @@ class LevelsDataStructure {
     return levelsDocumentData[LevelsDataStructure.gradientDurationName];
   }
   /// Number Of Layers For Gradient
-  int gradientLayers() {
+  int gradientLayersCount() {
 
     return levelsDocumentData[LevelsDataStructure.gradientLayersName];
   }

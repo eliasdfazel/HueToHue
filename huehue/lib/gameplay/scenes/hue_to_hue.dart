@@ -592,7 +592,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             levelsDataStructure = LevelsDataStructure(documentSnapshot);
 
-            initializeGameplay(levelsDataStructure!.gradientDuration(), levelsDataStructure!.gradientLayers(), levelsDataStructure!.allColors());
+            initializeGameplay(levelsDataStructure!.gradientDuration(), levelsDataStructure!.gradientLayersCount(), levelsDataStructure!.allColors());
 
             startTimer(levelsDataStructure!.levelTimer());
 
