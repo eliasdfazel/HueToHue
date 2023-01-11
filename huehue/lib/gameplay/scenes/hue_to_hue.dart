@@ -805,7 +805,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void startTimer(int levelTimer) {
 
-    int defaultTimeout = kDebugMode ? 13000 : levelTimer;
+    int defaultTimeout = kDebugMode ? 37000 : levelTimer;
 
     gameplayTimer = Timer(Duration(milliseconds: defaultTimeout), () {
       debugPrint("Level Timed Out!");
