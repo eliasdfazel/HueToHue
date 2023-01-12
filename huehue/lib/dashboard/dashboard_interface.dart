@@ -24,7 +24,7 @@ import 'package:huehue/gameplay/assets/assets_io.dart';
 import 'package:huehue/gameplay/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
-import 'package:huehue/preferences/preferences_interface.dart';
+import 'package:huehue/preferences/ui/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';

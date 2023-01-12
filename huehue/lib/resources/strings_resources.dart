@@ -60,4 +60,9 @@ class StringsResources {
     return "Turn On / Off All Sounds...\nBackground Music, Sound Effects.";
   }
 
+  static String synchronizationNotice() {
+
+    return "Login To Synchronize";
+  }
+
 }

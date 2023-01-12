@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:21 AM
+ * Last modified 1/8/23, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,12 +18,13 @@ import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
-import 'package:huehue/preferences/util/ui/SwitchPreferences.dart';
+import 'package:huehue/preferences/util/elements/SwitchPreferences.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
+import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -61,6 +62,10 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
   Widget waitingAnimationPlaceholder = Container();
 
+  bool loginTooltip = true;
+
+  double contentsListPadding = 173;
+
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: "Preferences");
@@ -72,6 +77,10 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
     super.initState();
 
     if (FirebaseAuth.instance.currentUser != null) {
+
+      //loginTooltip = false;
+
+      contentsListPadding = 159;
 
       loginPlaceholder = WidgetMask(
           blendMode: BlendMode.srcIn,
@@ -218,7 +227,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                             ClipRRect(
                               borderRadius: BorderRadius.circular(37),
                               child: ListView(
-                                padding: const EdgeInsets.fromLTRB(0, 159, 0, 37),
+                                padding: EdgeInsets.fromLTRB(0, contentsListPadding, 0, 37),
                                 physics: const BouncingScrollPhysics(),
                                 scrollDirection: Axis.vertical,
                                 children: [
@@ -370,8 +379,12 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                                   )
                                 )
                             ),
+                            NextedTooltips(
+                                atStartShow: loginTooltip,
+                                topPosition: 115, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
+                                tooltipMessage: StringsResources.synchronizationNotice()
+                            ),
                             /* End - Login */
-
                             /* End - Content */
 
                             /* Start - Syncing... */
@@ -405,6 +418,10 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
          syncIO.startSyncingProcess(preferencesIO, userCredentials.user!.uid, this);
 
          setState(() {
+
+           loginTooltip = false;
+
+           contentsListPadding = 159;
 
            waitingAnimationPlaceholder = syncWaitingDesign();
 
