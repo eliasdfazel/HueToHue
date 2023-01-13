@@ -556,7 +556,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             setState(() {
 
-              widget.currentLevels = 1;
+              widget.currentLevels = currentLevel;
               levelsOpacity = 1.0;
 
             })
