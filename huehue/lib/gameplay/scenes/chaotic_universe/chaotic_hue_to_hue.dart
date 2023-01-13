@@ -20,7 +20,6 @@ import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/data/chaotic_data_structure.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/elements/gradients_blobs.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
-import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -81,14 +80,11 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
   bool gameSoundsOn = false;
   bool gameContinuously = false;
 
-  GameStatues gameStatues = GameStatues();
-  Widget gameStatuesPlaceholder = Container();
-
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     decreaseVolume();
 
-    navigatePopWithResult(context, true);
+    navigatePop(context);
 
     return true;
   }
@@ -205,7 +201,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   child: chaoticGradientsShapes
                               ),
 
-                              /* Start - Level */
+                              /* Start - Luck */
                               Positioned(
                                   bottom: 37,
                                   right: 37,
@@ -313,7 +309,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                       )
                                   )
                               ),
-                              /* End - Level */
+                              /* End - Luck */
 
                               /* Start - Point */
                               Positioned(
@@ -467,8 +463,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   )
                               ),
 
-                              gameStatuesPlaceholder
-
                             ]
                         )
                     )
@@ -476,38 +470,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
             )
         )
     );
-  }
-
-  @override
-  void startNextPlay() {
-    debugPrint("Start Next Level");
-
-    prepareChaoticGameData();
-
-    setState(() {
-
-      currentPoints = 0;
-
-      gameStatuesPlaceholder = Container();
-
-    });
-
-  }
-
-  @override
-  void retryPlay() {
-    debugPrint("Retry Current Level");
-
-    prepareChaoticGameData();
-
-    setState(() {
-
-      currentPoints = 0;
-
-      gameStatuesPlaceholder = Container();
-
-    });
-
   }
 
   void initializeGameInformation() async {
