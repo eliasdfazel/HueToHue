@@ -11,6 +11,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:animated_counter/circle_wave_counter.dart';
 import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
@@ -70,12 +71,14 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   double gameplayWaitingOpacity = 1.0;
 
-  double luckOpacity = 0.0;
+  double luckOpacity = 1.0;
 
   int currentPoints = 0;
   double pointsOpacity = 0.0;
 
   AnimationController? animationController;
+
+  late CircleWaveCounter luckCounter;
 
   bool gameSoundsOn = false;
   bool gameContinuously = false;
@@ -131,6 +134,13 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
           gameplayTimer?.cancel();
 
         }))
+    );
+
+    luckCounter = CircleWaveCounter(
+        vsync: this,
+        initialCounter: 1,
+        initialColors: [ColorsResources.red, ColorsResources.cyan, ColorsResources.blue],
+        blend: BlendMode.lighten
     );
 
   }
@@ -276,9 +286,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                           height: 73,
                                           width: 73,
                                           child: Center(
-                                              child: Container(/*
-                                              * Add Luck Counter
-                                              */)
+                                              child: luckCounter.build(context)
                                           )
                                       )
                                   )
@@ -621,11 +629,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       pointsOpacity = 0.37;
 
-      if (gameContinuously) {
-
-        luckOpacity = 0.37;
-
-      }
+      luckOpacity = 0.37;
 
     });
 
@@ -639,6 +643,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
         pointsOpacity = 1.0;
 
         currentPoints += 1;
+
+        luckCounter.incrementCounter();
 
         chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure);
 
