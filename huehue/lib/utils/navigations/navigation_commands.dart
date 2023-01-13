@@ -19,6 +19,14 @@ void navigateTo(BuildContext context, StatefulWidget statefulWidget) {
 
 }
 
+Future<dynamic> navigateWithResult(BuildContext context, StatefulWidget statefulWidget) {
+
+  return Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => statefulWidget),
+  );
+}
+
 void navigateToWithPop(BuildContext context, StatefulWidget statefulWidget) {
 
   Navigator.pop(context);
@@ -33,5 +41,11 @@ void navigateToWithPop(BuildContext context, StatefulWidget statefulWidget) {
 void navigatePop(BuildContext context) {
 
   Navigator.pop(context);
+
+}
+
+void navigatePopWithResult(BuildContext context, dynamic resultData) {
+
+  Navigator.pop(context, resultData);
 
 }

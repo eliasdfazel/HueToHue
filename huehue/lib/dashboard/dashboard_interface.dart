@@ -59,7 +59,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
   PreferencesIO preferencesIO = PreferencesIO();
 
-  String currentLevel = "0";
+  String currentLevel = "1";
 
   double playButtonOpacity = 0.0;
 
@@ -641,7 +641,30 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                                   Future.delayed(const Duration(milliseconds: 333), () {
 
-                                    navigateTo(context, HueToHue(maximumLevels: maximumLevels));
+                                   preferencesIO.retrieveCurrentLevel().then((levelToPlay) => {
+
+                                     Future.delayed(Duration.zero, () async {
+
+
+                                       bool updateDashboard = await navigateWithResult(context, HueToHue(maximumLevels: maximumLevels, currentLevels: levelToPlay));
+
+                                       if (updateDashboard) {
+
+                                         preferencesIO.retrieveCurrentLevel().then((value) => {
+
+                                           setState(() {
+
+                                             currentLevel = value.toString();
+
+                                           })
+
+                                         });
+
+                                       }
+
+                                     })
+
+                                   });
 
                                   });
 

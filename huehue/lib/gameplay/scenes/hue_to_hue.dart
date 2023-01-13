@@ -40,7 +40,9 @@ class HueToHue extends StatefulWidget {
 
   int maximumLevels = 7;
 
-  HueToHue({super.key, required this.maximumLevels});
+  int currentLevels = 1;
+
+  HueToHue({super.key, required this.maximumLevels, required this.currentLevels});
 
   @override
   State<HueToHue> createState() => _HueToHueState();
@@ -77,7 +79,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   double gameplayWaitingOpacity = 1.0;
 
-  int currentLevels = 1;
   double levelsOpacity = 0.0;
 
   int currentPoints = 0;
@@ -95,7 +96,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     decreaseVolume();
 
-    navigatePop(context);
+    navigatePopWithResult(context, true);
 
     return true;
   }
@@ -122,7 +123,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     BackButtonInterceptor.add(aInterceptor);
 
-    retrieveGameData(currentLevels);
+    retrieveGameData(widget.currentLevels);
 
     initializeGameInformation();
 
@@ -134,7 +135,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
         LifecycleEventHandler(resumeCallBack: () async => setState(() {
           debugPrint("Lifecycle Gameplay Resumed");
 
-          retrieveGameData(currentLevels);
+          retrieveGameData(widget.currentLevels);
 
         }), suspendingCallBack: () async => setState(() {
           debugPrint("Lifecycle Gameplay Suspended");
@@ -296,9 +297,9 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
                                                   return FadeTransition(opacity: animation, child: child);
                                                 },
                                                 child: Text(
-                                                  currentLevels.toString(),
+                                                  widget.currentLevels.toString(),
                                                   textAlign: TextAlign.center,
-                                                  key: ValueKey<int>(currentLevels),
+                                                  key: ValueKey<int>(widget.currentLevels),
                                                   style: TextStyle(
                                                       color: ColorsResources.premiumLight,
                                                       fontSize: 31,
@@ -513,7 +514,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
   void startNextPlay() {
     debugPrint("Start Next Level");
 
-    retrieveGameData(currentLevels + 1);
+    retrieveGameData(widget.currentLevels + 1);
 
     setState(() {
 
@@ -529,7 +530,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
   void retryPlay() {
     debugPrint("Retry Current Level");
 
-    retrieveGameData(currentLevels);
+    retrieveGameData(widget.currentLevels);
 
     setState(() {
 
@@ -555,7 +556,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             setState(() {
 
-              currentLevels = 1;
+              widget.currentLevels = 1;
               levelsOpacity = 1.0;
 
             })
@@ -773,23 +774,23 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             currentPoints = 0;
 
-            currentLevels += 1;
+            widget.currentLevels += 1;
 
-            if (currentLevels > widget.maximumLevels) {
+            if (widget.currentLevels > widget.maximumLevels) {
               debugPrint("Player Won & Finished The Game!");
 
 
             } else {
 
-              retrieveGameData(currentLevels);
+              retrieveGameData(widget.currentLevels);
 
-              preferencesIO.storeCurrentLevel(currentLevels);
+              preferencesIO.storeCurrentLevel(widget.currentLevels);
 
             }
 
           } else {
 
-            preferencesIO.storeCurrentLevel(currentLevels);
+            preferencesIO.storeCurrentLevel(widget.currentLevels);
 
             setState(() {
 
