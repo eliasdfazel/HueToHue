@@ -50,11 +50,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
   Directory? assetsDirectory;
 
   final AudioPlayer pointsSound = AudioPlayer();
-  final AudioPlayer levelsSound = AudioPlayer();
 
   final AudioPlayer transitionsSound = AudioPlayer();
-
-  final AudioPlayer gameOverSound = AudioPlayer();
 
   final double gameplayVolume = 0.13;
 
@@ -687,6 +684,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       if (currentPoints % 7 == 0) {
 
+        playTransitionsSound();
+
         animationController?.stop();
         animationController?.dispose();
 
@@ -723,18 +722,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
           }
           /* End - Points */
 
-          /* Start - Points */
-          final levelsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}";
-
-          if (File(levelsSoundPath).existsSync()) {
-
-            await levelsSound.setFilePath(levelsSoundPath);
-
-            levelsSound.setVolume(gameplayVolume);
-
-          }
-          /* End - Points */
-
           /* Start - Transitions */
           final transitionsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}";
 
@@ -746,18 +733,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
           }
           /* End - Transitions */
-
-          /* Start - Game Over */
-          final gameOverSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}";
-
-          if (File(transitionsSoundPath).existsSync()) {
-
-            await gameOverSound.setFilePath(gameOverSoundPath);
-
-            gameOverSound.setVolume(gameplayVolume);
-
-          }
-          /* End - Game Over */
 
         }
 
@@ -781,20 +756,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   }
 
-  void playLevelsSound() async {
-
-    if (gameSoundsOn) {
-
-      levelsSound.setLoopMode(LoopMode.off);
-      await levelsSound.play();
-
-      await levelsSound.stop();
-      levelsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}");
-
-    }
-
-  }
-
   void playTransitionsSound() async {
 
     if (gameSoundsOn) {
@@ -804,20 +765,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       await transitionsSound.stop();
       transitionsSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}");
-
-    }
-
-  }
-
-  void playGameOverSound() async {
-
-    if (gameSoundsOn) {
-
-      gameOverSound.setLoopMode(LoopMode.off);
-      await gameOverSound.play();
-
-      await gameOverSound.stop();
-      gameOverSound.setFilePath("${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.gameOverSound}");
 
     }
 

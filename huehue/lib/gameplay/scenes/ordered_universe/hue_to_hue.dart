@@ -866,7 +866,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
           }
           /* End - Points */
 
-          /* Start - Points */
+          /* Start - Levels */
           final levelsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.levelsSound}";
 
           if (File(levelsSoundPath).existsSync()) {
@@ -876,7 +876,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
             levelsSound.setVolume(gameplayVolume);
 
           }
-          /* End - Points */
+          /* End - Levels */
 
           /* Start - Transitions */
           final transitionsSoundPath = "${assetsDirectory!.path}/${gameplayPaths.soundsPath()}/${GameplayPaths.transitionsSound}";
