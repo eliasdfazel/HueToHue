@@ -15,12 +15,6 @@ dependencies:
 
 
   ####### ####### #######
-  animated_counter: ^1.0.0
-  ####### ####### #######
-
-
-
-  ####### ####### #######
   back_button_interceptor: ^6.0.1
 
   blobs: ^2.0.0

@@ -8,13 +8,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.12"
-  animated_counter:
-    dependency: "direct main"
-    description:
-      name: animated_counter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   archive:
     dependency: transitive
     description:
