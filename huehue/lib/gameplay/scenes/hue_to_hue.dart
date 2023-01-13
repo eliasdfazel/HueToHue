@@ -766,6 +766,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
           playLevelsSound();
 
+          widget.currentLevels += 1;
+
           if (gameContinuously) {
 
             playTransitionsSound();
@@ -773,8 +775,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
             levelsOpacity = 1.0;
 
             currentPoints = 0;
-
-            widget.currentLevels += 1;
 
             if (widget.currentLevels > widget.maximumLevels) {
               debugPrint("Player Won & Finished The Game!");
