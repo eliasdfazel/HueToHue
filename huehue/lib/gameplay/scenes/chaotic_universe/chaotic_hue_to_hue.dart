@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:43 AM
+ * Last modified 1/13/23, 8:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -17,10 +17,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/dashboard/dashboard_interface.dart';
-import 'package:huehue/gameplay/data/gameplay_paths.dart';
-import 'package:huehue/gameplay/data/levels_data_structure.dart';
-import 'package:huehue/gameplay/scenes/elements/game_statues.dart';
-import 'package:huehue/gameplay/scenes/elements/gradients_blobs.dart';
+import 'package:huehue/gameplay/scenes/chaotic_universe/data/chaotic_data_structure.dart';
+import 'package:huehue/gameplay/scenes/chaotic_universe/elements/gradients_blobs.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -37,13 +37,13 @@ import 'package:widget_mask/widget_mask.dart';
 
 class ChaoticHueToHue extends StatefulWidget {
 
-  ChaoticHueToHue({super.key});
+  const ChaoticHueToHue({super.key});
 
   @override
   State<ChaoticHueToHue> createState() => _ChaoticHueToHueState();
 }
 
-class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin, GameStatuesListener {
+class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin {
 
   Timer? gameplayTimer;
 
@@ -62,19 +62,19 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   PreferencesIO preferencesIO = PreferencesIO();
 
-  GradientsShapes gradientsShapes = GradientsShapes(levelsDataStructure: null);
+  ChaoticGradientsShapes chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: null);
 
-  LevelsDataStructure? levelsDataStructure;
+  ChaoticDataStructure? chaoticDataStructure;
 
   ColorsUtils colorsUtils = ColorsUtils();
 
   List<Color> gradientColors = [ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest];
 
-  List<Color> allLevelColors = [];
+  List<Color> allChaoticColors = [];
 
   double gameplayWaitingOpacity = 1.0;
 
-  double levelsOpacity = 0.0;
+  double luckOpacity = 0.0;
 
   int currentPoints = 0;
   double pointsOpacity = 0.0;
@@ -118,7 +118,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
     BackButtonInterceptor.add(aInterceptor);
 
-    retrieveGameData();
+    prepareChaoticGameData();
 
     initializeGameInformation();
 
@@ -130,7 +130,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
         LifecycleEventHandler(resumeCallBack: () async => setState(() {
           debugPrint("Lifecycle Gameplay Resumed");
 
-          retrieveGameData();
+          prepareChaoticGameData();
 
         }), suspendingCallBack: () async => setState(() {
           debugPrint("Lifecycle Gameplay Suspended");
@@ -189,10 +189,10 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   onTap: () {
                                     debugPrint("Gameplay Clicked");
 
-                                    if (gradientsShapes.randomShapedColor.isNotEmpty) {
-                                      debugPrint("Gameplay Colors: ${gradientColors} ||| Shaped Colors: ${gradientsShapes.randomShapedColor}");
+                                    if (chaoticGradientsShapes.randomShapedColor.isNotEmpty) {
+                                      debugPrint("Gameplay Colors: ${gradientColors} ||| Shaped Colors: ${chaoticGradientsShapes.randomShapedColor}");
 
-                                      processPlayAction(gradientColors, gradientsShapes.randomShapedColor);
+                                      processPlayAction(gradientColors, chaoticGradientsShapes.randomShapedColor);
 
                                     }
 
@@ -205,7 +205,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   top: 73,
                                   right: 37,
                                   left: 37,
-                                  child: gradientsShapes
+                                  child: chaoticGradientsShapes
                               ),
 
                               /* Start - Level */
@@ -213,7 +213,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   bottom: 37,
                                   right: 37,
                                   child: AnimatedOpacity(
-                                      opacity: levelsOpacity,
+                                      opacity: luckOpacity,
                                       duration: const Duration(milliseconds: 1357),
                                       child: Container(
                                           decoration: BoxDecoration(
@@ -243,7 +243,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   bottom: 37,
                                   right: 37,
                                   child: AnimatedOpacity(
-                                      opacity: levelsOpacity,
+                                      opacity: luckOpacity,
                                       duration: const Duration(milliseconds: 1357),
                                       child: WidgetMask(
                                         blendMode: BlendMode.srcIn,
@@ -277,7 +277,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   bottom: 37,
                                   right: 37,
                                   child: AnimatedOpacity(
-                                      opacity: levelsOpacity,
+                                      opacity: luckOpacity,
                                       duration: const Duration(milliseconds: 1357),
                                       child: SizedBox(
                                           height: 73,
@@ -294,7 +294,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   bottom: 119,
                                   right: 37,
                                   child: AnimatedOpacity(
-                                      opacity: levelsOpacity,
+                                      opacity: luckOpacity,
                                       duration: const Duration(milliseconds: 1357),
                                       child: SizedBox(
                                           width: 73,
@@ -485,7 +485,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
   void startNextPlay() {
     debugPrint("Start Next Level");
 
-    retrieveGameData();
+    prepareChaoticGameData();
 
     setState(() {
 
@@ -501,7 +501,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
   void retryPlay() {
     debugPrint("Retry Current Level");
 
-    retrieveGameData();
+    prepareChaoticGameData();
 
     setState(() {
 
@@ -524,9 +524,12 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   }
 
-  void retrieveGameData() {
+  void prepareChaoticGameData() {
+    debugPrint("Preparing Chaotic Game Data");
 
-    //Prepare
+    chaoticDataStructure = ChaoticDataStructure();
+
+    initializeGameplay(chaoticDataStructure!.gradientDuration(), chaoticDataStructure!.gradientLayersCount(), chaoticDataStructure!.allColors());
 
   }
 
@@ -534,9 +537,9 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
     gradientColors.clear();
 
-    allLevelColors.clear();
+    allChaoticColors.clear();
 
-    allLevelColors.addAll(allColors);
+    allChaoticColors.addAll(allColors);
 
     for (int i = 0; i < gradientLayersCount; i++) {
       gradientColors.add(ColorsResources.primaryColorDarkest);
@@ -546,11 +549,11 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       gradientColors;
 
-      levelsDataStructure;
+      chaoticDataStructure;
 
       gameplayWaitingOpacity = 0;
 
-      gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
+      chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure);
 
     });
 
@@ -661,7 +664,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       if (gameContinuously) {
 
-        levelsOpacity = 0.37;
+        luckOpacity = 0.37;
 
       }
 
@@ -678,44 +681,22 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
         currentPoints += 1;
 
-        gradientsShapes = GradientsShapes(levelsDataStructure: levelsDataStructure);
+        chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure);
 
       });
+
+      if (currentPoints % 7 == 0) {
+
+        animationController?.stop();
+        animationController?.dispose();
+
+        prepareChaoticGameData();
+
+      }
 
     } else {
       debugPrint("Player Loses!");
     }
-
-  }
-
-  void startTimer(int levelTimer) {
-
-    int defaultTimeout = kDebugMode ? 73000 : levelTimer;
-
-    gameplayTimer?.cancel();
-
-    gameplayTimer = Timer(Duration(milliseconds: defaultTimeout), () {
-      debugPrint("Level Timed Out!");
-
-      if (currentPoints < 7) {
-
-        playGameOverSound();
-
-        setState(() {
-
-          gameStatuesPlaceholder = gameStatues.gameOverScene(this);
-
-        });
-
-        animationController?.stop();
-
-      } else {
-
-
-
-      }
-
-    });
 
   }
 

@@ -18,11 +18,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:games_services/games_services.dart';
 import 'package:huehue/gameplay/assets/assets_io.dart';
-import 'package:huehue/gameplay/data/gameplay_paths.dart';
-import 'package:huehue/gameplay/scenes//hue_to_hue.dart';
+import 'package:huehue/gameplay/scenes/chaotic_universe/chaotic_hue_to_hue.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/hue_to_hue.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/ui/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -714,40 +714,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                   splashFactory: InkRipple.splashFactory,
                   onTap: () {
 
-                    Future.delayed(const Duration(milliseconds: 333), () {
-                      FirebaseAnalytics.instance.logEvent(name: "ChaoticComingSoon");
-
-                      showToast(
-                        "coming soon...",
-                        textStyle: TextStyle(
-                          color: ColorsResources.premiumLight,
-                          fontSize: 17,
-                          fontFamily: "Electric",
-                          letterSpacing: 1.3,
-                          shadows: [
-                            Shadow(
-                              color: ColorsResources.white.withOpacity(0.31),
-                              blurRadius: 13,
-                              offset: const Offset(0, 3)
-                            )
-                          ]
-                        ),
-                        context: context,
-                        fullWidth: true,
-                        position: const StyledToastPosition(align: Alignment.bottomCenter, offset: 173),
-                        backgroundColor: ColorsResources.primaryColorDarker.withOpacity(0.73),
-                        borderRadius: BorderRadius.circular(19),
-                        animation: StyledToastAnimation.slideFromBottomFade,
-                        reverseAnimation: StyledToastAnimation.slideToBottomFade,
-                        curve: Curves.easeIn,
-                        reverseCurve: Curves.easeOut,
-                        isIgnoring: false,
-                        duration: const Duration(milliseconds: 3333),
-                      );
-
-                      // navigateTo(context, ChaoticHueToHue(maximumLevels: maximumLevels));
-
-                    });
+                    navigateTo(context, const ChaoticHueToHue());
 
                   },
                   child: const Image(

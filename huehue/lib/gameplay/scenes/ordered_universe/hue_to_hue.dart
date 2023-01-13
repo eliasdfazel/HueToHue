@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/10/23, 5:43 AM
+ * Last modified 1/13/23, 8:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,10 +18,10 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/dashboard/dashboard_interface.dart';
-import 'package:huehue/gameplay/data/gameplay_paths.dart';
-import 'package:huehue/gameplay/data/levels_data_structure.dart';
-import 'package:huehue/gameplay/scenes/elements/game_statues.dart';
-import 'package:huehue/gameplay/scenes/elements/gradients_blobs.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/data/levels_data_structure.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/elements/gradients_blobs.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';

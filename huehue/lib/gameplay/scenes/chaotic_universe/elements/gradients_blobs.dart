@@ -10,23 +10,23 @@
 
 import 'package:blobs/blobs.dart';
 import 'package:flutter/material.dart';
-import 'package:huehue/gameplay/data/levels_data_structure.dart';
+import 'package:huehue/gameplay/scenes/chaotic_universe/data/chaotic_data_structure.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/numbers.dart';
 
-class GradientsShapes extends StatefulWidget {
+class ChaoticGradientsShapes extends StatefulWidget {
 
-  LevelsDataStructure? levelsDataStructure;
+  ChaoticDataStructure? chaoticDataStructure;
 
-  GradientsShapes({super.key, required this.levelsDataStructure});
+  ChaoticGradientsShapes({super.key, required this.chaoticDataStructure});
 
   List<Color> randomShapedColor = [];
 
   @override
-  State<GradientsShapes> createState() => _GradientsShapesState();
+  State<ChaoticGradientsShapes> createState() => _GradientsShapesState();
 }
 
-class _GradientsShapesState extends State<GradientsShapes>  {
+class _GradientsShapesState extends State<ChaoticGradientsShapes>  {
 
   ColorsUtils colorsUtils = ColorsUtils();
 
@@ -52,9 +52,9 @@ class _GradientsShapesState extends State<GradientsShapes>  {
 
     Widget blobShape = Container();
 
-    if (widget.levelsDataStructure != null) {
+    if (widget.chaoticDataStructure != null) {
 
-      widget.randomShapedColor = colorsUtils.prepareBlobGradient(widget.levelsDataStructure!.allColors(), widget.levelsDataStructure!.gradientLayersCount());
+      widget.randomShapedColor = colorsUtils.prepareBlobGradient(widget.chaoticDataStructure!.allColors(), widget.chaoticDataStructure!.gradientLayersCount());
 
       blobShape = Align(
           alignment: Alignment.topCenter,

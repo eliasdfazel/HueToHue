@@ -78,7 +78,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
     if (FirebaseAuth.instance.currentUser != null) {
 
-      //loginTooltip = false;
+      loginTooltip = false;
 
       contentsListPadding = 159;
 

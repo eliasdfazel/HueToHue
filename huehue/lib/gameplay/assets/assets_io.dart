@@ -12,7 +12,7 @@ import 'dart:io';
 
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/widgets.dart';
-import 'package:huehue/gameplay/data/gameplay_paths.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
 import 'package:path_provider/path_provider.dart';
 
 abstract class AssetsStatus {
