@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:37 AM
+ * Last modified 1/15/23, 10:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -383,8 +383,8 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
         color: ColorsResources.premiumLight.withOpacity(0.37),
         boxShadow: [
           BoxShadow(
-            color: ColorsResources.primaryColor.withOpacity(0.51),
-            blurRadius: 13,
+            color: ColorsResources.primaryColor.withOpacity(0.73),
+            blurRadius: 11,
             offset: const Offset(0, 7)
           )
         ]
