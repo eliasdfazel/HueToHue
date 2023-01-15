@@ -28,6 +28,7 @@ import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/lifecycler.dart';
 import 'package:huehue/utils/operations/numbers.dart';
+import 'package:huehue/utils/ui/elements/wavy_counter.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -77,10 +78,10 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   AnimationController? animationController;
 
-  Widget luckCounter = Container();
-
   bool gameSoundsOn = false;
   bool gameContinuously = false;
+
+  late WavyCounter wavyLuckCounter;
 
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
@@ -135,12 +136,13 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
         }))
     );
 
-    // luckCounter = CircleWaveCounter(
-    //     vsync: this,
-    //     initialCounter: 1,
-    //     initialColors: [ColorsResources.red, ColorsResources.cyan, ColorsResources.blue],
-    //     blend: BlendMode.lighten
-    // );
+    wavyLuckCounter = WavyCounter(
+        vsync: this,
+        initialCounter: 2,
+        blend: BlendMode.difference,
+        initialColors: [
+          ColorsResources.red, ColorsResources.green, ColorsResources.blue
+        ]);
 
   }
 
@@ -285,7 +287,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                           height: 73,
                                           width: 73,
                                           child: Center(
-                                              child: luckCounter
+                                              child: wavyLuckCounter.build(context)
                                           )
                                       )
                                   )
@@ -636,6 +638,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
       debugPrint("Player Wins!");
 
       playPointsSound();
+
+      wavyLuckCounter.incrementCounter();
 
       setState(() {
 
