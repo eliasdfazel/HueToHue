@@ -2,12 +2,13 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 6:42 AM
+ * Last modified 1/15/23, 10:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -66,6 +67,21 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
   double contentsListPadding = 173;
 
+  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
+
+    navigatePopWithResult(context, true);
+
+    return true;
+  }
+
+  @override
+  void dispose() {
+
+    BackButtonInterceptor.remove(aInterceptor);
+
+    super.dispose();
+  }
+
   @override
   void initState() {
     FirebaseAnalytics.instance.logEvent(name: "Preferences");
@@ -75,6 +91,8 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
+
+    BackButtonInterceptor.add(aInterceptor);
 
     if (FirebaseAuth.instance.currentUser != null) {
 
@@ -295,7 +313,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
                                             Future.delayed(const Duration(milliseconds: 333), () {
 
-                                              navigatePop(context);
+                                              navigatePopWithResult(context, true);
 
                                             });
 

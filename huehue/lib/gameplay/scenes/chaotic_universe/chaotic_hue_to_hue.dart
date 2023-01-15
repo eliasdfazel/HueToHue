@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 8:34 AM
+ * Last modified 1/15/23, 10:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -103,6 +103,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
     animationController?.dispose();
 
     gameplayTimer?.cancel();
+
+    BackButtonInterceptor.remove(aInterceptor);
 
     super.dispose();
   }

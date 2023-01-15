@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/23, 8:46 AM
+ * Last modified 1/15/23, 10:41 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -107,6 +107,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
     animationController?.dispose();
 
     gameplayTimer?.cancel();
+
+    BackButtonInterceptor.remove(aInterceptor);
 
     super.dispose();
   }
