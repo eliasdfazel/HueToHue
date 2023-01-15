@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 5:52 AM
+ * Last modified 1/15/23, 8:31 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -343,9 +343,9 @@ class GameStatues {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: ColorsResources.premiumLight,
-                                    fontSize: 31,
+                                    fontSize: 21,
                                     fontFamily: "Electric",
-                                    letterSpacing: 3,
+                                    letterSpacing: 5,
                                     shadows: [
                                       Shadow(
                                           color: ColorsResources.white.withOpacity(0.37),
@@ -357,11 +357,11 @@ class GameStatues {
                               ),
 
                               Text(
-                                "you are lucky!",
+                                "you are circle!",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: ColorsResources.premiumLight,
-                                    fontSize: 43,
+                                    fontSize: 31,
                                     fontFamily: "Electric",
                                     shadows: [
                                       Shadow(
