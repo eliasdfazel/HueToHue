@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 8:27 AM
+ * Last modified 1/15/23, 8:34 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -853,11 +853,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
       }
     }
 
-    setState(() {
-
-      gameStatuesPlaceholder = gameStatues.chaoticGameWinScene(this);
-
-    });
     if (currentPoints == 99) {
 
       setState(() {
@@ -865,6 +860,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
         gameStatuesPlaceholder = gameStatues.gameWinScene(this);
 
       });
+
+      animationController?.stop();
 
     }
 
