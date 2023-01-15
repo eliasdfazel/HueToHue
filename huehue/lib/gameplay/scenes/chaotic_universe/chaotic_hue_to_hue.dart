@@ -141,7 +141,10 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
         initialCounter: 2,
         blend: BlendMode.difference,
         initialColors: [
-          ColorsResources.red, ColorsResources.green, ColorsResources.blue
+          ColorsResources.cyan,
+          ColorsResources.red,
+          ColorsResources.blue,
+          ColorsResources.yellow
         ]);
 
   }
