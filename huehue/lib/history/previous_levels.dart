@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:42 AM
+ * Last modified 1/15/23, 10:43 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -389,17 +389,24 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
           )
         ]
       ),
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(19),
-          child: SizedBox(
-              height: 137,
-              width: 137,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: colorBoxes,
-              )
-          )
+      child: InkWell(
+        onTap: () {
+
+
+
+        },
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(19),
+            child: SizedBox(
+                height: 137,
+                width: 137,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: colorBoxes,
+                )
+            )
+        )
       )
     );
   }
