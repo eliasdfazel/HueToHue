@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/23, 9:00 AM
+ * Last modified 1/15/23, 4:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -14,6 +14,10 @@ import 'package:flutter/material.dart';
 import 'package:huehue/resources/colors_resources.dart';
 
 class ChaoticDataStructure {
+
+  static const int platinumLuck = 30;
+  static const int goldLuck = 60;
+  static const int palladiumLuck = 90;
 
   final int _maximumLayerCount = 7;
   final int _minimumLayerCount = 2;

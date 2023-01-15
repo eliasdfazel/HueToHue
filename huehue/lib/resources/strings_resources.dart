@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 5:46 AM
+ * Last modified 1/15/23, 6:15 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -63,6 +63,36 @@ class StringsResources {
   static String synchronizationNotice() {
 
     return "Login To Synchronize";
+  }
+
+  static String gameServiceIdAndroid() {
+
+    return "942557431731";
+  }
+
+  static String gameLeaderboardLuckiestHumans() {
+
+    return "CgkIs4-0prcbEAIQBA";
+  }
+
+  static String gameAchievementPlatinumLuck() {
+
+    return "CgkIs4-0prcbEAIQAQ";
+  }
+
+  static String gameAchievementGoldLuck() {
+
+    return "CgkIs4-0prcbEAIQAg";
+  }
+
+  static String gameAchievementPalladium() {
+
+    return "gkIs4-0prcbEAIQAw";
+  }
+
+  static String gameAchievementLucky() {
+
+    return "CgkIs4-0prcbEAIQBg";
   }
 
 }

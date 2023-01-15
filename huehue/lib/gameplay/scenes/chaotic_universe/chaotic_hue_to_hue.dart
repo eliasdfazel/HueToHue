@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/13/23, 8:49 AM
+ * Last modified 1/15/23, 6:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -16,10 +16,12 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:games_services/games_services.dart';
 import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/data/chaotic_data_structure.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/elements/gradients_blobs.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
+import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -43,7 +45,7 @@ class ChaoticHueToHue extends StatefulWidget {
   State<ChaoticHueToHue> createState() => _ChaoticHueToHueState();
 }
 
-class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin {
+class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin, GameStatuesListener {
 
   Timer? gameplayTimer;
 
@@ -80,6 +82,9 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   bool gameSoundsOn = false;
   bool gameContinuously = false;
+
+  GameStatues gameStatues = GameStatues();
+  Widget gameStatuesPlaceholder = Container();
 
   late WavyCounter wavyLuckCounter;
 
@@ -475,6 +480,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                   )
                               ),
 
+                              gameStatuesPlaceholder
+
                             ]
                         )
                     )
@@ -482,6 +489,18 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
             )
         )
     );
+  }
+
+  @override
+  void chaoticFinished() {
+
+    playTransitionsSound();
+
+    animationController?.stop();
+    animationController?.dispose();
+
+    prepareChaoticGameData();
+
   }
 
   void initializeGameInformation() async {
@@ -665,6 +684,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       }
 
+      gameAchievements(currentPoints);
+
     } else {
       debugPrint("Player Loses!");
     }
@@ -761,6 +782,84 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
       await Future.delayed(const Duration(milliseconds: 13));
 
       DashboardInterfaceState.backgroundAudioPlayer.setVolume(i / 100);
+
+    }
+
+  }
+
+  void gameAchievements(int currentPoints) {
+
+    GamesServices.getPlayerScore(androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(), iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()).then((value) => {
+
+      Future.delayed(Duration.zero, () {
+
+        int earnedPoint = value ?? 1;
+
+        GamesServices.submitScore(
+            score: Score(
+                androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+                iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+                value: earnedPoint + currentPoints
+            )
+        );
+
+      })
+
+    });
+
+    GamesServices.increment(
+        achievement: Achievement(
+          androidID: StringsResources.gameAchievementLucky(),
+          iOSID: StringsResources.gameAchievementLucky()
+        )
+    );
+
+    switch (currentPoints) {
+      case ChaoticDataStructure.platinumLuck:  {
+
+        GamesServices.unlock(
+            achievement: Achievement(
+                androidID: StringsResources.gameAchievementPlatinumLuck(),
+                iOSID: StringsResources.gameAchievementPlatinumLuck(),
+                percentComplete: 100
+            )
+        );
+
+        break;
+      }
+      case ChaoticDataStructure.goldLuck:  {
+
+        GamesServices.unlock(
+            achievement: Achievement(
+                androidID: StringsResources.gameAchievementGoldLuck(),
+                iOSID: StringsResources.gameAchievementGoldLuck(),
+                percentComplete: 100
+            )
+        );
+
+        break;
+      }
+      case ChaoticDataStructure.palladiumLuck:  {
+
+        GamesServices.unlock(
+            achievement: Achievement(
+                androidID: StringsResources.gameAchievementGoldLuck(),
+                iOSID: StringsResources.gameAchievementGoldLuck(),
+                percentComplete: 100
+            )
+        );
+
+        break;
+      }
+    }
+
+    if (currentPoints == 99) {
+
+      setState(() {
+
+        gameStatuesPlaceholder = gameStatues.gameWinScene(this);
+
+      });
 
     }
 
