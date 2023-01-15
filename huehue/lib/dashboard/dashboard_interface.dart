@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/11/23, 7:09 AM
+ * Last modified 1/15/23, 9:23 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -23,6 +23,7 @@ import 'package:huehue/gameplay/assets/assets_io.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/chaotic_hue_to_hue.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/hue_to_hue.dart';
+import 'package:huehue/history/previous_levels.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/ui/preferences_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
@@ -329,7 +330,15 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                         splashFactory: InkRipple.splashFactory,
                                         onTap: () {
 
+                                          Future.delayed(const Duration(milliseconds: 333), () {
 
+                                            if (FirebaseAuth.instance.currentUser != null) {
+
+                                              navigateTo(context, const PreviousInterface());
+
+                                            }
+
+                                          });
 
                                         },
                                         child: SizedBox(

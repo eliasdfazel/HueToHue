@@ -132,6 +132,8 @@ flutter:
     - blob_top.png
     - blob_preferences_bottom.png
     - blob_preferences_top.png
+    - blob_previous_top.png
+    - blob_previous_bottom.png
 
     - chaotic_play.png
 
