@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 7:48 AM
+ * Last modified 1/16/23, 8:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -49,7 +49,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
     width: 373,
   );
 
-  late WavyCounter wavyLuckCounter;
+  int luckPoint = 2;
 
   @override
   void dispose() {
@@ -67,17 +67,6 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
     super.initState();
 
     retrieveAccountInformation();
-
-    wavyLuckCounter = WavyCounter(
-        vsync: this,
-        initialCounter: 2,
-        radiusFactor: 137,
-        blend: BlendMode.difference,
-        initialColors: [
-          ColorsResources.cyan,
-          ColorsResources.red,
-          ColorsResources.blue,
-        ]);
 
   }
 
@@ -301,7 +290,16 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                         height: 173,
                                         width: 173,
                                         child: Center(
-                                            child: wavyLuckCounter.build(context)
+                                            child: WavyCounter(
+                                                vsync: this,
+                                                initialCounter: luckPoint,
+                                                radiusFactor: 137,
+                                                blend: BlendMode.difference,
+                                                initialColors: [
+                                                  ColorsResources.cyan,
+                                                  ColorsResources.red,
+                                                  ColorsResources.blue,
+                                                ]).build(context)
                                         )
                                     )
 
@@ -413,11 +411,17 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
       Future.delayed(Duration.zero, () async {
 
-        for (int i = 0; i < 99; i++) {
+        for (int l = 2; l <= value; l++) {
 
-        //  await Future.delayed(const Duration(milliseconds: 777));
+          await Future.delayed(const Duration(milliseconds: 333));
 
-          wavyLuckCounter.incrementCounter();
+          luckPoint = l;
+
+          setState(() {
+
+            luckPoint;
+
+          });
 
         }
 

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 7:44 AM
+ * Last modified 1/16/23, 8:03 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -56,7 +56,7 @@ class WavyCounter {
 
   void incrementCounter() async {
     _counter = _counter! + 1;
-    await _addPointController.forward(from: 0);
+    _addPointController.forward(from: 0);
   }
 
   void decrementCounter() {
