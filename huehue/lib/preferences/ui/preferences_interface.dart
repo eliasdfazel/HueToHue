@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 6:37 AM
+ * Last modified 1/16/23, 6:59 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -20,6 +20,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:huehue/preferences/data/PreferencesKeys.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/preferences/util/elements/SwitchPreferences.dart';
+import 'package:huehue/profile/ui/profile_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';
@@ -378,7 +379,19 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                                           splashFactory: InkRipple.splashFactory,
                                           onTap: () {
 
-                                            startLoginProcess();
+                                            Future.delayed(const Duration(milliseconds: 333), () {
+
+                                              if (FirebaseAuth.instance.currentUser == null) {
+
+                                                startLoginProcess();
+
+                                              } else {
+
+                                                navigateTo(context, const ProfileInterface());
+
+                                              }
+
+                                            });
 
                                           },
                                           child: SizedBox(
@@ -419,87 +432,6 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
     );
   }
 
-  void startLoginProcess() async {
-
-    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
-
-    final GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
-
-    final googleCredentials = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication?.accessToken,
-      idToken: googleSignInAuthentication?.idToken,
-    );
-
-     FirebaseAuth.instance.signInWithCredential(googleCredentials).then((userCredentials) => {
-
-       Future.delayed(const Duration(milliseconds: 73), () {
-
-         syncIO.startSyncingProcess(preferencesIO, userCredentials.user!.uid, this);
-
-         setState(() {
-
-           loginTooltip = false;
-
-           contentsListPadding = 159;
-
-           waitingAnimationPlaceholder = syncWaitingDesign();
-
-           loginPlaceholder = WidgetMask(
-               blendMode: BlendMode.srcIn,
-               childSaveLayer: true,
-               mask: SizedBox(
-                   height: 63,
-                   width: 63,
-                   child: Center(
-                       child: Image.network(
-                           userCredentials.user!.photoURL!,
-                           fit: BoxFit.cover
-                       )
-                   )
-               ),
-               child: const Image(
-                 image: AssetImage("squircle.png"),
-                 height: 63,
-                 width: 63,
-               )
-           );
-
-         });
-
-       })
-
-     });
-
-  }
-
-  Widget syncWaitingDesign() {
-
-    return Container(
-      color: ColorsResources.primaryColorDarkest.withOpacity(0.91),
-      child: SizedBox(
-          height: double.maxFinite,
-          width: double.maxFinite,
-          child: Center(
-              child: SizedBox(
-                  height: 333,
-                  width: 333,
-                  child: Container(
-                      height: 333,
-                      width: 333,
-                      alignment: Alignment.center,
-                      child: LoadingAnimationWidget.discreteCircle(
-                          color: ColorsResources.cyan,
-                          secondRingColor: ColorsResources.primaryColorLighter,
-                          thirdRingColor: ColorsResources.goldenColor,
-                          size: 73
-                      )
-                  )
-              )
-          )
-      )
-    );
-  }
-
   @override
   void syncCompleted(int syncedCurrentLevel) {
 
@@ -514,6 +446,87 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
   @override
   void syncError() {
 
+  }
+
+  void startLoginProcess() async {
+
+    final GoogleSignInAccount? googleSignInAccount = await GoogleSignIn().signIn();
+
+    final GoogleSignInAuthentication? googleSignInAuthentication = await googleSignInAccount?.authentication;
+
+    final googleCredentials = GoogleAuthProvider.credential(
+      accessToken: googleSignInAuthentication?.accessToken,
+      idToken: googleSignInAuthentication?.idToken,
+    );
+
+    FirebaseAuth.instance.signInWithCredential(googleCredentials).then((userCredentials) => {
+
+      Future.delayed(const Duration(milliseconds: 73), () {
+
+        syncIO.startSyncingProcess(preferencesIO, userCredentials.user!.uid, this);
+
+        setState(() {
+
+          loginTooltip = false;
+
+          contentsListPadding = 159;
+
+          waitingAnimationPlaceholder = syncWaitingDesign();
+
+          loginPlaceholder = WidgetMask(
+              blendMode: BlendMode.srcIn,
+              childSaveLayer: true,
+              mask: SizedBox(
+                  height: 63,
+                  width: 63,
+                  child: Center(
+                      child: Image.network(
+                          userCredentials.user!.photoURL!,
+                          fit: BoxFit.cover
+                      )
+                  )
+              ),
+              child: const Image(
+                image: AssetImage("squircle.png"),
+                height: 63,
+                width: 63,
+              )
+          );
+
+        });
+
+      })
+
+    });
+
+  }
+
+  Widget syncWaitingDesign() {
+
+    return Container(
+        color: ColorsResources.primaryColorDarkest.withOpacity(0.91),
+        child: SizedBox(
+            height: double.maxFinite,
+            width: double.maxFinite,
+            child: Center(
+                child: SizedBox(
+                    height: 333,
+                    width: 333,
+                    child: Container(
+                        height: 333,
+                        width: 333,
+                        alignment: Alignment.center,
+                        child: LoadingAnimationWidget.discreteCircle(
+                            color: ColorsResources.cyan,
+                            secondRingColor: ColorsResources.primaryColorLighter,
+                            thirdRingColor: ColorsResources.goldenColor,
+                            size: 73
+                        )
+                    )
+                )
+            )
+        )
+    );
   }
 
 }
