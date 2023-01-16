@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:41 AM
+ * Last modified 1/16/23, 6:37 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -399,6 +399,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                             ),
                             NextedTooltips(
                                 atStartShow: loginTooltip,
+                                displaySection: NextedTooltips.sectionTopRight,
                                 topPosition: 115, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
                                 tooltipMessage: StringsResources.synchronizationNotice()
                             ),

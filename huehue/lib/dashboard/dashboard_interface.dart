@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 9:23 AM
+ * Last modified 1/16/23, 6:53 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -32,6 +32,7 @@ import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/lifecycler.dart';
+import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
@@ -63,6 +64,8 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
   String currentLevel = "1";
 
   double playButtonOpacity = 0.0;
+
+  bool previousTooltip = true;
 
   Widget waitingAnimationPlaceholder = Container();
 
@@ -105,6 +108,16 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
         }))
     );
+
+    Future.delayed(const Duration(milliseconds: 3759), () {
+
+      setState(() {
+
+        previousTooltip = false;
+
+      });
+
+    });
 
   }
 
@@ -396,6 +409,12 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                 )
                               )
                             )
+                          ),
+                          NextedTooltips(
+                              atStartShow: previousTooltip,
+                              displaySection: NextedTooltips.sectionTopRight,
+                              topPosition: 157, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
+                              tooltipMessage: StringsResources.previousLevels()
                           ),
                           /* End - Level */
 

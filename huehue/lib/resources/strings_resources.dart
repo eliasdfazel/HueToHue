@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 6:15 AM
+ * Last modified 1/16/23, 6:29 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -63,6 +63,11 @@ class StringsResources {
   static String synchronizationNotice() {
 
     return "Login To Synchronize";
+  }
+
+  static String previousLevels() {
+
+    return "Previous Levels";
   }
 
   static String gameServiceIdAndroid() {
