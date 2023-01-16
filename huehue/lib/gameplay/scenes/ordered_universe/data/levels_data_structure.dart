@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 2:15 AM
+ * Last modified 1/16/23, 4:46 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -12,6 +12,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class LevelsDataStructure {
+
+  static const String levelName = "level";
 
   static const String allColorsName = "allColors";
 
@@ -26,6 +28,11 @@ class LevelsDataStructure {
 
     levelsDocumentData = levelsDocument.data() as Map<String, dynamic>;
 
+  }
+
+  int level() {
+
+    return levelsDocumentData[LevelsDataStructure.levelName];
   }
 
   /// All Colors

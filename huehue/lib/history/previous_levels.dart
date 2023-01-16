@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:43 AM
+ * Last modified 1/16/23, 5:18 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -18,6 +18,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/levels_data_structure.dart';
+import 'package:huehue/gameplay/scenes/previous/previous_hue_to_hue.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
@@ -384,7 +385,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
         boxShadow: [
           BoxShadow(
             color: ColorsResources.primaryColor.withOpacity(0.73),
-            blurRadius: 11,
+            blurRadius: 13,
             offset: const Offset(0, 7)
           )
         ]
@@ -392,7 +393,11 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
       child: InkWell(
         onTap: () {
 
+          Future.delayed(const Duration(milliseconds: 333), () {
 
+            navigateTo(context, PreviousHueToHue(currentLevels: levelsDataStructure.level()));
+
+          });
 
         },
         child: ClipRRect(
