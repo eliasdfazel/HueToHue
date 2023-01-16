@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 5:21 AM
+ * Last modified 1/16/23, 5:27 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -456,7 +456,7 @@ class GameStatues {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: ColorsResources.premiumLight,
-                                    fontSize: 31,
+                                    fontSize: 23,
                                     fontFamily: "Electric",
                                     letterSpacing: 3,
                                     shadows: [
@@ -474,8 +474,9 @@ class GameStatues {
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: ColorsResources.premiumLight,
-                                    fontSize: 43,
+                                    fontSize: 45,
                                     fontFamily: "Electric",
+                                    letterSpacing: 5,
                                     shadows: [
                                       Shadow(
                                           color: ColorsResources.white.withOpacity(0.37),

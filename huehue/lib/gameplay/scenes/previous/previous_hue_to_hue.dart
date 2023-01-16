@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 5:21 AM
+ * Last modified 1/16/23, 5:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -26,6 +26,7 @@ import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/lifecycler.dart';
 import 'package:huehue/utils/operations/numbers.dart';
@@ -91,6 +92,8 @@ class _PreviousHueToHueState extends State<PreviousHueToHue> with TickerProvider
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     decreaseVolume();
+
+    navigatePop(context);
 
     return true;
   }
