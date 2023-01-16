@@ -2,13 +2,12 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 5:25 AM
+ * Last modified 1/16/23, 6:24 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
  */
 
-import 'package:back_button_interceptor/back_button_interceptor.dart';
 import 'package:blur/blur.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -45,18 +44,8 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
 
   Widget waitingAnimationPlaceholder = Container();
 
-  bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
-
-    navigatePop(context);
-
-    return true;
-  }
-
   @override
   void dispose() {
-
-    BackButtonInterceptor.remove(aInterceptor);
-
     super.dispose();
   }
 
@@ -69,8 +58,6 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
     super.initState();
-
-    BackButtonInterceptor.add(aInterceptor);
 
     retrievePreviousLevels();
 
