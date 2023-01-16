@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 1:21 AM
+ * Last modified 1/16/23, 7:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -67,6 +67,25 @@ class PreferencesIO {
 
       await value.setBool(PreferencesKeys.sounds, sounds).then((value) => {
         debugPrint("Continuously Stored Successfully: $sounds")
+      })
+
+    });
+
+  }
+
+  Future<int> retrieveLastLuck() async {
+
+    int currentLevel = (await sharedPreferences).getInt(PreferencesKeys.lastLuck) ?? 1;
+
+    return currentLevel;
+  }
+
+  Future storeLastLuck(int lastLuck) async {
+
+    sharedPreferences.then((value) async => {
+
+      await value.setInt(PreferencesKeys.lastLuck, lastLuck).then((value) => {
+        debugPrint("Last Luck Stored Successfully: $lastLuck")
       })
 
     });

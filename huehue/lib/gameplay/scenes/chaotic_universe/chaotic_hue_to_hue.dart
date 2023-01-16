@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:41 AM
+ * Last modified 1/16/23, 7:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -151,7 +151,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
           ColorsResources.cyan,
           ColorsResources.red,
           ColorsResources.blue,
-          ColorsResources.yellow
         ]);
 
   }
@@ -687,6 +686,8 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
       }
 
       gameAchievements(currentPoints);
+
+      preferencesIO.storeLastLuck(currentPoints);
 
     } else {
       debugPrint("Player Loses!");

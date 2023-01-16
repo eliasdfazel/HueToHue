@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 3:22 AM
+ * Last modified 1/16/23, 7:44 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -15,15 +15,27 @@ import 'package:flutter/material.dart';
 import 'package:huehue/utils/calculations/math_utils.dart';
 
 class WavyCounter {
+
+  late List<Color> _colors;
+  AnimationController? _controller;
+  late AnimationController _addPointController;
+  Animation<double>? _addPointAnimation;
+  int? _counter;
+  BlendMode? _blend;
+  int _radiusFactor = 19;
+
+
   WavyCounter(
       {required TickerProvider vsync,
         required List<Color> initialColors,
         required int initialCounter,
+        int radiusFactor = 19,
         BlendMode blend = BlendMode.hardLight}) {
+
     _counter = initialCounter;
     _colors = initialColors;
     _blend = blend;
-
+    _radiusFactor = radiusFactor;
     _controller = AnimationController(
       vsync: vsync,
       upperBound: 2,
@@ -41,16 +53,10 @@ class WavyCounter {
     }
   }
 
-  late List<Color> _colors;
-  AnimationController? _controller;
-  late AnimationController _addPointController;
-  Animation<double>? _addPointAnimation;
-  int? _counter;
-  BlendMode? _blend;
 
-  void incrementCounter() {
+  void incrementCounter() async {
     _counter = _counter! + 1;
-    _addPointController.forward(from: 0);
+    await _addPointController.forward(from: 0);
   }
 
   void decrementCounter() {
@@ -81,6 +87,7 @@ class WavyCounter {
                     i,
                     _colors[i].withOpacity(opacity),
                     _counter,
+                    _radiusFactor,
                     _blend,
                   ),
                 );
@@ -93,24 +100,28 @@ class WavyCounter {
 }
 
 class _WavyCounterPainter extends CustomPainter {
-  _WavyCounterPainter(
-      this.animation,
-      this.addAnimation,
-      this.index,
-      this.color,
-      this.count,
-      this.blend,
-      ) : super(repaint: animation);
+
   final Animation<double>? animation;
   final Animation<double>? addAnimation;
   final int index;
   final Color color;
+  int radiusFactor;
   final int? count;
   final BlendMode? blend;
 
   static const halfPi = math.pi / 2;
   static const twoPi = math.pi * 2;
   final n = 7;
+
+  _WavyCounterPainter(
+      this.animation,
+      this.addAnimation,
+      this.index,
+      this.color,
+      this.count,
+      this.radiusFactor,
+      this.blend,
+      ) : super(repaint: animation);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -125,7 +136,7 @@ class _WavyCounterPainter extends CustomPainter {
         final th = i * twoPi / length;
         double os = map(math.cos(th - twoPi * t), -1, 1, 0, 1);
         os = 0.125 * math.pow(os, 2.75);
-        final r = 19 * (1 + os * math.cos(n * th + 1.5 * twoPi * t + q));
+        final r = radiusFactor * (1 + os * math.cos(n * th + 1.5 * twoPi * t + q));
         offsets.add(Offset(
             r * math.sin(th) + halfWidth, -r * math.cos(th) + halfHeight));
       }
