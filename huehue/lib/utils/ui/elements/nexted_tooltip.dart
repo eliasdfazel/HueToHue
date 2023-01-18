@@ -19,22 +19,41 @@ class NextedTooltips extends StatefulWidget {
   static const int sectionTopRight = 2;
   static const int sectionBottomLeft = 3;
   static const int sectionBottomRight = 4;
+  static const int sectionCenterTop = 5;
+  static const int sectionCenterBottom = 6;
 
   bool atStartShow = false;
 
   int displaySection = NextedTooltips.sectionTopRight;
 
-  double topPosition = 37;
-  double bottomPosition = 37;
-  double leftPosition = 37;
-  double rightPosition = 37;
+  double topPosition = 0;
+  double bottomPosition = 0;
+  double leftPosition = 0;
+  double rightPosition = 0;
 
   String tooltipMessage = "Geeks Empire";
 
+  TextStyle textStyle;
+
   NextedTooltips({super.key, required this.atStartShow,
     required this.displaySection,
-    required this.topPosition, required this.bottomPosition, required this.leftPosition, required this.rightPosition,
-    required this.tooltipMessage});
+    this.topPosition = 0, this.bottomPosition = 0, this.leftPosition = 0, this.rightPosition = 0,
+    required this.tooltipMessage,
+    this.textStyle = const TextStyle(
+        color: ColorsResources.premiumLight,
+        fontSize: 13,
+        fontFamily: "Ubuntu",
+        letterSpacing: 1.1,
+        height: 1.3,
+        shadows: [
+          Shadow(
+              color: ColorsResources.whiteTransparent,
+              blurRadius: 7,
+              offset: Offset(0, 3)
+          )
+        ]
+    )
+  });
 
   @override
   State<NextedTooltips> createState() => _NextedTooltipsState();
@@ -108,6 +127,18 @@ class _NextedTooltipsState extends State<NextedTooltips> {
 
         break;
       }
+      case NextedTooltips.sectionCenterTop: {
+
+        tooltipWidget = widgetCenterTop();
+
+        break;
+      }
+      case NextedTooltips.sectionCenterBottom: {
+
+        tooltipWidget = widgetCenterBottom();
+
+        break;
+      }
     }
 
     return tooltipWidget;
@@ -160,20 +191,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                       widget.tooltipMessage,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
-                                      style: TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 13,
-                                          fontFamily: "Ubuntu",
-                                          letterSpacing: 1.1,
-                                          height: 1.3,
-                                          shadows: [
-                                            Shadow(
-                                                color: ColorsResources.white.withOpacity(0.31),
-                                                blurRadius: 7,
-                                                offset: const Offset(0, 3)
-                                            )
-                                          ]
-                                      ),
+                                      style: widget.textStyle
                                     )
                                 )
                             )
@@ -234,20 +252,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                       widget.tooltipMessage,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
-                                      style: TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 13,
-                                          fontFamily: "Ubuntu",
-                                          letterSpacing: 1.1,
-                                          height: 1.3,
-                                          shadows: [
-                                            Shadow(
-                                                color: ColorsResources.white.withOpacity(0.31),
-                                                blurRadius: 7,
-                                                offset: const Offset(0, 3)
-                                            )
-                                          ]
-                                      ),
+                                      style: widget.textStyle
                                     )
                                 )
                             )
@@ -298,20 +303,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                       widget.tooltipMessage,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
-                                      style: TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 13,
-                                          fontFamily: "Ubuntu",
-                                          letterSpacing: 1.1,
-                                          height: 1.3,
-                                          shadows: [
-                                            Shadow(
-                                                color: ColorsResources.white.withOpacity(0.31),
-                                                blurRadius: 7,
-                                                offset: const Offset(0, 3)
-                                            )
-                                          ]
-                                      ),
+                                      style: widget.textStyle
                                     )
                                 )
                             )
@@ -375,20 +367,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                       widget.tooltipMessage,
                                       textAlign: TextAlign.center,
                                       maxLines: 1,
-                                      style: TextStyle(
-                                          color: ColorsResources.premiumLight,
-                                          fontSize: 13,
-                                          fontFamily: "Ubuntu",
-                                          letterSpacing: 1.1,
-                                          height: 1.3,
-                                          shadows: [
-                                            Shadow(
-                                                color: ColorsResources.white.withOpacity(0.31),
-                                                blurRadius: 7,
-                                                offset: const Offset(0, 3)
-                                            )
-                                          ]
-                                      ),
+                                      style: widget.textStyle
                                     )
                                 )
                             )
@@ -405,6 +384,128 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                           image: AssetImage("preferences_pointer.png"),
                           height: 13,
                           color: ColorsResources.red,
+                        )
+                    )
+                )
+
+              ],
+            )
+        )
+    );
+  }
+
+  Widget widgetCenterTop() {
+
+    return Positioned(
+        top: widget.topPosition,
+        left: widget.leftPosition,
+        right: widget.rightPosition,
+        child: AnimatedOpacity(
+            opacity: loginTooltip,
+            duration: const Duration(milliseconds: 999),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                SizedBox(
+                    height: 37,
+                    width: 193,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                border: Border(
+                                    top: BorderSide(
+                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        width: 1,
+                                        strokeAlign: StrokeAlign.inside
+                                    )
+                                )
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      widget.tooltipMessage,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 1,
+                                      style: widget.textStyle
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+
+                const SizedBox(
+                    height: 13,
+                    width: 73,
+                    child: Image(
+                      image: AssetImage("preferences_bottom_pointer.png"),
+                      height: 13,
+                      color: ColorsResources.primaryColorDarkest,
+                    )
+                ),
+
+              ],
+            )
+        )
+    );
+  }
+
+  Widget widgetCenterBottom() {
+
+    return Positioned(
+        bottom: widget.bottomPosition,
+        left: widget.leftPosition,
+        right: widget.rightPosition,
+        child: AnimatedOpacity(
+            opacity: loginTooltip,
+            duration: const Duration(milliseconds: 999),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+
+                const SizedBox(
+                    height: 13,
+                    width: 73,
+                    child: Image(
+                      image: AssetImage("preferences_pointer.png"),
+                      height: 13,
+                      color: ColorsResources.primaryColorDarkest,
+                    )
+                ),
+
+                SizedBox(
+                    height: 37,
+                    width: 193,
+                    child: ClipRRect(
+                        borderRadius: BorderRadius.circular(13),
+                        child: Container(
+                            decoration: BoxDecoration(
+                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                border: Border(
+                                    top: BorderSide(
+                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        width: 1,
+                                        strokeAlign: StrokeAlign.inside
+                                    )
+                                )
+                            ),
+                            child: Padding(
+                                padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                child: Align(
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                        widget.tooltipMessage,
+                                        textAlign: TextAlign.center,
+                                        maxLines: 1,
+                                        style: widget.textStyle
+                                    )
+                                )
+                            )
                         )
                     )
                 )

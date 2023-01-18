@@ -67,6 +67,8 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
   bool previousTooltip = true;
 
+  bool newLevelTooltip = false;
+
   Widget waitingAnimationPlaceholder = Container();
 
   @override
@@ -236,8 +238,32 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                             ),
                             child: playButtonDesign()
                           ),
+
+                          /* Start - New Levels */
+                          NextedTooltips(
+                              atStartShow: true,
+                              displaySection: NextedTooltips.sectionCenterTop,
+                              topPosition: 213,
+                              leftPosition: 13,
+                              rightPosition: 13,
+                              tooltipMessage: StringsResources.newLevels(),
+                              textStyle: const TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 13,
+                                  fontFamily: "Electric",
+                                  letterSpacing: 1.73,
+                                  height: 1.3,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.whiteTransparent,
+                                        blurRadius: 7,
+                                        offset: Offset(0, 3)
+                                    )
+                                  ]
+                              )
+                          ),
+                          /* End - New Levels */
                           /* End - Stroke | Play */
-                          /* End - Decoration */
 
                           waitingAnimationPlaceholder,
 
@@ -630,6 +656,11 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                     if (collections.docChanges.length > 1) {
 
+                      setState(() {
+
+                        newLevelTooltip = true;
+
+                      });
 
                     }
 
@@ -658,8 +689,6 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
       }
 
     });
-
-
 
   }
 
@@ -692,6 +721,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                 child: Stack(
                   children: [
 
+                    /* Start - Play */
                     WidgetMask(
                         blendMode: BlendMode.srcATop,
                         childSaveLayer: true,
@@ -746,6 +776,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                           width: 399,
                         )
                     ),
+                    /* End - Play */
 
                     /* Start - Chaotic Play */
                     Positioned(

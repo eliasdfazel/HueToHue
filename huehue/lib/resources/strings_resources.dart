@@ -70,6 +70,11 @@ class StringsResources {
     return "Previous Levels";
   }
 
+  static String newLevels() {
+
+    return "new levels";
+  }
+
   static String gameServiceIdAndroid() {
 
     return "942557431731";

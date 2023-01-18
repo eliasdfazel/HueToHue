@@ -77,7 +77,7 @@ class ColorsResources {
   static const Color premiumLightTransparent = Color.fromARGB(131, 213, 224, 243);
 
   static const Color white = Color.fromARGB(255, 255, 255, 255);
-  static const Color whiteTransparent = Color.fromARGB(201, 255, 255, 255);
+  static const Color whiteTransparent = Color.fromARGB(137, 255, 255, 255);
 
   static const Color black = Color.fromARGB(255, 0, 0, 0);
   static const Color blackTransparent = Color.fromARGB(201, 0, 0, 0);
