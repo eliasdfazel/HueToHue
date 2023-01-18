@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 6:53 AM
+ * Last modified 1/18/23, 3:08 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -590,40 +590,76 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
   void cacheGameplayData() {
 
-    setState(() {
+    double nowTime = DateTime.now().millisecondsSinceEpoch.toDouble();
 
-      waitingAnimationPlaceholder = waitingAnimation();
+    double oneWeek = 86400000 * 7;
 
-    });
+    preferencesIO.retrieveLevelsUpdateTime().then((levelsUpdateTime) => {
 
-    FirebaseFirestore.instance
-        .collection(gameplayPaths.allLevelPath())
-        .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
+      if ((nowTime - levelsUpdateTime) >= oneWeek) {
 
-          Future.delayed(Duration.zero, () {
+        Future.delayed(Duration.zero, () {
+          preferencesIO.storeLevelsUpdateTime(nowTime);
 
-            if (collections.docs.isNotEmpty) {
-              debugPrint("All Levels Collections Retrieved Successfully");
+          setState(() {
 
-              maximumLevels = collections.size;
+            waitingAnimationPlaceholder = waitingAnimation();
 
-              setState(() {
+          });
 
-                waitingAnimationPlaceholder = Container();
+          FirebaseFirestore.instance
+              .collection(gameplayPaths.allLevelPath())
+              .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
 
-                playButtonOpacity = 1.0;
+                Future.delayed(Duration.zero, () {
 
-                maximumLevels;
+                  if (collections.docs.isNotEmpty) {
+                    debugPrint("All Levels Collections Retrieved Successfully");
+
+                    maximumLevels = collections.size;
+
+                    setState(() {
+
+                      waitingAnimationPlaceholder = Container();
+
+                      playButtonOpacity = 1.0;
+
+                      maximumLevels;
+
+                    });
+
+                    if (collections.docChanges.length > 1) {
+
+
+                    }
+
+                  } else {
+                    debugPrint("No Levels Collections");
+                  }
+
+                })
 
               });
 
-            } else {
-              debugPrint("No Levels Collections");
-            }
+        })
 
-          })
+      } else {
 
-        });
+        setState(() {
+
+          waitingAnimationPlaceholder = Container();
+
+          playButtonOpacity = 1.0;
+
+          maximumLevels;
+
+        })
+
+      }
+
+    });
+
+
 
   }
 

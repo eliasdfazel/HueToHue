@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 8:04 AM
+ * Last modified 1/18/23, 2:48 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -86,6 +86,25 @@ class PreferencesIO {
 
       await value.setInt(PreferencesKeys.lastLuck, lastLuck).then((value) => {
         debugPrint("Last Luck Stored Successfully: $lastLuck")
+      })
+
+    });
+
+  }
+
+  Future<double> retrieveLevelsUpdateTime() async {
+
+    double levelsUpdateTime = (await sharedPreferences).getDouble(PreferencesKeys.levelsUpdateTime) ?? 0;
+
+    return levelsUpdateTime;
+  }
+
+  Future storeLevelsUpdateTime(double levelsUpdateTime) async {
+
+    sharedPreferences.then((value) async => {
+
+      await value.setDouble(PreferencesKeys.levelsUpdateTime, levelsUpdateTime).then((value) => {
+        debugPrint("Levels Update Time Stored Successfully: $levelsUpdateTime")
       })
 
     });
