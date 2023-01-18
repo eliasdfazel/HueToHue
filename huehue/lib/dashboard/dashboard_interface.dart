@@ -877,4 +877,3 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
   }
 
 }
-
