@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 6:29 AM
+ * Last modified 1/18/23, 5:47 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -73,6 +73,16 @@ class StringsResources {
   static String newLevels() {
 
     return "new levels";
+  }
+
+  static String playerLuck() {
+
+    return "luck score";
+  }
+
+  static String luckLeaderboard() {
+
+    return "luckies";
   }
 
   static String gameServiceIdAndroid() {

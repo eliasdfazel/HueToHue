@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 8:08 AM
+ * Last modified 1/18/23, 5:49 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -11,15 +11,18 @@
 import 'package:blur/blur.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
+import 'package:games_services/games_services.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
+import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
 import 'package:huehue/utils/ui/elements/wavy_counter.dart';
 import 'package:huehue/utils/ui/gradient_text/constants.dart';
 import 'package:huehue/utils/ui/gradient_text/gradient.dart';
@@ -50,6 +53,8 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
   );
 
   int luckPoint = 2;
+
+  bool tooltipsLucky = true;
 
   @override
   void dispose() {
@@ -288,25 +293,168 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
                                     SizedBox(
                                         height: 173,
-                                        width: 173,
-                                        child: Center(
-                                            child: WavyCounter(
+                                        width: double.maxFinite,
+                                        child: Stack(
+                                          children: [
+
+                                            WavyCounter(
                                                 vsync: this,
                                                 initialCounter: luckPoint,
-                                                radiusFactor: 137,
+                                                radiusFactor: 131,
                                                 blend: BlendMode.difference,
                                                 initialColors: [
                                                   ColorsResources.cyan,
                                                   ColorsResources.red,
                                                   ColorsResources.blue,
-                                                ]).build(context)
+                                                ]
+                                            ).build(context),
+
+                                            NextedTooltips(
+                                              atStartShow: true,
+                                              topPosition: 37,
+                                              displaySection: NextedTooltips.sectionCenterTop,
+                                              tooltipTint: ColorsResources.primaryColorLighter,
+                                              tooltipMessage: StringsResources.playerLuck(),
+                                              textStyle: TextStyle(
+                                                  color: ColorsResources.premiumLight,
+                                                  fontSize: 13,
+                                                  fontFamily: "Electric",
+                                                  letterSpacing: 1.73,
+                                                  height: 1.3,
+                                                  shadows: [
+                                                    Shadow(
+                                                        color: ColorsResources.white.withOpacity(0.37),
+                                                        blurRadius: 7,
+                                                        offset: const Offset(0, 3)
+                                                    )
+                                                  ]
+                                              ),
+                                            ),
+
+                                            Positioned(
+                                              top: 97,
+                                              left: 37,
+                                              right: 37,
+                                              child: Text(
+                                                "31",
+                                                textAlign: TextAlign.center,
+                                                style: TextStyle(
+                                                    color: ColorsResources.premiumLight,
+                                                    fontSize: 37,
+                                                    fontFamily: "Electric",
+                                                    letterSpacing: 1.73,
+                                                    height: 1.3,
+                                                    shadows: [
+                                                      Shadow(
+                                                          color: ColorsResources.primaryColorLightest.withOpacity(0.37),
+                                                          blurRadius: 13,
+                                                          offset: const Offset(0, 5)
+                                                      )
+                                                    ]
+                                                ),
+                                              ),
+                                            )
+
+                                          ],
                                         )
-                                    )
+                                    ),
 
                                   ],
                                 )
                             ),
 
+                            /* Start - Leaderboard */
+                            Positioned(
+                                bottom: 37,
+                                right: 37,
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: ColorsResources.black.withOpacity(0.73),
+                                              blurRadius: 19
+                                          )
+                                        ]
+                                    ),
+                                    child: const WidgetMask(
+                                        blendMode: BlendMode.srcATop,
+                                        childSaveLayer: true,
+                                        mask: ColoredBox(
+                                            color: ColorsResources.primaryColorDarkest
+                                        ),
+                                        child: Image(
+                                          image: AssetImage("squircle.png"),
+                                          height: 73,
+                                          width: 73,
+                                        )
+                                    )
+                                )
+                            ),
+                            Positioned(
+                                bottom: 37,
+                                right: 37,
+                                child: WidgetMask(
+                                  blendMode: BlendMode.srcIn,
+                                  childSaveLayer: true,
+                                  mask: Material(
+                                      shadowColor: Colors.transparent,
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                          splashColor: ColorsResources.primaryColor,
+                                          splashFactory: InkRipple.splashFactory,
+                                          onTap: () {
+
+                                            Future.delayed(const Duration(milliseconds: 333), () {
+
+                                              GamesServices.showLeaderboards(
+                                                androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+                                                iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
+                                              );
+
+                                            });
+
+                                          },
+                                          child: const Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 13, 0, 19),
+                                              child: Image(
+                                                image: AssetImage("leaderboard.png"),
+                                                height: 37,
+                                                width: 37,
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  child: const Image(
+                                    image: AssetImage("squircle.png"),
+                                    height: 73,
+                                    width: 73,
+                                  ),
+                                )
+                            ),
+
+                            NextedTooltips(
+                              atStartShow: tooltipsLucky,
+                              bottomPosition: 123,
+                              rightPosition: 37,
+                              displaySection: NextedTooltips.sectionBottomRight,
+                              tooltipTint: ColorsResources.primaryColorLighter,
+                              tooltipMessage: StringsResources.luckLeaderboard(),
+                              textStyle: TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 13,
+                                  fontFamily: "Electric",
+                                  letterSpacing: 1.73,
+                                  height: 1.3,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white.withOpacity(0.37),
+                                        blurRadius: 7,
+                                        offset: const Offset(0, 3)
+                                    )
+                                  ]
+                              ),
+                            ),
+                            /* End - Leaderboard */
                             /* Start - Back */
                             Positioned(
                                 top: 37,
@@ -411,21 +559,25 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
       Future.delayed(Duration.zero, () async {
 
-        for (int l = 2; l <= value; l++) {
+        int luckCount = kDebugMode ? 73 : value;
 
-          await Future.delayed(const Duration(milliseconds: 333));
+        setState(() {
 
-          luckPoint = l;
+          luckPoint = luckCount;
 
-          setState(() {
-
-            luckPoint;
-
-          });
-
-        }
+        });
 
       })
+
+    });
+
+    Future.delayed(const Duration(milliseconds: 3579), () {
+
+      setState(() {
+
+        tooltipsLucky = false;
+
+      });
 
     });
 
