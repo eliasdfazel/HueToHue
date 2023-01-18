@@ -241,7 +241,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                           /* Start - New Levels */
                           NextedTooltips(
-                              atStartShow: true,
+                              atStartShow: newLevelTooltip,
                               displaySection: NextedTooltips.sectionCenterTop,
                               topPosition: 213,
                               leftPosition: 13,
@@ -626,6 +626,8 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
       if ((nowTime - levelsUpdateTime) >= oneWeek) {
 
         Future.delayed(Duration.zero, () {
+          debugPrint("One Week Passed -> Updating Levels");
+
           preferencesIO.storeLevelsUpdateTime(nowTime);
 
           setState(() {
@@ -678,6 +680,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
       } else {
 
         setState(() {
+          debugPrint("Less Than One Week");
 
           waitingAnimationPlaceholder = Container();
 
