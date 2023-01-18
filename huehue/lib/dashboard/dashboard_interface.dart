@@ -247,7 +247,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                               leftPosition: 13,
                               rightPosition: 13,
                               tooltipMessage: StringsResources.newLevels(),
-                              textStyle: const TextStyle(
+                              textStyle: TextStyle(
                                   color: ColorsResources.premiumLight,
                                   fontSize: 13,
                                   fontFamily: "Electric",
@@ -255,12 +255,13 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                   height: 1.3,
                                   shadows: [
                                     Shadow(
-                                        color: ColorsResources.whiteTransparent,
+                                        color: ColorsResources.white.withOpacity(0.37),
                                         blurRadius: 7,
-                                        offset: Offset(0, 3)
+                                        offset: const Offset(0, 3)
                                     )
                                   ]
-                              )
+                              ),
+                              tooltipTint: ColorsResources.primaryColorLighter,
                           ),
                           /* End - New Levels */
                           /* End - Stroke | Play */

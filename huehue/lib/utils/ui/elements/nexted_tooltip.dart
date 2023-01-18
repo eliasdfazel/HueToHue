@@ -35,6 +35,8 @@ class NextedTooltips extends StatefulWidget {
 
   TextStyle textStyle;
 
+  Color tooltipTint = ColorsResources.primaryColorDarkest;
+
   NextedTooltips({super.key, required this.atStartShow,
     required this.displaySection,
     this.topPosition = 0, this.bottomPosition = 0, this.leftPosition = 0, this.rightPosition = 0,
@@ -52,7 +54,8 @@ class NextedTooltips extends StatefulWidget {
               offset: Offset(0, 3)
           )
         ]
-    )
+    ),
+    this.tooltipTint = ColorsResources.primaryColorDarkest
   });
 
   @override
@@ -157,13 +160,13 @@ class _NextedTooltipsState extends State<NextedTooltips> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("preferences_pointer.png"),
                       height: 13,
-                      color: ColorsResources.primaryColorDarkest,
+                      color: widget.tooltipTint,
                     )
                 ),
 
@@ -174,10 +177,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                     bottom: BorderSide(
-                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
                                         strokeAlign: StrokeAlign.inside
                                     )
@@ -218,13 +221,13 @@ class _NextedTooltipsState extends State<NextedTooltips> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("preferences_pointer.png"),
                       height: 13,
-                      color: ColorsResources.primaryColorDarkest,
+                      color: widget.tooltipTint,
                     )
                 ),
 
@@ -235,10 +238,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                   bottom: BorderSide(
-                                      color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                      color: widget.tooltipTint.withOpacity(0.31),
                                       width: 1,
                                       strokeAlign: StrokeAlign.inside
                                   )
@@ -286,10 +289,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                     top: BorderSide(
-                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
                                         strokeAlign: StrokeAlign.inside
                                     )
@@ -311,15 +314,15 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     )
                 ),
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: RotatedBox(
                       quarterTurns: 2,
                       child: Image(
-                        image: AssetImage("preferences_pointer.png"),
+                        image: const AssetImage("preferences_pointer.png"),
                         height: 13,
-                        color: ColorsResources.red,
+                        color: widget.tooltipTint,
                       )
                     )
                 )
@@ -350,10 +353,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                     top: BorderSide(
-                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
                                         strokeAlign: StrokeAlign.inside
                                     )
@@ -375,15 +378,15 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     )
                 ),
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: RotatedBox(
                         quarterTurns: 2,
                         child: Image(
-                          image: AssetImage("preferences_pointer.png"),
+                          image: const AssetImage("preferences_pointer.png"),
                           height: 13,
-                          color: ColorsResources.red,
+                          color: widget.tooltipTint,
                         )
                     )
                 )
@@ -414,10 +417,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                     top: BorderSide(
-                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
                                         strokeAlign: StrokeAlign.inside
                                     )
@@ -439,13 +442,13 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     )
                 ),
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: AssetImage("preferences_bottom_pointer.png"),
+                      image: const AssetImage("preferences_bottom_pointer.png"),
                       height: 13,
-                      color: ColorsResources.primaryColorDarkest,
+                      color: widget.tooltipTint,
                     )
                 ),
 
@@ -468,13 +471,13 @@ class _NextedTooltipsState extends State<NextedTooltips> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
 
-                const SizedBox(
+                SizedBox(
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("preferences_pointer.png"),
                       height: 13,
-                      color: ColorsResources.primaryColorDarkest,
+                      color: widget.tooltipTint,
                     )
                 ),
 
@@ -485,10 +488,10 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: ColorsResources.primaryColorDarkest.withOpacity(0.07),
+                                color: widget.tooltipTint.withOpacity(0.07),
                                 border: Border(
                                     top: BorderSide(
-                                        color: ColorsResources.primaryColorDarkest.withOpacity(0.31),
+                                        color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
                                         strokeAlign: StrokeAlign.inside
                                     )
