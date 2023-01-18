@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/15/23, 10:41 AM
+ * Last modified 1/18/23, 5:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -22,6 +22,7 @@ import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart
 import 'package:huehue/gameplay/scenes/ordered_universe/data/levels_data_structure.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/elements/gradients_blobs.dart';
+import 'package:huehue/history/previous_levels.dart';
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -544,6 +545,18 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
+  @override
+  void orderedFinished() {
+    debugPrint("All Level Finished");
+
+    Future.delayed(const Duration(milliseconds: 333), () {
+
+      navigateToWithPop(context, const PreviousInterface());
+
+    });
+
+  }
+
   void initializeGameInformation() async {
 
     preferencesIO.retrieveContinuously().then((value) => {
@@ -750,6 +763,12 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     });
 
+    setState(() {
+
+      gameStatuesPlaceholder = gameStatues.gameFinished(this);
+
+    });
+
     if (colorsUtils.gradientSimilarity(gameplayGradientColors, shapedGradientColor, similarityOffset: 37) || testingMode) {
       debugPrint("Player Wins!");
 
@@ -778,21 +797,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             currentPoints = 0;
 
-            if (widget.currentLevels > widget.maximumLevels) {
-              debugPrint("Player Won & Finished The Game!");
-
-
-            } else {
-
-              retrieveGameData(widget.currentLevels);
-
-              preferencesIO.storeCurrentLevel(widget.currentLevels);
-
-            }
-
           } else {
-
-            preferencesIO.storeCurrentLevel(widget.currentLevels);
 
             setState(() {
 
@@ -801,6 +806,23 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
             });
 
             animationController?.stop();
+
+          }
+
+          if (widget.currentLevels > widget.maximumLevels) {
+            debugPrint("Player Won & Finished The Game!");
+
+            setState(() {
+
+              gameStatuesPlaceholder = gameStatues.gameFinished(this);
+
+            });
+
+          } else {
+
+            retrieveGameData(widget.currentLevels);
+
+            preferencesIO.storeCurrentLevel(widget.currentLevels);
 
           }
 
