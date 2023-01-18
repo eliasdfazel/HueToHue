@@ -9,6 +9,7 @@
  */
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -16,6 +17,11 @@ import 'package:huehue/entry_configurations.dart';
 import 'package:huehue/firebase_options.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
+
+@pragma('vm:entry-point')
+Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) async {
+  debugPrint("Hue To Hue Message: ${remoteMessage.data}");
+}
 
 void main() async {
 
@@ -27,6 +33,13 @@ void main() async {
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
+  );
+
+  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
+  FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
   );
 
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then((value) => {
