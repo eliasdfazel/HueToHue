@@ -594,6 +594,12 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
         if (leaderboardScoreData != null) {
 
+          setState(() {
+
+            tooltipsLucky = true;
+
+          });
+
           if (leaderboardScoreData.isNotEmpty) {
 
             LeaderboardScoreData? playerLeaderboardData = leaderboardScoreData.firstWhereOrNull((element) => (element.scoreHolderDisplayName == firebaseUser!.displayName));
@@ -617,6 +623,16 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
             });
 
           }
+
+          Future.delayed(const Duration(milliseconds: 13579), () {
+
+            setState(() {
+
+              tooltipsLucky = false;
+
+            });
+
+          });
 
         } else {
 
