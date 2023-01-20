@@ -85,6 +85,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
   int currentPoints = 0;
   double pointsOpacity = 0.0;
 
+  int colorOffset = 37;
+
   AnimationController? animationController;
 
   bool gameSoundsOn = false;
@@ -584,6 +586,16 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     });
 
+    preferencesIO.retrieveColorOffset().then((value) => {
+
+      setState(() {
+
+        colorOffset = value.toInt();
+
+      })
+
+    });
+
     setState(() {
 
       currentPoints = 0;
@@ -763,7 +775,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     });
 
-    if (colorsUtils.gradientSimilarity(gameplayGradientColors, shapedGradientColor, similarityOffset: 37) || testingMode) {
+    if (colorsUtils.gradientSimilarity(gameplayGradientColors, shapedGradientColor, similarityOffset: colorOffset) || testingMode) {
       debugPrint("Player Wins!");
 
       playPointsSound();

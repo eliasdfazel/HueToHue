@@ -154,7 +154,7 @@ class PreferencesIO {
     // IQ: 50 - 150
     // Offset: 0 - 100
 
-
+    storeColorOffset(1);
 
   }
 
