@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/18/23, 5:06 AM
+ * Last modified 1/20/23, 3:16 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -760,12 +760,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
         levelsOpacity = 0.37;
 
       }
-
-    });
-
-    setState(() {
-
-      gameStatuesPlaceholder = gameStatues.gameFinished(this);
 
     });
 
