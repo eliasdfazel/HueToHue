@@ -35,7 +35,7 @@ class StringsResources {
     return "login";
   }
 
-  static String timedout() {
+  static String timedOut() {
 
     return "timed out";
   }
@@ -58,6 +58,11 @@ class StringsResources {
   static String switchDescriptionSounds() {
 
     return "Turn On / Off All Sounds...\nBackground Music, Sound Effects.";
+  }
+
+  static String iqDescription() {
+
+    return "Claim Your IQ...\nDifficulty Will Increase Accordingly.";
   }
 
   static String synchronizationNotice() {

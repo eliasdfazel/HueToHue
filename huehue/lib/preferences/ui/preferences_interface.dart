@@ -68,6 +68,8 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
   double contentsListPadding = 173;
 
+  double iqSliderValue = 50.0;
+
   bool aInterceptor(bool stopDefaultButtonEvent, RouteInfo info) {
 
     navigatePopWithResult(context, true);
@@ -263,8 +265,76 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
                                   /* Start - Sounds Switch */
                                   SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.sounds,
-                                      titlePreferences: StringsResources.switchTitleSounds(), descriptionPreferences: StringsResources.switchDescriptionSounds())
+                                      titlePreferences: StringsResources.switchTitleSounds(), descriptionPreferences: StringsResources.switchDescriptionSounds()),
                                   /* End - Sounds Switch */
+
+                                  const Divider(
+                                      height: 37,
+                                      color: Colors.transparent
+                                  ),
+
+                                  /* Start - IQ Slider */
+                                  Padding(
+                                      padding: const EdgeInsets.fromLTRB(37, 0, 37, 0),
+                                      child: Column(
+                                        children: [
+
+                                          ClipRRect(
+                                              borderRadius: BorderRadius.circular(13),
+                                              child: Blur(
+                                                blur: 37,
+                                                blurColor: ColorsResources.black,
+                                                colorOpacity: 0.13,
+                                                overlay: Container(),
+                                                child: const SizedBox(
+                                                    height: 53,
+                                                    width: double.maxFinite
+                                                ),
+                                              )
+                                          ),
+
+                                          const Divider(
+                                              height: 13,
+                                              color: Colors.transparent
+                                          ),
+
+                                          const Image(
+                                            image: AssetImage("preferences_pointer.png"),
+                                            height: 11,
+                                          ),
+                                          ClipRRect(
+                                              borderRadius: BorderRadius.circular(13),
+                                              child: Container(
+                                                  color: ColorsResources.premiumLight.withOpacity(0.07),
+                                                  child: SizedBox(
+                                                      height: 53,
+                                                      width: double.maxFinite,
+                                                      child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                                          child: Align(
+                                                              alignment: Alignment.centerLeft,
+                                                              child: Text(
+                                                                StringsResources.iqDescription(),
+                                                                textAlign: TextAlign.start,
+                                                                maxLines: 2,
+                                                                style: const TextStyle(
+                                                                    color: ColorsResources.premiumLight,
+                                                                    fontSize: 13,
+                                                                    fontFamily: "Ubuntu",
+                                                                    letterSpacing: 1.1,
+                                                                    height: 1.3
+                                                                ),
+                                                              )
+                                                          )
+                                                      )
+                                                  )
+                                              )
+                                          ),
+
+                                        ],
+                                      )
+                                  ),
+                                  /* Start - IQ Slider */
 
                                 ],
                               )

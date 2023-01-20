@@ -112,6 +112,13 @@ dependencies:
 
 
   ####### ####### #######
+  syncfusion_flutter_core: ^20.4.44
+  syncfusion_flutter_sliders: ^20.4.44
+  ####### ####### #######
+
+
+
+  ####### ####### #######
   vector_math: ^2.0.8
   ####### ####### #######
 

@@ -131,7 +131,7 @@ class GameStatues {
                             ),
 
                             Text(
-                              StringsResources.timedout(),
+                              StringsResources.timedOut(),
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: ColorsResources.premiumLight,
