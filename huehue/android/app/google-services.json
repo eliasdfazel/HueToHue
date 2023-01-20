@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "942557431731-otu44escqulrdn740jtqj036mppki8h1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.geeksempire.huehue",
+            "certificate_hash": "5c5eabf7926554d5db389a4878929518a2e65707"
+          }
+        },
+        {
           "client_id": "942557431731-sno4m0poeitn6bmb885u4rq8i2c3qesg.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
