@@ -896,10 +896,18 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
                   backgroundAudioPlayer.stop();
 
-                  backgroundAudioPlayer.setFilePath(backgroundMusic);
+                  Future(() async {
 
-                  backgroundAudioPlayer.setVolume(0.13);
-                  backgroundAudioPlayer.play();
+                    String backgroundMusic = await gameplayPaths.prepareBackgroundMusicPath();
+
+                    final file = File(backgroundMusic);
+
+                    backgroundAudioPlayer.setFilePath(backgroundMusic);
+
+                    backgroundAudioPlayer.setVolume(0.13);
+                    backgroundAudioPlayer.play();
+
+                  });
 
                   break;
                 }
