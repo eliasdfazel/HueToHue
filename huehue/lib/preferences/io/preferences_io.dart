@@ -149,12 +149,14 @@ class PreferencesIO {
 
   }
 
+  /// Score IQ = 50 - 150
   Future calculateColorOffset(double scoreIQ) async {
 
-    // IQ: 50 - 150
-    // Offset: 0 - 100
+    scoreIQ = scoreIQ - 50;
 
-    storeColorOffset(1);
+    int maximumOffset = 100;
+
+    storeColorOffset((maximumOffset - scoreIQ).abs());
 
   }
 
