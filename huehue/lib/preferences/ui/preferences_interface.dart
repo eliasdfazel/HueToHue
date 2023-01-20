@@ -27,6 +27,7 @@ import 'package:huehue/sync/sync_io.dart';
 import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
+import 'package:huehue/utils/ui/gradient_text/gradient.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:widget_mask/widget_mask.dart';
@@ -124,6 +125,8 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
       );
 
     }
+
+    retrievePreferences();
 
   }
 
@@ -285,7 +288,114 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                                                 blur: 37,
                                                 blurColor: ColorsResources.black,
                                                 colorOpacity: 0.13,
-                                                overlay: Container(),
+                                                overlay: Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+
+                                                    Expanded(
+                                                        flex: 7,
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
+                                                          child: GradientText(
+                                                              "low -",
+                                                              textAlign: TextAlign.center,
+                                                              colors: const [
+                                                                ColorsResources.lightRed,
+                                                                ColorsResources.premiumLight
+                                                              ],
+                                                              style: const TextStyle(
+                                                                  fontSize: 12,
+                                                                  fontWeight: FontWeight.bold,
+                                                                  fontFamily: "Electric",
+                                                                  shadows: [
+                                                                    Shadow(
+                                                                      color: ColorsResources.lightRed,
+                                                                      blurRadius: 13,
+                                                                      offset: Offset(-1, 0)
+                                                                    )
+                                                                  ]
+                                                              )
+                                                          ),
+                                                        )
+                                                    ),
+
+                                                    Expanded(
+                                                      flex: 23,
+                                                      child: SizedBox(
+                                                          height: 31,
+                                                          width: double.infinity,
+                                                          child: SliderTheme(
+                                                            data: SliderThemeData(
+                                                              activeTrackColor: ColorsResources.premiumLight,
+                                                              inactiveTrackColor: ColorsResources.white.withOpacity(0.19),
+                                                              thumbColor: ColorsResources.cyan,
+                                                              thumbShape: const RoundSliderThumbShape(
+                                                                enabledThumbRadius: 5,
+                                                                disabledThumbRadius: 5
+                                                              ),
+                                                              overlayShape: const RoundSliderThumbShape(
+                                                                  enabledThumbRadius: 13,
+                                                                  disabledThumbRadius: 13
+                                                              ),
+                                                              overlayColor: ColorsResources.cyan.withOpacity(0.13),
+                                                              trackShape: const RoundedRectSliderTrackShape(),
+                                                              trackHeight: 3
+                                                            ),
+                                                            child: Slider(
+                                                                min: 50.0,
+                                                                max: 150.0,
+                                                                value: iqSliderValue,
+                                                                divisions: 100,
+                                                                label: iqSliderValue.toString(),
+                                                                onChanged: (value) {
+
+                                                                  setState(() {
+
+                                                                    iqSliderValue = value;
+
+                                                                  });
+
+                                                                },
+                                                                onChangeEnd: (value) {
+
+                                                                  preferencesIO.storeIQ(value);
+
+                                                                }
+                                                            )
+                                                          )
+                                                      )
+                                                    ),
+
+                                                    Expanded(
+                                                      flex: 7,
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
+                                                        child: GradientText(
+                                                            "+ high",
+                                                            textAlign: TextAlign.center,
+                                                            colors: const [
+                                                              ColorsResources.premiumLight,
+                                                              ColorsResources.lightBlue
+                                                            ],
+                                                            style: const TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontFamily: "Electric",
+                                                                shadows: [
+                                                                  Shadow(
+                                                                      color: ColorsResources.lightBlue,
+                                                                      blurRadius: 13,
+                                                                      offset: Offset(1, 0)
+                                                                  )
+                                                                ]
+                                                            )
+                                                        ),
+                                                      )
+                                                    )
+
+                                                  ],
+                                                ),
                                                 child: const SizedBox(
                                                     height: 53,
                                                     width: double.maxFinite
@@ -515,6 +625,20 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
   @override
   void syncError() {
+
+  }
+
+  void retrievePreferences() {
+
+    preferencesIO.retrieveIQ().then((value) => {
+
+      setState(() {
+
+        iqSliderValue = value;
+
+      })
+
+    });
 
   }
 

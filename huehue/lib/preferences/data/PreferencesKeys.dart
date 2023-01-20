@@ -15,5 +15,7 @@ class PreferencesKeys {
   static const String sounds = "sounds";
   static const String lastLuck = "lastLuck";
   static const String levelsUpdateTime = "levelsUpdateTime";
+  static const String scoreIQ = "scoreIQ";
+  static const String colorOffset = "colorOffset";
 
 }

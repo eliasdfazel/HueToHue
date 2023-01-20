@@ -111,4 +111,42 @@ class PreferencesIO {
 
   }
 
+  Future<double> retrieveIQ() async {
+
+    double scoreIQ = (await sharedPreferences).getDouble(PreferencesKeys.scoreIQ) ?? 50;
+
+    return scoreIQ;
+  }
+
+  Future storeIQ(double scoreIQ) async {
+
+    sharedPreferences.then((value) async => {
+
+      await value.setDouble(PreferencesKeys.scoreIQ, scoreIQ).then((value) => {
+        debugPrint("Score IQ Stored Successfully: $scoreIQ")
+      })
+
+    });
+
+  }
+
+  Future<double> retrieveColorOffset() async {
+
+    double scoreIQ = (await sharedPreferences).getDouble(PreferencesKeys.colorOffset) ?? 37;
+
+    return scoreIQ;
+  }
+
+  Future storeColorOffset(double colorOffset) async {
+
+    sharedPreferences.then((value) async => {
+
+      await value.setDouble(PreferencesKeys.colorOffset, colorOffset).then((value) => {
+        debugPrint("Color Offset Stored Successfully: $colorOffset")
+      })
+
+    });
+
+  }
+
 }
