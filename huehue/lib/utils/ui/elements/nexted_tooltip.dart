@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:huehue/resources/colors_resources.dart';
+import 'package:huehue/utils/operations/numbers.dart';
 
 class NextedTooltips extends StatefulWidget {
 
@@ -35,7 +36,7 @@ class NextedTooltips extends StatefulWidget {
 
   TextStyle textStyle;
 
-  Color tooltipTint = ColorsResources.primaryColorDarkest;
+  Color tooltipTint = ColorsResources.primaryColor;
 
   NextedTooltips({super.key, required this.atStartShow,
     required this.displaySection,
@@ -177,7 +178,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.07),
+                                      widget.tooltipTint.withOpacity(0.73)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.51, 1.0],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                     bottom: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
@@ -238,7 +248,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.07),
+                                      widget.tooltipTint.withOpacity(0.73)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.51, 1.0],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                   bottom: BorderSide(
                                       color: widget.tooltipTint.withOpacity(0.31),
@@ -289,7 +308,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.73),
+                                      widget.tooltipTint.withOpacity(0.07)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.0, 0.51],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
@@ -353,7 +381,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.73),
+                                      widget.tooltipTint.withOpacity(0.07)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.0, 0.51],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
@@ -417,7 +454,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.73),
+                                      widget.tooltipTint.withOpacity(0.07)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.0, 0.51],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
@@ -488,7 +534,16 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                         borderRadius: BorderRadius.circular(13),
                         child: Container(
                             decoration: BoxDecoration(
-                                color: widget.tooltipTint.withOpacity(0.07),
+                                gradient: LinearGradient(
+                                    colors: [
+                                      widget.tooltipTint.withOpacity(0.07),
+                                      widget.tooltipTint.withOpacity(0.73)
+                                    ],
+                                    begin: const FractionalOffset(0.0, 0.0),
+                                    end: const FractionalOffset(1.0, 0.0),
+                                    stops: const [0.0, 0.51],
+                                    transform: GradientRotation(degreeToRadian(90))
+                                ),
                                 border: Border(
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),

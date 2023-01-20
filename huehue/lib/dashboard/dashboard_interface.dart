@@ -449,7 +449,21 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                               atStartShow: previousTooltip,
                               displaySection: NextedTooltips.sectionTopRight,
                               topPosition: 157, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
-                              tooltipMessage: StringsResources.previousLevels()
+                              tooltipMessage: StringsResources.previousLevels(),
+                              textStyle: TextStyle(
+                                  color: ColorsResources.premiumLight,
+                                  fontSize: 13,
+                                  fontFamily: "Ubuntu",
+                                  letterSpacing: 1.1,
+                                  height: 1.3,
+                                  shadows: [
+                                    Shadow(
+                                        color: ColorsResources.white.withOpacity(0.37),
+                                        blurRadius: 7,
+                                        offset: const Offset(0, 3)
+                                    )
+                                  ]
+                              ),
                           ),
                           /* End - Level */
 
