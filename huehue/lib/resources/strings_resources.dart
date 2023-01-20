@@ -80,9 +80,14 @@ class StringsResources {
     return "luck score";
   }
 
-  static String luckLeaderboard() {
+  static String luckiesLeaderboard() {
 
     return "luckies";
+  }
+
+  static String luckLeaderboard() {
+
+    return "lucky";
   }
 
   static String gameServiceIdAndroid() {

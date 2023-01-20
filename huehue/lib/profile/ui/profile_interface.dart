@@ -9,6 +9,7 @@
  */
 
 import 'package:blur/blur.dart';
+import 'package:collection/collection.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -53,6 +54,8 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
   );
 
   int luckPoint = 2;
+
+  String leaderboardPosition = StringsResources.luckiesLeaderboard();
 
   bool tooltipsLucky = true;
 
@@ -192,7 +195,6 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                             /* End - Decoration */
 
                             /* Start - Content */
-
                             Padding(
                                 padding: const EdgeInsets.fromLTRB(0, 0, 0, 7),
                                 child: ListView(
@@ -438,7 +440,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                               rightPosition: 37,
                               displaySection: NextedTooltips.sectionBottomRight,
                               tooltipTint: ColorsResources.primaryColorLighter,
-                              tooltipMessage: StringsResources.luckLeaderboard(),
+                              tooltipMessage: leaderboardPosition,
                               textStyle: TextStyle(
                                   color: ColorsResources.premiumLight,
                                   fontSize: 13,
@@ -455,6 +457,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                               ),
                             ),
                             /* End - Leaderboard */
+
                             /* Start - Back */
                             Positioned(
                                 top: 37,
@@ -571,7 +574,67 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
     });
 
-    Future.delayed(const Duration(milliseconds: 3579), () {
+    // List<LeaderboardScoreData>? leaderboardScoreData = await GamesServices.loadLeaderboardScores(
+    //     scope: PlayerScope.global,
+    //     timeScope: TimeScope.allTime,
+    //     maxResults: 999,
+    //     androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+    //     iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
+    // );
+
+    GamesServices.loadLeaderboardScores(
+        scope: PlayerScope.global,
+        timeScope: TimeScope.allTime,
+        maxResults: 999,
+        androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+        iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
+    ).then((leaderboardScoreData) => {
+
+      Future.delayed(const Duration(milliseconds: 137), () {
+
+        if (leaderboardScoreData != null) {
+
+          if (leaderboardScoreData.isNotEmpty) {
+
+            LeaderboardScoreData? playerLeaderboardData = leaderboardScoreData.firstWhereOrNull((element) => (element.scoreHolderDisplayName == firebaseUser!.displayName));
+
+            setState(() {
+
+              if (playerLeaderboardData != null) {
+
+                leaderboardPosition = "${StringsResources.luckLeaderboard()} #${playerLeaderboardData.rank}";
+
+              } else {
+
+                setState(() {
+
+                  leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
+
+                });
+
+              }
+
+            });
+
+          }
+
+        } else {
+
+          setState(() {
+
+            leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
+
+          });
+
+        }
+
+      })
+
+    });
+
+
+
+    Future.delayed(const Duration(milliseconds: 5555), () {
 
       setState(() {
 
