@@ -15,6 +15,7 @@ class SyncDataStructure {
   static const String syncTimestampName = "syncTimestamp";
 
   static const String currentLevelName = "currentLevel";
+  static const String iqScoreName = "scoreIQ";
 
   Map<String, dynamic> SyncDocumentData = <String, dynamic>{};
 
@@ -35,12 +36,19 @@ class SyncDataStructure {
     return SyncDocumentData[SyncDataStructure.currentLevelName];
   }
 
+  /// Player IQ
+  int scoreIQ() {
+
+    return SyncDocumentData[SyncDataStructure.iqScoreName];
+  }
+
 }
 
-Map<String, int> mappedSyncedData(int currentLevel) {
+Map<String, int> mappedSyncedData(int currentLevel, {int scoreIQ = 50}) {
 
   return {
     SyncDataStructure.syncTimestampName: DateTime.now().millisecondsSinceEpoch,
-    SyncDataStructure.currentLevelName: currentLevel
+    SyncDataStructure.currentLevelName: currentLevel,
+    SyncDataStructure.iqScoreName: scoreIQ
   };
 }
