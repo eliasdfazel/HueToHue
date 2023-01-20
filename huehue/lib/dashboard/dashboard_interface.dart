@@ -86,7 +86,15 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
     super.initState();
 
     if (!kDebugMode) {
-      GamesServices.signIn();
+      GameAuth.isSignedIn.then((value) => {
+
+        if (!value) {
+
+          GamesServices.signIn()
+
+        }
+
+      });
     }
 
     retrievePreferences();
