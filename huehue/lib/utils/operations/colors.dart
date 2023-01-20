@@ -29,7 +29,7 @@ class ColorsUtils {
 
         for (int colorIndex = 0; colorIndex < colorListOne.length; colorIndex++) {
 
-          similarityResult = colorsSimilarity(colorListOne[colorIndex], colorListTwo[colorIndex]);
+          similarityResult = colorsSimilarity(colorListOne[colorIndex], colorListTwo[colorIndex], similarityOffset: similarityOffset);
 
         }
 
