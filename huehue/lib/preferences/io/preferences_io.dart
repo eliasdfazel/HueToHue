@@ -149,4 +149,13 @@ class PreferencesIO {
 
   }
 
+  Future calculateColorOffset(double scoreIQ) async {
+
+    // IQ: 50 - 150
+    // Offset: 0 - 100
+
+
+
+  }
+
 }

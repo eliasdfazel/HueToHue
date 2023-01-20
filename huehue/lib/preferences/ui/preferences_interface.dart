@@ -361,6 +361,8 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
                                                                   preferencesIO.storeIQ(value);
 
+                                                                  preferencesIO.calculateColorOffset(value);
+
                                                                 }
                                                             )
                                                           )
