@@ -743,7 +743,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
         child: Center(
             child: SizedBox(
                 height: 399,
-                width: 399,
+                width: double.maxFinite,
                 child: Stack(
                   children: [
 
@@ -792,7 +792,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                 child: const Image(
                                   image: AssetImage("blob_play.png"),
                                   height: 399,
-                                  width: 399,
+                                  width: double.maxFinite,
                                   fit: BoxFit.contain,
                                 )
                             )
@@ -800,7 +800,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                         child: const Image(
                           image: AssetImage("blob_play.png"),
                           height: 399,
-                          width: 399,
+                          width: double.maxFinite,
                           fit: BoxFit.contain,
                         )
                     ),
