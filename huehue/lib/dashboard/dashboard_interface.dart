@@ -793,6 +793,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                   image: AssetImage("blob_play.png"),
                                   height: 399,
                                   width: 399,
+                                  fit: BoxFit.contain,
                                 )
                             )
                         ),
@@ -800,6 +801,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                           image: AssetImage("blob_play.png"),
                           height: 399,
                           width: 399,
+                          fit: BoxFit.contain,
                         )
                     ),
                     /* End - Play */
