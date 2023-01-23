@@ -44,7 +44,7 @@ class SyncDataStructure {
 
 }
 
-Map<String, int> mappedSyncedData(int currentLevel, {int scoreIQ = 50}) {
+Map<String, int> mappedSyncedData(int currentLevel, int scoreIQ) {
 
   return {
     SyncDataStructure.syncTimestampName: DateTime.now().millisecondsSinceEpoch,

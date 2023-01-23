@@ -20,9 +20,11 @@ abstract class SynchronizationStatus {
 
 class SyncIO {
 
-  void startSyncingProcess(PreferencesIO preferencesIO, String uniqueId, SynchronizationStatus syncInterface) async {
+  void startSyncingProcess(PreferencesIO preferencesIO,
+      String uniqueId, SynchronizationStatus syncInterface) async {
 
     int offlineCurrentLevel = await preferencesIO.retrieveCurrentLevel();
+    double offlineIq = await preferencesIO.retrieveIQ();
 
     FirebaseFirestore.instance.doc(syncedDataPath(uniqueId))
         .get(const GetOptions(source: Source.server)).then((value) => {
@@ -41,7 +43,7 @@ class SyncIO {
 
               } else {
 
-                final syncedData = mappedSyncedData(offlineCurrentLevel);
+                final syncedData = mappedSyncedData(offlineCurrentLevel, offlineIq.toInt());
 
                 await FirebaseFirestore.instance.doc(syncedDataPath(uniqueId)).set(syncedData);
 
@@ -55,7 +57,7 @@ class SyncIO {
 
             Future.delayed(Duration.zero, () async {
 
-              final syncedData = mappedSyncedData(offlineCurrentLevel);
+              final syncedData = mappedSyncedData(offlineCurrentLevel, offlineIq.toInt());
 
               await FirebaseFirestore.instance.doc(syncedDataPath(uniqueId)).set(syncedData);
 

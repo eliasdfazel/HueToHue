@@ -54,6 +54,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
   );
 
   int luckPoint = 2;
+  double luckOpacity = 0.0;
 
   String leaderboardPosition = StringsResources.luckiesLeaderboard();
 
@@ -293,73 +294,77 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                       color: Colors.transparent,
                                     ),
 
-                                    SizedBox(
-                                        height: 173,
-                                        width: double.maxFinite,
-                                        child: Stack(
-                                          children: [
+                                    AnimatedOpacity(
+                                      opacity: luckOpacity,
+                                      duration: const Duration(milliseconds: 3579),
+                                      child: SizedBox(
+                                          height: 173,
+                                          width: double.maxFinite,
+                                          child: Stack(
+                                            children: [
 
-                                            WavyCounter(
-                                                vsync: this,
-                                                initialCounter: luckPoint,
-                                                radiusFactor: 131,
-                                                blend: BlendMode.difference,
-                                                initialColors: [
-                                                  ColorsResources.cyan,
-                                                  ColorsResources.red,
-                                                  ColorsResources.blue,
-                                                ]
-                                            ).build(context),
-
-                                            NextedTooltips(
-                                              atStartShow: true,
-                                              topPosition: 37,
-                                              displaySection: NextedTooltips.sectionCenterTop,
-                                              tooltipTint: ColorsResources.primaryColorLighter,
-                                              tooltipMessage: StringsResources.playerLuck(),
-                                              textStyle: TextStyle(
-                                                  color: ColorsResources.premiumLight,
-                                                  fontSize: 13,
-                                                  fontFamily: "Electric",
-                                                  letterSpacing: 1.73,
-                                                  height: 1.3,
-                                                  shadows: [
-                                                    Shadow(
-                                                        color: ColorsResources.white.withOpacity(0.37),
-                                                        blurRadius: 7,
-                                                        offset: const Offset(0, 3)
-                                                    )
+                                              WavyCounter(
+                                                  vsync: this,
+                                                  initialCounter: luckPoint,
+                                                  radiusFactor: 131,
+                                                  blend: BlendMode.difference,
+                                                  initialColors: [
+                                                    ColorsResources.cyan,
+                                                    ColorsResources.red,
+                                                    ColorsResources.blue,
                                                   ]
-                                              ),
-                                            ),
+                                              ).build(context),
 
-                                            Positioned(
-                                              top: 97,
-                                              left: 37,
-                                              right: 37,
-                                              child: Text(
-                                                "31",
-                                                textAlign: TextAlign.center,
-                                                style: TextStyle(
+                                              NextedTooltips(
+                                                atStartShow: true,
+                                                topPosition: 37,
+                                                displaySection: NextedTooltips.sectionCenterTop,
+                                                tooltipTint: ColorsResources.primaryColorLighter,
+                                                tooltipMessage: StringsResources.playerLuck(),
+                                                textStyle: TextStyle(
                                                     color: ColorsResources.premiumLight,
-                                                    fontSize: 37,
+                                                    fontSize: 13,
                                                     fontFamily: "Electric",
                                                     letterSpacing: 1.73,
                                                     height: 1.3,
                                                     shadows: [
                                                       Shadow(
-                                                          color: ColorsResources.primaryColorLightest.withOpacity(0.37),
-                                                          blurRadius: 13,
-                                                          offset: const Offset(0, 5)
+                                                          color: ColorsResources.white.withOpacity(0.37),
+                                                          blurRadius: 7,
+                                                          offset: const Offset(0, 3)
                                                       )
                                                     ]
                                                 ),
                                               ),
-                                            )
 
-                                          ],
-                                        )
-                                    ),
+                                              Positioned(
+                                                top: 97,
+                                                left: 37,
+                                                right: 37,
+                                                child: Text(
+                                                  (luckPoint - 2).toString(),
+                                                  textAlign: TextAlign.center,
+                                                  style: TextStyle(
+                                                      color: ColorsResources.premiumLight,
+                                                      fontSize: 37,
+                                                      fontFamily: "Electric",
+                                                      letterSpacing: 1.73,
+                                                      height: 1.3,
+                                                      shadows: [
+                                                        Shadow(
+                                                            color: ColorsResources.primaryColorLightest.withOpacity(0.37),
+                                                            blurRadius: 13,
+                                                            offset: const Offset(0, 5)
+                                                        )
+                                                      ]
+                                                  ),
+                                                ),
+                                              )
+
+                                            ],
+                                          )
+                                      )
+                                    )
 
                                   ],
                                 )
@@ -568,19 +573,17 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
           luckPoint = luckCount;
 
+          if (luckCount > 2) {
+
+            luckOpacity = 1.0;
+
+          }
+
         });
 
       })
 
     });
-
-    // List<LeaderboardScoreData>? leaderboardScoreData = await GamesServices.loadLeaderboardScores(
-    //     scope: PlayerScope.global,
-    //     timeScope: TimeScope.allTime,
-    //     maxResults: 999,
-    //     androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
-    //     iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
-    // );
 
     GamesServices.loadLeaderboardScores(
         scope: PlayerScope.global,
