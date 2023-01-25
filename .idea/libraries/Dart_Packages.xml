@@ -191,6 +191,27 @@
             </list>
           </value>
         </entry>
+        <entry key="firebase_app_check">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check-0.1.1+8/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_app_check_platform_interface">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check_platform_interface-0.0.5+11/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="firebase_app_check_web">
+          <value>
+            <list>
+              <option value="$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check_web-0.0.7+11/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="firebase_auth">
           <value>
             <list>
@@ -977,6 +998,9 @@
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_analytics-10.1.0/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_analytics_platform_interface-3.3.17/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_analytics_web-0.5.1+8/lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check-0.1.1+8/lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check_platform_interface-0.0.5+11/lib" />
+      <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_app_check_web-0.0.7+11/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_auth-4.2.5/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_auth_platform_interface-6.11.7/lib" />
       <root url="file://$USER_HOME$/AppData/Local/Pub/Cache/hosted/pub.dartlang.org/firebase_auth_web-5.2.4/lib" />

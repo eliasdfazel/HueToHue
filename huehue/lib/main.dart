@@ -8,6 +8,7 @@
  * https://opensource.org/licenses/MIT
  */
 
+import 'package:firebase_app_check/firebase_app_check.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -26,6 +27,11 @@ Future<void> firebaseMessagingBackgroundHandler(RemoteMessage remoteMessage) asy
 void main() async {
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+
+  await FirebaseAppCheck.instance.activate(
+    androidProvider: AndroidProvider.playIntegrity,
+  );
+
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
