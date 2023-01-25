@@ -11,6 +11,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 
 class ChaoticDataStructure {
@@ -29,11 +30,25 @@ class ChaoticDataStructure {
 
   int gradientLayerCount = 2;
 
+  double gradientColorRotation = 137.0;
+
+  List<double> gradientAngles = [137.0, 90.0, 45.0, 0.0, 315.0];
+
   int gradientAnimationDuration = 3333;
 
   List<Color> allLevelColors = [ColorsResources.primaryColor, ColorsResources.cyan, ColorsResources.applicationDarkGeeksEmpire];
 
-  ChaoticDataStructure () {
+  ChaoticDataStructure (PreferencesIO preferencesIO) {
+
+    preferencesIO.retrieveIQ().then((value) => {
+
+      if (value >= 99) {
+
+        gradientColorRotation = gradientAngles[random.nextInt(gradientAngles.length)]
+
+      }
+
+    });
 
     gradientLayerCount = _minimumLayerCount + random.nextInt(_maximumLayerCount - _minimumLayerCount);
 
@@ -71,6 +86,11 @@ class ChaoticDataStructure {
   int gradientLayersCount() {
 
     return gradientLayerCount;
+  }
+
+  double gradientRotation() {
+
+    return gradientColorRotation;
   }
 
 }

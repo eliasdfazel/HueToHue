@@ -61,7 +61,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   PreferencesIO preferencesIO = PreferencesIO();
 
-  ChaoticGradientsShapes chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: null);
+  ChaoticGradientsShapes chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: null, gradientRotation: 137);
 
   ChaoticDataStructure? chaoticDataStructure;
 
@@ -207,7 +207,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
                                     if (chaoticGradientsShapes.randomShapedColor.isNotEmpty) {
                                       debugPrint("Gameplay Colors: ${gradientColors} ||| Shaped Colors: ${chaoticGradientsShapes.randomShapedColor}");
 
-                                      processPlayAction(gradientColors, chaoticGradientsShapes.randomShapedColor);
+                                      processPlayAction(gradientColors, chaoticGradientsShapes.randomShapedColor, );
 
                                     }
 
@@ -530,13 +530,13 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
   void prepareChaoticGameData() {
     debugPrint("Preparing Chaotic Game Data");
 
-    chaoticDataStructure = ChaoticDataStructure();
+    chaoticDataStructure = ChaoticDataStructure(preferencesIO);
 
-    initializeGameplay(chaoticDataStructure!.gradientDuration(), chaoticDataStructure!.gradientLayersCount(), chaoticDataStructure!.allColors());
+    initializeGameplay(chaoticDataStructure!.gradientDuration(), chaoticDataStructure!.gradientLayersCount(), chaoticDataStructure!.allColors(), chaoticDataStructure!.gradientRotation());
 
   }
 
-  void initializeGameplay(int animationDuration, int gradientLayersCount, List<Color> allColors) {
+  void initializeGameplay(int animationDuration, int gradientLayersCount, List<Color> allColors, double gradientRotation) {
 
     gradientColors.clear();
 
@@ -556,7 +556,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       gameplayWaitingOpacity = 0;
 
-      chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure);
+      chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure, gradientRotation: gradientRotation);
 
     });
 
@@ -682,7 +682,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
         currentPoints += 1;
 
-        chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure);
+        chaoticGradientsShapes = ChaoticGradientsShapes(chaoticDataStructure: chaoticDataStructure, gradientRotation: chaoticDataStructure!.gradientRotation());
 
       });
 
