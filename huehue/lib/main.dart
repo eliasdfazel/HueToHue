@@ -41,8 +41,6 @@ void main() async {
     androidProvider: appCheckProvider,
   );
 
-
-
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await Firebase.initializeApp(
