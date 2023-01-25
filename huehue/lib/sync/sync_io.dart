@@ -38,6 +38,7 @@ class SyncIO {
               if (syncDataStructure.currentLevel() > offlineCurrentLevel) {
 
                 preferencesIO.storeCurrentLevel(syncDataStructure.currentLevel());
+                preferencesIO.storeIQ(syncDataStructure.scoreIQ().toDouble());
 
                 syncInterface.syncCompleted(syncDataStructure.currentLevel());
 

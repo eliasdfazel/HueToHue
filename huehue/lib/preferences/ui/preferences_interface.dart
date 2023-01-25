@@ -623,6 +623,16 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
     });
 
+    preferencesIO.retrieveIQ().then((value) => {
+
+      setState(() {
+
+        iqSliderValue = value;
+
+      })
+
+    });
+
   }
 
   @override
