@@ -17,29 +17,29 @@ class SyncDataStructure {
   static const String currentLevelName = "currentLevel";
   static const String iqScoreName = "scoreIQ";
 
-  Map<String, dynamic> SyncDocumentData = <String, dynamic>{};
+  Map<String, dynamic> syncDocumentData = <String, dynamic>{};
 
   SyncDataStructure(DocumentSnapshot documentSnapshot) {
 
-    SyncDocumentData = documentSnapshot.data() as Map<String, dynamic>;
+    syncDocumentData = documentSnapshot.data() as Map<String, dynamic>;
 
   }
 
   int syncTimestamp() {
 
-    return SyncDocumentData[SyncDataStructure.syncTimestampName];
+    return syncDocumentData[SyncDataStructure.syncTimestampName];
   }
 
   /// Synced Level
   int currentLevel() {
 
-    return SyncDocumentData[SyncDataStructure.currentLevelName];
+    return syncDocumentData[SyncDataStructure.currentLevelName];
   }
 
   /// Player IQ
   int scoreIQ() {
 
-    return SyncDocumentData[SyncDataStructure.iqScoreName];
+    return syncDocumentData[SyncDataStructure.iqScoreName];
   }
 
 }
