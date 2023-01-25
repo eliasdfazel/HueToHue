@@ -31,6 +31,12 @@ void main() async {
 
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   var appCheckProvider = AndroidProvider.playIntegrity;
 
   if (kDebugMode) {
@@ -39,12 +45,6 @@ void main() async {
 
   await FirebaseAppCheck.instance.activate(
     androidProvider: appCheckProvider,
-  );
-
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
   );
 
   FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);

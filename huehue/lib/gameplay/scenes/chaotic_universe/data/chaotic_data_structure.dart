@@ -38,17 +38,7 @@ class ChaoticDataStructure {
 
   List<Color> allLevelColors = [ColorsResources.primaryColor, ColorsResources.cyan, ColorsResources.applicationDarkGeeksEmpire];
 
-  ChaoticDataStructure (PreferencesIO preferencesIO) {
-
-    preferencesIO.retrieveIQ().then((value) => {
-
-      if (value >= 99) {
-
-        gradientColorRotation = gradientAngles[random.nextInt(gradientAngles.length)]
-
-      }
-
-    });
+  Future<void> initializeChaoticData(PreferencesIO preferencesIO) async {
 
     gradientLayerCount = _minimumLayerCount + random.nextInt(_maximumLayerCount - _minimumLayerCount);
 
@@ -63,6 +53,15 @@ class ChaoticDataStructure {
       int blueElement = random.nextInt(255);
 
       allLevelColors.add(Color.fromARGB(255, redElement, greenElement, blueElement));
+
+    }
+
+
+    var iqScore = await preferencesIO.retrieveIQ();
+
+    if (iqScore >= 99) {
+
+      gradientColorRotation = gradientAngles[random.nextInt(gradientAngles.length)];
 
     }
 
@@ -88,6 +87,7 @@ class ChaoticDataStructure {
     return gradientLayerCount;
   }
 
+  /// Angle To Rotate Gradient Colors
   double gradientRotation() {
 
     return gradientColorRotation;

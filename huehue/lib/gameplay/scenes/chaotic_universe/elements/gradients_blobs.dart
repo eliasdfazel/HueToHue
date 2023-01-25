@@ -17,9 +17,8 @@ import 'package:huehue/utils/operations/numbers.dart';
 class ChaoticGradientsShapes extends StatefulWidget {
 
   ChaoticDataStructure? chaoticDataStructure;
-  double gradientRotation = 137.0;
 
-  ChaoticGradientsShapes({super.key, required this.chaoticDataStructure, required this.gradientRotation});
+  ChaoticGradientsShapes({super.key, required this.chaoticDataStructure});
 
   List<Color> randomShapedColor = [];
 
@@ -68,7 +67,7 @@ class _GradientsShapesState extends State<ChaoticGradientsShapes>  {
                   fillType: BlobFillType.fill,
                   gradient: LinearGradient(
                       colors: widget.randomShapedColor,
-                      transform: GradientRotation(degreeToRadian(widget.gradientRotation))
+                      transform: GradientRotation(degreeToRadian(widget.chaoticDataStructure!.gradientRotation()))
                   ).createShader(const Rect.fromLTRB(0, 0, 333, 333))
               )
           )
