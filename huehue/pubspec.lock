@@ -514,7 +514,7 @@ packages:
   loading_animation_widget:
     dependency: "direct main"
     description:
-      path: "X:\\Xlutter\\Libraries\\SachielProject\\loading_animation_widget"
+      path: "X:\\Xlutter\\Libraries\\loading_animation_widget"
       relative: false
     source: path
     version: "1.2.0+2"
