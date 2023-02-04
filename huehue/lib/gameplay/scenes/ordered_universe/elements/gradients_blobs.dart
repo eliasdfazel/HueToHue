@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/8/23, 3:37 AM
+ * Last modified 2/4/23, 5:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -48,11 +48,14 @@ class _GradientsShapesState extends State<GradientsShapes>  {
   @override
   Widget build(BuildContext context) {
 
+    widget.randomShapedColor.clear();
+
     blobController.change();
 
     Widget blobShape = Container();
 
     if (widget.levelsDataStructure != null) {
+      debugPrint("Level Data Structure Blob: ${widget.levelsDataStructure!.allColors()}");
 
       widget.randomShapedColor = colorsUtils.prepareBlobGradient(widget.levelsDataStructure!.allColors(), widget.levelsDataStructure!.gradientLayersCount());
 

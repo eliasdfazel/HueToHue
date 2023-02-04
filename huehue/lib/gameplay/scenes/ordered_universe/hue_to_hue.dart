@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/20/23, 3:16 AM
+ * Last modified 2/4/23, 5:33 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -605,8 +605,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void retrieveGameData(int currentLevels) {
 
-    gradientColors.clear();
-
     GetOptions getOptions = const GetOptions(source: Source.cache);
 
     FirebaseFirestore.instance
@@ -624,6 +622,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
             startTimer(levelsDataStructure!.levelTimer());
 
+            debugPrint("Level Data Structure Gameplay: ${levelsDataStructure!.allColors()}");
+
           })
 
         } else {
@@ -631,10 +631,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
         }
 
       });
-
-    FirebaseFirestore.instance
-        .doc(gameplayPaths.levelPath(currentLevels + 1))
-        .get(const GetOptions(source: Source.serverAndCache));
 
   }
 
