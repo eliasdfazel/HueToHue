@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/18/23, 2:48 AM
+ * Last modified 2/4/23, 3:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -94,7 +94,7 @@ class PreferencesIO {
 
   Future<int> retrieveLevelsUpdateTime() async {
 
-    int levelsUpdateTime = (await sharedPreferences).getInt(PreferencesKeys.levelsUpdateTime) ?? DateTime.now().millisecondsSinceEpoch;
+    int levelsUpdateTime = (await sharedPreferences).getInt(PreferencesKeys.levelsUpdateTime) ?? 1;
 
     return levelsUpdateTime;
   }

@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/18/23, 3:08 AM
+ * Last modified 2/4/23, 4:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -639,6 +639,12 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
   void cacheGameplayData() {
 
+    setState(() {
+
+      waitingAnimationPlaceholder = waitingAnimation();
+
+    });
+
     int nowTime = DateTime.now().millisecondsSinceEpoch;
 
     int oneWeek = 86400000 * 7;
@@ -648,21 +654,15 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
       if ((nowTime - levelsUpdateTime) >= oneWeek) {
 
         Future.delayed(Duration.zero, () {
-          debugPrint("One Week Passed -> Updating Levels");
-
-          preferencesIO.storeLevelsUpdateTime(nowTime);
-
-          setState(() {
-
-            waitingAnimationPlaceholder = waitingAnimation();
-
-          });
+          debugPrint("New Week -> Updating Levels");
 
           FirebaseFirestore.instance
               .collection(gameplayPaths.allLevelPath())
               .get(const GetOptions(source: Source.server)).then((collections) => {
 
                 Future.delayed(Duration.zero, () {
+
+                  preferencesIO.storeLevelsUpdateTime(nowTime);
 
                   if (collections.docs.isNotEmpty) {
                     debugPrint("All Levels Collections Retrieved Successfully");
@@ -704,11 +704,15 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
         setState(() {
           debugPrint("Less Than One Week");
 
-          waitingAnimationPlaceholder = Container();
+          Future.delayed(const Duration(milliseconds: 777), () {
 
-          playButtonOpacity = 1.0;
+            waitingAnimationPlaceholder = Container();
 
-          maximumLevels;
+            playButtonOpacity = 1.0;
+
+            maximumLevels;
+
+          });
 
         })
 
