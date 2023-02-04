@@ -76,8 +76,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   List<Color> gradientColors = [ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest];
 
-  List<Color> allLevelColors = [];
-
   double gameplayWaitingOpacity = 1.0;
 
   double levelsOpacity = 0.0;
@@ -607,6 +605,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   void retrieveGameData(int currentLevels) {
 
+    gradientColors.clear();
+
     GetOptions getOptions = const GetOptions(source: Source.cache);
 
     FirebaseFirestore.instance
@@ -642,6 +642,8 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     gradientColors.clear();
 
+    List<Color> allLevelColors = [];
+
     allLevelColors.clear();
 
     allLevelColors.addAll(allColors);
@@ -676,7 +678,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
   }
 
-  void animateColor(int animationDuration, int gradientLayersCount, List<Color> allColors ,Color beginColor, Color endColor) {
+  void animateColor(int animationDuration, int gradientLayersCount, List<Color> allColors, Color beginColor, Color endColor) {
     debugPrint("Animate Colors Invoke");
 
     animationController = AnimationController(vsync: this);
@@ -729,7 +731,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
       switch (status) {
         case AnimationStatus.completed: {
-          debugPrint("Animation Status Completed: ${gradientIndex}");
+          debugPrint("Animation Status Completed: $gradientIndex");
 
           gradientIndex++;
 

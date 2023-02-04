@@ -523,7 +523,7 @@
         <entry key="loading_animation_widget">
           <value>
             <list>
-              <option value="$PROJECT_DIR$/../Libraries/SachielProject/loading_animation_widget/lib" />
+              <option value="$PROJECT_DIR$/../Libraries/loading_animation_widget/lib" />
             </list>
           </value>
         </entry>
@@ -1108,7 +1108,7 @@
       <root url="file://$USER_HOME$/flutter/packages/flutter_localizations/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_test/lib" />
       <root url="file://$USER_HOME$/flutter/packages/flutter_web_plugins/lib" />
-      <root url="file://$PROJECT_DIR$/../Libraries/SachielProject/loading_animation_widget/lib" />
+      <root url="file://$PROJECT_DIR$/../Libraries/loading_animation_widget/lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

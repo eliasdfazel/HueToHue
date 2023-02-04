@@ -639,9 +639,9 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
   void cacheGameplayData() {
 
-    double nowTime = DateTime.now().millisecondsSinceEpoch.toDouble();
+    int nowTime = DateTime.now().millisecondsSinceEpoch;
 
-    double oneWeek = 86400000 * 7;
+    int oneWeek = 86400000 * 7;
 
     preferencesIO.retrieveLevelsUpdateTime().then((levelsUpdateTime) => {
 
@@ -660,7 +660,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
 
           FirebaseFirestore.instance
               .collection(gameplayPaths.allLevelPath())
-              .get(const GetOptions(source: Source.serverAndCache)).then((collections) => {
+              .get(const GetOptions(source: Source.server)).then((collections) => {
 
                 Future.delayed(Duration.zero, () {
 

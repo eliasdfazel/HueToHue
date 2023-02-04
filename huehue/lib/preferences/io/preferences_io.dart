@@ -92,18 +92,18 @@ class PreferencesIO {
 
   }
 
-  Future<double> retrieveLevelsUpdateTime() async {
+  Future<int> retrieveLevelsUpdateTime() async {
 
-    double levelsUpdateTime = (await sharedPreferences).getDouble(PreferencesKeys.levelsUpdateTime) ?? 0;
+    int levelsUpdateTime = (await sharedPreferences).getInt(PreferencesKeys.levelsUpdateTime) ?? DateTime.now().millisecondsSinceEpoch;
 
     return levelsUpdateTime;
   }
 
-  Future storeLevelsUpdateTime(double levelsUpdateTime) async {
+  Future storeLevelsUpdateTime(int levelsUpdateTime) async {
 
     sharedPreferences.then((value) async => {
 
-      await value.setDouble(PreferencesKeys.levelsUpdateTime, levelsUpdateTime).then((value) => {
+      await value.setInt(PreferencesKeys.levelsUpdateTime, levelsUpdateTime).then((value) => {
         debugPrint("Levels Update Time Stored Successfully: $levelsUpdateTime")
       })
 
