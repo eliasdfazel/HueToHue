@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/23, 5:52 AM
+ * Last modified 4/7/23, 6:26 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -529,6 +529,85 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                 )
                             ),
                             /* End - Back */
+
+                            /* Start - Delete Account */
+                            Positioned(
+                                top: 37,
+                                right: 37,
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: ColorsResources.black.withOpacity(0.73),
+                                              blurRadius: 19
+                                          )
+                                        ]
+                                    ),
+                                    child: const WidgetMask(
+                                        blendMode: BlendMode.srcATop,
+                                        childSaveLayer: true,
+                                        mask: ColoredBox(
+                                            color: ColorsResources.primaryColorDarkest
+                                        ),
+                                        child: Image(
+                                          image: AssetImage("squircle.png"),
+                                          height: 73,
+                                          width: 73,
+                                        )
+                                    )
+                                )
+                            ),
+                            Positioned(
+                                top: 37,
+                                right: 37,
+                                child: WidgetMask(
+                                  blendMode: BlendMode.srcIn,
+                                  childSaveLayer: true,
+                                  mask: Material(
+                                      shadowColor: Colors.transparent,
+                                      color: Colors.transparent,
+                                      child: InkWell(
+                                          splashColor: ColorsResources.primaryColor,
+                                          splashFactory: InkRipple.splashFactory,
+                                          onTap: () {
+
+                                            Future.delayed(const Duration(milliseconds: 333), () {
+
+                                              FirebaseAuth.instance.signOut().then((value) async {
+
+                                                FirebaseAuth.instance.currentUser?.delete().then((value) async {
+
+                                                  Future.delayed(const Duration(milliseconds: 333), () {
+
+                                                    navigatePopWithResult(context, true);
+
+                                                  });
+
+                                                });
+
+                                              });
+
+                                            });
+
+                                          },
+                                          child: const Padding(
+                                              padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
+                                              child: Image(
+                                                image: AssetImage("delete_account.png"),
+                                                height: 31,
+                                                width: 31,
+                                              )
+                                          )
+                                      )
+                                  ),
+                                  child: const Image(
+                                    image: AssetImage("squircle.png"),
+                                    height: 73,
+                                    width: 73,
+                                  ),
+                                )
+                            ),
+                            /* End - Delete Account */
                             /* End - Content */
 
                           ],
@@ -585,71 +664,75 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
 
     });
 
-    GamesServices.loadLeaderboardScores(
-        scope: PlayerScope.global,
-        timeScope: TimeScope.allTime,
-        maxResults: 999,
-        androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
-        iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
-    ).then((leaderboardScoreData) => {
+    if (!kDebugMode) {
 
-      Future.delayed(const Duration(milliseconds: 137), () {
+      GamesServices.loadLeaderboardScores(
+          scope: PlayerScope.global,
+          timeScope: TimeScope.allTime,
+          maxResults: 999,
+          androidLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans(),
+          iOSLeaderboardID: StringsResources.gameLeaderboardLuckiestHumans()
+      ).then((leaderboardScoreData) => {
 
-        if (leaderboardScoreData != null) {
+        Future.delayed(const Duration(milliseconds: 137), () {
 
-          setState(() {
-
-            tooltipsLucky = true;
-
-          });
-
-          if (leaderboardScoreData.isNotEmpty) {
-
-            LeaderboardScoreData? playerLeaderboardData = leaderboardScoreData.firstWhereOrNull((element) => (element.scoreHolderDisplayName == firebaseUser!.displayName));
+          if (leaderboardScoreData != null) {
 
             setState(() {
 
-              if (playerLeaderboardData != null) {
+              tooltipsLucky = true;
 
-                leaderboardPosition = "${StringsResources.luckLeaderboard()} #${playerLeaderboardData.rank}";
+            });
 
-              } else {
+            if (leaderboardScoreData.isNotEmpty) {
 
-                setState(() {
+              LeaderboardScoreData? playerLeaderboardData = leaderboardScoreData.firstWhereOrNull((element) => (element.scoreHolderDisplayName == firebaseUser!.displayName));
 
-                  leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
+              setState(() {
 
-                });
+                if (playerLeaderboardData != null) {
 
-              }
+                  leaderboardPosition = "${StringsResources.luckLeaderboard()} #${playerLeaderboardData.rank}";
+
+                } else {
+
+                  setState(() {
+
+                    leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
+
+                  });
+
+                }
+
+              });
+
+            }
+
+            Future.delayed(const Duration(milliseconds: 13579), () {
+
+              setState(() {
+
+                tooltipsLucky = false;
+
+              });
+
+            });
+
+          } else {
+
+            setState(() {
+
+              leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
 
             });
 
           }
 
-          Future.delayed(const Duration(milliseconds: 13579), () {
+        })
 
-            setState(() {
+      });
 
-              tooltipsLucky = false;
-
-            });
-
-          });
-
-        } else {
-
-          setState(() {
-
-            leaderboardPosition = "${StringsResources.luckLeaderboard()} #N";
-
-          });
-
-        }
-
-      })
-
-    });
+    }
 
     Future.delayed(const Duration(milliseconds: 5555), () {
 
