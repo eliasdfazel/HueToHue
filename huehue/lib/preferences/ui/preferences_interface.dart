@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 6:59 AM
+ * Last modified 4/7/23, 6:42 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -561,7 +561,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
                                           splashFactory: InkRipple.splashFactory,
                                           onTap: () {
 
-                                            Future.delayed(const Duration(milliseconds: 333), () {
+                                            Future.delayed(const Duration(milliseconds: 333), () async {
 
                                               if (FirebaseAuth.instance.currentUser == null) {
 
@@ -569,7 +569,36 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> with Synchr
 
                                               } else {
 
-                                                navigateTo(context, const ProfileInterface());
+                                                bool result = await navigateWithResult(context, const ProfileInterface());
+
+                                                if (result) {
+
+                                                  if (FirebaseAuth.instance.currentUser == null) {
+
+                                                    setState(() {
+
+                                                      loginPlaceholder = Text(
+                                                          StringsResources.loginTitle(),
+                                                          style: TextStyle(
+                                                              color: ColorsResources.premiumLight,
+                                                              fontSize: 17,
+                                                              fontFamily: "Nasa",
+                                                              letterSpacing: 1.3,
+                                                              shadows: [
+                                                                Shadow(
+                                                                    color: ColorsResources.white.withOpacity(0.37),
+                                                                    blurRadius: 13,
+                                                                    offset: const Offset(0, 3)
+                                                                )
+                                                              ]
+                                                          )
+                                                      );
+
+                                                    });
+
+                                                  }
+
+                                                }
 
                                               }
 

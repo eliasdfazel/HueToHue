@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 4/7/23, 6:26 AM
+ * Last modified 4/7/23, 6:36 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -571,21 +571,17 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                           splashFactory: InkRipple.splashFactory,
                                           onTap: () {
 
-                                            Future.delayed(const Duration(milliseconds: 333), () {
+                                            FirebaseAuth.instance.currentUser?.delete().then((value) => {
 
-                                              FirebaseAuth.instance.signOut().then((value) async {
+                                              FirebaseAuth.instance.signOut().then((value) => {
 
-                                                FirebaseAuth.instance.currentUser?.delete().then((value) async {
+                                                Future.delayed(const Duration(milliseconds: 333), () {
 
-                                                  Future.delayed(const Duration(milliseconds: 333), () {
+                                                  navigatePopWithResult(context, true);
 
-                                                    navigatePopWithResult(context, true);
+                                                })
 
-                                                  });
-
-                                                });
-
-                                              });
+                                              })
 
                                             });
 
