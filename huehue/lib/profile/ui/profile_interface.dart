@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/18/23, 5:49 AM
+ * Last modified 4/7/23, 5:52 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -650,8 +650,6 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
       })
 
     });
-
-
 
     Future.delayed(const Duration(milliseconds: 5555), () {
 

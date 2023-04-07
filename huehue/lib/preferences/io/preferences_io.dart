@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 2/4/23, 3:36 AM
+ * Last modified 3/1/23, 7:06 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -64,6 +64,8 @@ class PreferencesIO {
   Future storeSounds(bool sounds) async {
 
     sharedPreferences.then((value) async => {
+
+
 
       await value.setBool(PreferencesKeys.sounds, sounds).then((value) => {
         debugPrint("Continuously Stored Successfully: $sounds")
