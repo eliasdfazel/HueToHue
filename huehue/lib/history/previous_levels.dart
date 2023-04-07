@@ -2,7 +2,7 @@
  * Copyright © 2023 By Geeks Empire.
  *
  * Created by Elias Fazel
- * Last modified 1/16/23, 6:24 AM
+ * Last modified 4/7/23, 6:45 AM
  *
  * Licensed Under MIT License.
  * https://opensource.org/licenses/MIT
@@ -286,41 +286,49 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
 
   void retrievePreviousLevels() {
 
-    setState(() {
+    if (FirebaseAuth.instance.currentUser != null) {
 
-      waitingAnimationPlaceholder = waitingDesign();
+      setState(() {
 
-    });
+        waitingAnimationPlaceholder = waitingDesign();
 
-    FirebaseFirestore.instance
-        .doc("/HueToHue/Players/${FirebaseAuth.instance.currentUser!.uid}/Synchronized")
-        .get().then((documentSnapshot) => {
+      });
 
-          if (documentSnapshot.exists) {
+      FirebaseFirestore.instance
+          .doc("/HueToHue/Players/${FirebaseAuth.instance.currentUser!.uid}/Synchronized")
+          .get().then((documentSnapshot) => {
 
-            Future.delayed(Duration.zero, () {
-              debugPrint("Previous Levels: ${documentSnapshot.data()}");
+        if (documentSnapshot.exists) {
 
-              int maxLevelPassed = documentSnapshot.get("currentLevel");
+          Future.delayed(Duration.zero, () {
+            debugPrint("Previous Levels: ${documentSnapshot.data()}");
 
-              FirebaseFirestore.instance
-                  .collection(gameplayPaths.allLevelPath())
-                  .orderBy("level", descending: false)
-                  .get(const GetOptions(source: Source.cache)).then((querySnapshot) => {
+            int maxLevelPassed = documentSnapshot.get("currentLevel");
 
-                    if (querySnapshot.docs.isNotEmpty) {
+            FirebaseFirestore.instance
+                .collection(gameplayPaths.allLevelPath())
+                .orderBy("level", descending: false)
+                .get(const GetOptions(source: Source.cache)).then((querySnapshot) => {
 
-                      preparePreviousLevels(querySnapshot.docs, maxLevelPassed)
+              if (querySnapshot.docs.isNotEmpty) {
 
-                    }
+                preparePreviousLevels(querySnapshot.docs, maxLevelPassed)
 
-                  });
+              }
 
-            })
+            });
 
-          }
+          })
 
-        });
+        }
+
+      });
+
+    } else {
+
+      navigatePop(context);
+
+    }
 
   }
 
