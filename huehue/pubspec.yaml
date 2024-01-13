@@ -6,7 +6,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.4 <3.0.0'
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -24,21 +24,24 @@ dependencies:
 
 
   ####### ####### #######
-  cupertino_icons: ^1.0.2
-
-  cloud_firestore: ^4.3.1
+  cloud_firestore: ^4.14.0
+  cloud_functions: ^4.6.0
   ####### ####### #######
 
 
 
   ####### ####### #######
-  firebase_auth: ^4.2.5
-  firebase_app_check: ^0.1.1+8
-  firebase_core: ^2.4.1
-  firebase_analytics: ^10.1.0
-  firebase_crashlytics: ^3.0.9
-  firebase_storage: ^11.0.10
-  firebase_messaging: ^14.1.0
+  firebase_core: ^2.24.2
+  firebase_app_check: ^0.2.1+8
+
+  firebase_auth: ^4.16.0
+
+  firebase_analytics: ^10.8.0
+  firebase_crashlytics: ^3.4.9
+
+  firebase_storage: ^11.6.0
+  firebase_messaging: ^14.7.10
+
   firebase_in_app_messaging: ^0.7.0+5
 
   flutter_app_name: ^0.1.1
@@ -136,37 +139,37 @@ flutter:
   uses-material-design: true
 
   assets:
-    - back.png
-    - blob_bottom.png
-    - blob_play.png
-    - blob_top.png
-    - blob_preferences_bottom.png
-    - blob_preferences_top.png
-    - blob_previous_top.png
-    - blob_previous_bottom.png
+    - assets/back.png
+    - assets/blob_bottom.png
+    - assets/blob_play.png
+    - assets/blob_top.png
+    - assets/blob_preferences_bottom.png
+    - assets/blob_preferences_top.png
+    - assets/blob_previous_top.png
+    - assets/blob_previous_bottom.png
 
-    - chaotic_play.png
+    - assets/chaotic_play.png
 
-    - delete_account.png
+    - assets/delete_account.png
 
-    - leaderboard.png
-    - level_indicator.png
-    - level_indicator_bottom.png
-    - link.png
-    - logo.png
-    - logo_background.png
-    - logo_android.png
-    - logo_ios.png
-    - luck_indicator.png
+    - assets/leaderboard.png
+    - assets/level_indicator.png
+    - assets/level_indicator_bottom.png
+    - assets/link.png
+    - assets/logo.png
+    - assets/logo_background.png
+    - assets/logo_android.png
+    - assets/logo_ios.png
+    - assets/luck_indicator.png
 
-    - point_indicator.png
-    - preferences_pointer.png
-    - preferences_bottom_pointer.png
+    - assets/point_indicator.png
+    - assets/preferences_pointer.png
+    - assets/preferences_bottom_pointer.png
 
-    - restart_blob_play.png
+    - assets/restart_blob_play.png
 
-    - settings.png
-    - squircle.png
+    - assets/settings.png
+    - assets/squircle.png
 
   fonts:
     - family: Ubuntu
