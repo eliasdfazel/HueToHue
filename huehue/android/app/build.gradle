@@ -50,7 +50,7 @@ android {
         minSdkVersion 27
         targetSdkVersion 33
 
-        versionCode 15
+        versionCode 16
         versionName "0.2.4.2023"
     }
 
