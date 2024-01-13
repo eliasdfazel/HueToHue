@@ -49,7 +49,7 @@ class HueToHue extends StatefulWidget {
   State<HueToHue> createState() => _HueToHueState();
 }
 
-class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, GameStatuesListener {
+class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin implements GameStatuesListener {
 
   Timer? gameplayTimer;
 
@@ -555,6 +555,11 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin, Game
 
     });
 
+  }
+
+  @override
+  void chaoticFinished() {
+    debugPrint("Not Supported");
   }
 
   void initializeGameInformation() async {

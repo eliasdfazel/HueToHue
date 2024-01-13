@@ -15,10 +15,18 @@ import 'package:huehue/resources/strings_resources.dart';
 import 'package:widget_mask/widget_mask.dart';
 
 abstract class GameStatuesListener {
-  void retryPlay(){}
-  void startNextPlay(){}
-  void orderedFinished(){}
-  void chaoticFinished(){}
+  void retryPlay() {
+
+  }
+  void startNextPlay() {
+
+  }
+  void orderedFinished() {
+
+  }
+  void chaoticFinished() {
+
+  }
 }
 
 class GameStatues {

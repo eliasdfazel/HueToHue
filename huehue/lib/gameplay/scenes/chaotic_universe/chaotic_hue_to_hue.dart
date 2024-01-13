@@ -45,7 +45,7 @@ class ChaoticHueToHue extends StatefulWidget {
   State<ChaoticHueToHue> createState() => _ChaoticHueToHueState();
 }
 
-class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin, GameStatuesListener {
+class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin implements GameStatuesListener {
 
   Timer? gameplayTimer;
 
@@ -508,6 +508,21 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   }
 
+  @override
+  void orderedFinished() {
+    debugPrint("Not Supported");
+  }
+
+  @override
+  void retryPlay() {
+    debugPrint("Not Supported");
+  }
+
+  @override
+  void startNextPlay() {
+    debugPrint("Not Supported");
+  }
+
   void initializeGameInformation() async {
 
     preferencesIO.retrieveColorOffset().then((value) => {
@@ -878,7 +893,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
       setState(() {
 
-        gameStatuesPlaceholder = gameStatues.gameWinScene(this);
+        gameStatuesPlaceholder = gameStatues.chaoticGameWinScene(this);
 
       });
 

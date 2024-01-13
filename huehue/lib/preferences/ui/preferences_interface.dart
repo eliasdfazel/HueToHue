@@ -39,7 +39,7 @@ class PreferencesInterface extends StatefulWidget {
   State<PreferencesInterface> createState() => _PreferencesInterfaceState();
 }
 
-class _PreferencesInterfaceState extends State<PreferencesInterface> with SynchronizationStatus {
+class _PreferencesInterfaceState extends State<PreferencesInterface> implements SynchronizationStatus {
 
   SyncIO syncIO = SyncIO();
 

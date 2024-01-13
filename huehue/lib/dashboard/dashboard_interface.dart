@@ -47,7 +47,7 @@ class DashboardInterface extends StatefulWidget {
   State<DashboardInterface> createState() => DashboardInterfaceState();
 }
 
-class DashboardInterfaceState extends State<DashboardInterface> with SynchronizationStatus, AssetsStatus {
+class DashboardInterfaceState extends State<DashboardInterface> implements SynchronizationStatus, AssetsStatus {
 
   static final backgroundAudioPlayer = AudioPlayer();
 

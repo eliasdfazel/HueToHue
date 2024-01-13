@@ -46,7 +46,7 @@ class PreviousHueToHue extends StatefulWidget {
   State<PreviousHueToHue> createState() => _PreviousHueToHueState();
 }
 
-class _PreviousHueToHueState extends State<PreviousHueToHue> with TickerProviderStateMixin, GameStatuesListener {
+class _PreviousHueToHueState extends State<PreviousHueToHue> with TickerProviderStateMixin implements GameStatuesListener {
 
   Timer? gameplayTimer;
 
@@ -541,6 +541,16 @@ class _PreviousHueToHueState extends State<PreviousHueToHue> with TickerProvider
 
     });
 
+  }
+
+  @override
+  void chaoticFinished() {
+    debugPrint("Not Supported");
+  }
+
+  @override
+  void orderedFinished() {
+    debugPrint("Not Supported");
   }
 
   void initializeGameInformation() async {
