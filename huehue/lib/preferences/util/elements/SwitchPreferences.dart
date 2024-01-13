@@ -160,7 +160,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
                                     border: Border.all(
                                         width: 1,
                                         color: switchStatusColor,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     ),
                                     color: ColorsResources.primaryColorDarkest,
                                     boxShadow: [

@@ -9,8 +9,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/utils/operations/numbers.dart';
 
@@ -192,7 +190,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                     bottom: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 )
                             ),
@@ -262,7 +260,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                   bottom: BorderSide(
                                       color: widget.tooltipTint.withOpacity(0.31),
                                       width: 1,
-                                      strokeAlign: StrokeAlign.inside
+                                      strokeAlign: BorderSide.strokeAlignInside
                                   )
                                 )
                             ),
@@ -322,7 +320,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 )
                             ),
@@ -395,7 +393,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 )
                             ),
@@ -468,7 +466,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 )
                             ),
@@ -548,7 +546,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                                     top: BorderSide(
                                         color: widget.tooltipTint.withOpacity(0.31),
                                         width: 1,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     )
                                 )
                             ),

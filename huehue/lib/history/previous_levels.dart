@@ -13,7 +13,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
@@ -112,7 +111,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                         border: Border.all(
                                             color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                             width: 1.3,
-                                            strokeAlign: StrokeAlign.inside
+                                            strokeAlign: BorderSide.strokeAlignInside
                                         ),
                                         color: ColorsResources.primaryColorDarkest
                                     )
@@ -171,7 +170,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                     border: Border.all(
                                         color: ColorsResources.primaryColorLighter,
                                         width: 1.3,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     ),
                                     color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                                 )
@@ -391,7 +390,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
         borderRadius: BorderRadius.circular(19),
         border: Border.all(
           color: ColorsResources.premiumLight.withOpacity(0.37),
-          strokeAlign: StrokeAlign.outside,
+          strokeAlign: BorderSide.strokeAlignOutside,
           width: 3
         ),
         color: ColorsResources.premiumLight.withOpacity(0.37),

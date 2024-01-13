@@ -180,7 +180,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                       border: Border.all(
                                           color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                           width: 1.3,
-                                          strokeAlign: StrokeAlign.inside
+                                          strokeAlign: BorderSide.strokeAlignInside
                                       ),
                                       color: ColorsResources.primaryColorDarkest
                                   )
@@ -240,7 +240,7 @@ class DashboardInterfaceState extends State<DashboardInterface> with Synchroniza
                                 border: Border.all(
                                     color: ColorsResources.primaryColorLighter,
                                     width: 1.3,
-                                    strokeAlign: StrokeAlign.inside
+                                    strokeAlign: BorderSide.strokeAlignInside
                                 ),
                                 color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                             ),

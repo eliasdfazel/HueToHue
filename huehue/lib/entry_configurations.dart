@@ -88,7 +88,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
                                 border: Border.all(
                                     color: ColorsResources.primaryColorLighter,
                                     width: 1.3,
-                                    strokeAlign: StrokeAlign.inside
+                                    strokeAlign: BorderSide.strokeAlignInside
                                 ),
                                 color: ColorsResources.primaryColorDarkest
                             ),

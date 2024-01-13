@@ -14,7 +14,6 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:games_services/games_services.dart';
@@ -128,7 +127,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                         border: Border.all(
                                             color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                             width: 1.3,
-                                            strokeAlign: StrokeAlign.inside
+                                            strokeAlign: BorderSide.strokeAlignInside
                                         ),
                                         color: ColorsResources.primaryColorDarkest
                                     )
@@ -187,7 +186,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                     border: Border.all(
                                         color: ColorsResources.primaryColorLighter,
                                         width: 1.3,
-                                        strokeAlign: StrokeAlign.inside
+                                        strokeAlign: BorderSide.strokeAlignInside
                                     ),
                                     color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
                                 )
