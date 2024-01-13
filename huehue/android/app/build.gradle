@@ -1,3 +1,10 @@
+plugins {
+    id "com.android.application"
+    id "com.google.gms.google-services"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -21,12 +28,8 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
-    compileSdkVersion 33
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -43,15 +46,13 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "co.geeksempire.huehue"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-build-configuration.
-        minSdkVersion 27
-        targetSdkVersion 33
 
-        versionCode 16
-        versionName "0.2.4.2023"
+        minSdkVersion 26
+        targetSdkVersion 34
+
+        versionCode 6
+        versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 
     signingConfigs {
@@ -75,6 +76,24 @@ android {
 
 flutter {
     source '../..'
+}
+
+static def getDateYear() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy')//yyyyMMdd
+    return formattedDate
+}
+
+static def getDateMonth() {
+    def date = new Date()
+    def formattedDate = date.format('MM')//yyyyMMdd
+    return formattedDate
+}
+
+static def getDateDay() {
+    def date = new Date()
+    def formattedDate = date.format('dd')//yyyyMMdd
+    return formattedDate
 }
 
 dependencies {
