@@ -46,7 +46,6 @@ class HueToHue extends StatefulWidget {
   @override
   State<HueToHue> createState() => _HueToHueState();
 }
-
 class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin implements GameStatuesListener {
 
   Timer? gameplayTimer;
@@ -102,7 +101,6 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
 
   @override
   void dispose() {
-    super.dispose();
 
     animationController?.dispose();
 
@@ -110,6 +108,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
 
     BackButtonInterceptor.remove(aInterceptor);
 
+    super.dispose();
   }
 
   @override
