@@ -1,3 +1,11 @@
+plugins {
+    id "com.android.application"
+    id "com.google.gms.google-services"
+    id "com.google.firebase.crashlytics"
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
@@ -21,14 +29,12 @@ if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
 
-apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'kotlin-android'
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
-
 android {
+
+    namespace "co.geeksempire.huehue"
+
     compileSdkVersion 34
-    ndkVersion flutter.ndkVersion
+    ndkVersion "25.2.9519653"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -49,7 +55,7 @@ android {
         minSdkVersion 26
         targetSdkVersion 34
 
-        versionCode 16
+        versionCode 17
         versionName "${majorVersion}." + getDateMonth() + "." + getDateDay() + "." + getDateYear() + ".${versionCode}"
     }
 
