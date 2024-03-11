@@ -46,7 +46,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
   String profileName = StringsResources.applicationName();
 
   Widget profileImage = const Image(
-    image: AssetImage("logo.png"),
+    image: AssetImage("assets/logo.png"),
     fit: BoxFit.cover,
     height: 373,
     width: 373,
@@ -144,7 +144,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_preferences_bottom.png")
+                                      image: AssetImage("assets/blob_preferences_bottom.png")
                                   )
                               ),
                             ),
@@ -158,7 +158,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_preferences_top.png")
+                                      image: AssetImage("assets/blob_preferences_top.png")
                                   )
                               ),
                             ),
@@ -236,7 +236,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                                                 ),
                                                               ),
                                                               child: const Image(
-                                                                image: AssetImage("squircle.png"),
+                                                                image: AssetImage("assets/squircle.png"),
                                                               ),
                                                             ),
                                                             Padding(
@@ -246,7 +246,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                                                   childSaveLayer: true,
                                                                   mask /* Original Image */: profileImage,
                                                                   child: const Image(
-                                                                    image: AssetImage("squircle.png"),
+                                                                    image: AssetImage("assets/squircle.png"),
                                                                   ),
                                                                 )
                                                             )
@@ -389,7 +389,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -423,7 +423,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                           child: const Padding(
                                               padding: EdgeInsets.fromLTRB(0, 13, 0, 19),
                                               child: Image(
-                                                image: AssetImage("leaderboard.png"),
+                                                image: AssetImage("assets/leaderboard.png"),
                                                 height: 37,
                                                 width: 37,
                                               )
@@ -431,7 +431,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   ),
@@ -482,7 +482,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -513,7 +513,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                           child: const Padding(
                                               padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
                                               child: Image(
-                                                image: AssetImage("back.png"),
+                                                image: AssetImage("assets/back.png"),
                                                 height: 37,
                                                 width: 37,
                                               )
@@ -521,7 +521,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   ),
@@ -549,7 +549,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -588,7 +588,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                           child: const Padding(
                                               padding: EdgeInsets.fromLTRB(0, 19, 0, 19),
                                               child: Image(
-                                                image: AssetImage("delete_account.png"),
+                                                image: AssetImage("assets/delete_account.png"),
                                                 height: 31,
                                                 width: 31,
                                               )
@@ -596,7 +596,7 @@ class _ProfileInterfaceState extends State<ProfileInterface> with TickerProvider
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   ),

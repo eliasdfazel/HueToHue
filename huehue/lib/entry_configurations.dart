@@ -11,7 +11,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:huehue/dashboard/dashboard_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
@@ -43,8 +42,6 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
   @override
   Widget build(BuildContext context) {
-
-    FlutterNativeSplash.remove();
 
     Future.delayed(const Duration(milliseconds: 1357), () {
 
@@ -97,7 +94,7 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
                                     height: 303,
                                     width: 303,
                                     child: Image(
-                                      image: AssetImage("logo.png"),
+                                      image: AssetImage("assets/logo.png"),
                                       fit: BoxFit.contain,
                                     )
                                 )

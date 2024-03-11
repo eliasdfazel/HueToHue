@@ -197,7 +197,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                 height: 253,
                                 width: 253,
                                 child: Image(
-                                    image: AssetImage("blob_bottom.png")
+                                    image: AssetImage("assets/blob_bottom.png")
                                 )
                             ),
                           ),
@@ -211,7 +211,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                 height: 253,
                                 width: 253,
                                 child: Image(
-                                    image: AssetImage("blob_top.png")
+                                    image: AssetImage("assets/blob_top.png")
                                 )
                             ),
                           ),
@@ -297,7 +297,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                           color: ColorsResources.primaryColorDarkest
                                       ),
                                       child: Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       )
@@ -322,14 +322,14 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
 
                                           },
                                           child: const Image(
-                                            image: AssetImage("logo.png"),
+                                            image: AssetImage("assets/logo.png"),
                                             height: 73,
                                             width: 73,
                                           )
                                       )
                                   ),
                                 child: const Image(
-                                  image: AssetImage("squircle.png"),
+                                  image: AssetImage("assets/squircle.png"),
                                   height: 73,
                                   width: 73,
                                 ),
@@ -357,7 +357,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                           color: ColorsResources.primaryColorDarkest
                                       ),
                                       child: Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       )
@@ -417,7 +417,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                     )
                                 ),
                                 child: const Image(
-                                  image: AssetImage("squircle.png"),
+                                  image: AssetImage("assets/squircle.png"),
                                   height: 73,
                                   width: 73,
                                 ),
@@ -439,7 +439,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                   ]
                                 ),
                                 child: const Image(
-                                  image: AssetImage("level_indicator.png"),
+                                  image: AssetImage("assets/level_indicator.png"),
                                   fit: BoxFit.contain,
                                 )
                               )
@@ -487,7 +487,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                           color: ColorsResources.primaryColorDarkest
                                       ),
                                       child: Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       )
@@ -518,13 +518,13 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                         child: const Padding(
                                           padding: EdgeInsets.fromLTRB(0, 13, 0, 7),
                                           child: Image(
-                                              image: AssetImage("settings.png")
+                                              image: AssetImage("assets/settings.png")
                                           )
                                         )
                                     )
                                 ),
                                 child: const Image(
-                                  image: AssetImage("squircle.png"),
+                                  image: AssetImage("assets/squircle.png"),
                                   height: 73,
                                   width: 73,
                                 ),
@@ -552,7 +552,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                           color: ColorsResources.primaryColorDarkest
                                       ),
                                       child: Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       )
@@ -580,13 +580,13 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                         child: const Padding(
                                             padding: EdgeInsets.fromLTRB(0, 13, 0, 7),
                                             child: Image(
-                                                image: AssetImage("link.png")
+                                                image: AssetImage("assets/link.png")
                                             )
                                         )
                                     )
                                 ),
                                 child: const Image(
-                                  image: AssetImage("squircle.png"),
+                                  image: AssetImage("assets/squircle.png"),
                                   height: 73,
                                   width: 73,
                                 ),
@@ -794,7 +794,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
 
                                 },
                                 child: const Image(
-                                  image: AssetImage("blob_play.png"),
+                                  image: AssetImage("assets/blob_play.png"),
                                   height: 399,
                                   width: double.maxFinite,
                                   fit: BoxFit.contain,
@@ -802,7 +802,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                             )
                         ),
                         child: const Image(
-                          image: AssetImage("blob_play.png"),
+                          image: AssetImage("assets/blob_play.png"),
                           height: 399,
                           width: double.maxFinite,
                           fit: BoxFit.contain,
@@ -845,14 +845,14 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
 
                   },
                   child: const Image(
-                    image: AssetImage("chaotic_play.png"),
+                    image: AssetImage("assets/chaotic_play.png"),
                     height: 137,
                     width: 137,
                   )
               )
           ),
           child: const Image(
-            image: AssetImage("chaotic_play.png"),
+            image: AssetImage("assets/chaotic_play.png"),
             height: 137,
             width: 137,
           )

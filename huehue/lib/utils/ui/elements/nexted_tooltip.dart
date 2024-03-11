@@ -163,7 +163,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: const AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("assets/preferences_pointer.png"),
                       height: 13,
                       color: widget.tooltipTint,
                     )
@@ -233,7 +233,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: const AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("assets/preferences_pointer.png"),
                       height: 13,
                       color: widget.tooltipTint,
                     )
@@ -346,7 +346,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     child: RotatedBox(
                       quarterTurns: 2,
                       child: Image(
-                        image: const AssetImage("preferences_pointer.png"),
+                        image: const AssetImage("assets/preferences_pointer.png"),
                         height: 13,
                         color: widget.tooltipTint,
                       )
@@ -419,7 +419,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     child: RotatedBox(
                         quarterTurns: 2,
                         child: Image(
-                          image: const AssetImage("preferences_pointer.png"),
+                          image: const AssetImage("assets/preferences_pointer.png"),
                           height: 13,
                           color: widget.tooltipTint,
                         )
@@ -490,7 +490,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: const AssetImage("preferences_bottom_pointer.png"),
+                      image: const AssetImage("assets/preferences_bottom_pointer.png"),
                       height: 13,
                       color: widget.tooltipTint,
                     )
@@ -519,7 +519,7 @@ class _NextedTooltipsState extends State<NextedTooltips> {
                     height: 13,
                     width: 73,
                     child: Image(
-                      image: const AssetImage("preferences_pointer.png"),
+                      image: const AssetImage("assets/preferences_pointer.png"),
                       height: 13,
                       color: widget.tooltipTint,
                     )

@@ -47,9 +47,6 @@ dependencies:
   flutter_app_name: ^0.1.1
 
   flutter_inner_shadow: 0.0.1
-
-  flutter_launcher_icons: ^0.11.0
-  flutter_native_splash: ^2.1.6
   ####### ####### #######
 
 
@@ -139,37 +136,7 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/back.png
-    - assets/blob_bottom.png
-    - assets/blob_play.png
-    - assets/blob_top.png
-    - assets/blob_preferences_bottom.png
-    - assets/blob_preferences_top.png
-    - assets/blob_previous_top.png
-    - assets/blob_previous_bottom.png
-
-    - assets/chaotic_play.png
-
-    - assets/delete_account.png
-
-    - assets/leaderboard.png
-    - assets/level_indicator.png
-    - assets/level_indicator_bottom.png
-    - assets/link.png
-    - assets/logo.png
-    - assets/logo_background.png
-    - assets/logo_android.png
-    - assets/logo_ios.png
-    - assets/luck_indicator.png
-
-    - assets/point_indicator.png
-    - assets/preferences_pointer.png
-    - assets/preferences_bottom_pointer.png
-
-    - assets/restart_blob_play.png
-
-    - assets/settings.png
-    - assets/squircle.png
+    - assets/
 
   fonts:
     - family: Ubuntu
@@ -184,32 +151,3 @@ flutter:
     - family: Nasa
       fonts:
         - asset: fonts/nasa.ttf
-
-
-
-flutter_native_splash:
-  color: "#120A18"
-  image: assets/logo.png
-
-  android_12:
-    image: assets/logo.png
-    color: "#120A18"
-
-  android: true
-  ios: true
-  web: false
-
-
-
-flutter_icons:
-  image_path_android: "assets/logo_android.png"
-  image_path_ios: "assets/logo_ios.png"
-  android: true
-  ios: true
-  adaptive_icon_background: "assets/logo_background.png"
-  adaptive_icon_foreground: "assets/logo.png"
-
-
-
-flutter_app_name:
-  name: "Hue To Hue"

@@ -128,7 +128,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_previous_bottom.png")
+                                      image: AssetImage("assets/blob_previous_bottom.png")
                                   )
                               ),
                             ),
@@ -142,7 +142,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_previous_top.png")
+                                      image: AssetImage("assets/blob_previous_top.png")
                                   )
                               ),
                             ),
@@ -206,7 +206,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -237,7 +237,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                           child: const Padding(
                                               padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
                                               child: Image(
-                                                image: AssetImage("back.png"),
+                                                image: AssetImage("assets/back.png"),
                                                 height: 37,
                                                 width: 37,
                                               )
@@ -245,7 +245,7 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   ),

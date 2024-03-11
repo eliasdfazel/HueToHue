@@ -117,7 +117,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
               )
           ),
           child: const Image(
-            image: AssetImage("squircle.png"),
+            image: AssetImage("assets/squircle.png"),
             height: 63,
             width: 63,
           )
@@ -195,7 +195,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_preferences_bottom.png")
+                                      image: AssetImage("assets/blob_preferences_bottom.png")
                                   )
                               ),
                             ),
@@ -209,7 +209,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                   height: 253,
                                   width: 253,
                                   child: Image(
-                                      image: AssetImage("blob_preferences_top.png")
+                                      image: AssetImage("assets/blob_preferences_top.png")
                                   )
                               ),
                             ),
@@ -410,7 +410,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                           ),
 
                                           const Image(
-                                            image: AssetImage("preferences_pointer.png"),
+                                            image: AssetImage("assets/preferences_pointer.png"),
                                             height: 11,
                                           ),
                                           ClipRRect(
@@ -472,7 +472,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -503,7 +503,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                           child: const Padding(
                                               padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
                                               child: Image(
-                                                image: AssetImage("back.png"),
+                                                image: AssetImage("assets/back.png"),
                                                 height: 37,
                                                 width: 37,
                                               )
@@ -511,7 +511,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   ),
@@ -539,7 +539,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                             color: ColorsResources.primaryColorDarkest
                                         ),
                                         child: Image(
-                                          image: AssetImage("squircle.png"),
+                                          image: AssetImage("assets/squircle.png"),
                                           height: 73,
                                           width: 73,
                                         )
@@ -614,7 +614,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                       )
                                   ),
                                   child: const Image(
-                                    image: AssetImage("squircle.png"),
+                                    image: AssetImage("assets/squircle.png"),
                                     height: 73,
                                     width: 73,
                                   )
@@ -721,7 +721,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                   )
               ),
               child: const Image(
-                image: AssetImage("squircle.png"),
+                image: AssetImage("assets/squircle.png"),
                 height: 63,
                 width: 63,
               )

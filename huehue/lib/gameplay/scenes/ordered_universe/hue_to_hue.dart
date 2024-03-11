@@ -239,7 +239,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                                 color: ColorsResources.primaryColorDarkest
                                             ),
                                             child: Image(
-                                              image: AssetImage("squircle.png"),
+                                              image: AssetImage("assets/squircle.png"),
                                               height: 73,
                                               width: 73,
                                             )
@@ -274,7 +274,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                           )
                                       ),
                                       child: const Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       ),
@@ -341,7 +341,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                                 ]
                                             ),
                                             child: const Image(
-                                              image: AssetImage("level_indicator_bottom.png"),
+                                              image: AssetImage("assets/level_indicator_bottom.png"),
                                               fit: BoxFit.contain,
                                             )
                                         )
@@ -373,7 +373,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                                 color: ColorsResources.primaryColorDarkest
                                             ),
                                             child: Image(
-                                              image: AssetImage("squircle.png"),
+                                              image: AssetImage("assets/squircle.png"),
                                               height: 73,
                                               width: 73,
                                             )
@@ -408,7 +408,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                           )
                                       ),
                                       child: const Image(
-                                        image: AssetImage("squircle.png"),
+                                        image: AssetImage("assets/squircle.png"),
                                         height: 73,
                                         width: 73,
                                       ),
@@ -475,7 +475,7 @@ class _HueToHueState extends State<HueToHue> with TickerProviderStateMixin imple
                                                 ]
                                             ),
                                             child: const Image(
-                                              image: AssetImage("point_indicator.png"),
+                                              image: AssetImage("assets/point_indicator.png"),
                                               fit: BoxFit.contain,
                                             )
                                         )

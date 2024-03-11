@@ -78,13 +78,13 @@ class GameStatues {
 
                                     },
                                     child: const Image(
-                                      image: AssetImage("restart_blob_play.png"),
+                                      image: AssetImage("assets/restart_blob_play.png"),
                                       width: double.maxFinite,
                                     )
                                 )
                             ),
                             child: const Image(
-                              image: AssetImage("restart_blob_play.png"),
+                              image: AssetImage("assets/restart_blob_play.png"),
                               width: double.maxFinite,
                             )
                         )
@@ -214,13 +214,13 @@ class GameStatues {
 
                                       },
                                       child: const Image(
-                                        image: AssetImage("restart_blob_play.png"),
+                                        image: AssetImage("assets/restart_blob_play.png"),
                                         width: double.maxFinite,
                                       )
                                   )
                               ),
                               child: const Image(
-                                image: AssetImage("restart_blob_play.png"),
+                                image: AssetImage("assets/restart_blob_play.png"),
                                 width: double.maxFinite,
                               )
                           )
@@ -327,13 +327,13 @@ class GameStatues {
 
                                       },
                                       child: const Image(
-                                        image: AssetImage("restart_blob_play.png"),
+                                        image: AssetImage("assets/restart_blob_play.png"),
                                         width: double.maxFinite,
                                       )
                                   )
                               ),
                               child: const Image(
-                                image: AssetImage("restart_blob_play.png"),
+                                image: AssetImage("assets/restart_blob_play.png"),
                                 width: double.maxFinite,
                               )
                           )
@@ -440,13 +440,13 @@ class GameStatues {
 
                                       },
                                       child: const Image(
-                                        image: AssetImage("restart_blob_play.png"),
+                                        image: AssetImage("assets/restart_blob_play.png"),
                                         width: double.maxFinite,
                                       )
                                   )
                               ),
                               child: const Image(
-                                image: AssetImage("restart_blob_play.png"),
+                                image: AssetImage("assets/restart_blob_play.png"),
                                 width: double.maxFinite,
                               )
                           )
@@ -554,13 +554,13 @@ class GameStatues {
 
                                       },
                                       child: const Image(
-                                        image: AssetImage("restart_blob_play.png"),
+                                        image: AssetImage("assets/restart_blob_play.png"),
                                         width: double.maxFinite,
                                       )
                                   )
                               ),
                               child: const Image(
-                                image: AssetImage("restart_blob_play.png"),
+                                image: AssetImage("assets/restart_blob_play.png"),
                                 width: double.maxFinite,
                               )
                           )

@@ -235,7 +235,7 @@ class _SwitchPreferencesState extends State<SwitchPreferences> with TickerProvid
           ),
 
           const Image(
-            image: AssetImage("preferences_pointer.png"),
+            image: AssetImage("assets/preferences_pointer.png"),
             height: 11,
           ),
           ClipRRect(
