@@ -23,7 +23,6 @@ import 'package:huehue/profile/ui/profile_interface.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
 import 'package:huehue/sync/sync_io.dart';
-import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
 import 'package:huehue/utils/ui/gradient_text/gradient.dart';
@@ -132,243 +131,230 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: StringsResources.applicationName(),
-        color: ColorsResources.primaryColor,
-        theme: ThemeData(
-          fontFamily: 'Ubuntu',
-          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.primaryColorDarkest,
-          pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: FadeTransitionBuilder(),
-            TargetPlatform.iOS: FadeTransitionBuilder(),
-          }),
-        ),
-        home: Scaffold(
-            resizeToAvoidBottomInset: true,
-            extendBody: true,
-            backgroundColor: ColorsResources.primaryColorDarkest,
-            body: ClipRRect(
-                borderRadius: BorderRadius.circular(37),
-                child: SizedBox(
-                    height: double.maxFinite,
-                    width: double.maxFinite,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(37),
-                          // color: ColorsResources.primaryColorDarkest,
-                        ),
-                        child: Stack(
-                          children: [
+    return Scaffold(
+        resizeToAvoidBottomInset: true,
+        extendBody: true,
+        backgroundColor: ColorsResources.primaryColorDarkest,
+        body: ClipRRect(
+            borderRadius: BorderRadius.circular(37),
+            child: SizedBox(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(37),
+                      // color: ColorsResources.primaryColorDarkest,
+                    ),
+                    child: Stack(
+                      children: [
 
-                            /* Start - Decoration */
-                            /* Start - Glow */
-                            InnerShadow(
-                                shadows: [
-                                  Shadow(
-                                      color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                      blurRadius: 1,
-                                      offset: const Offset(0, 0)
-                                  )
-                                ],
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(37),
-                                        border: Border.all(
-                                            color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                            width: 1.3,
-                                            strokeAlign: BorderSide.strokeAlignInside
-                                        ),
-                                        color: ColorsResources.primaryColorDarkest
-                                    )
-                                )
-                            ),
-                            /* End - Glow */
-
-                            /* Start - Blobs */
-                            /* Start - Blob Bottom */
-                            const Positioned(
-                              bottom: 0,
-                              left: 0,
-                              child: SizedBox(
-                                  height: 253,
-                                  width: 253,
-                                  child: Image(
-                                      image: AssetImage("assets/blob_preferences_bottom.png")
-                                  )
-                              ),
-                            ),
-                            /* End - Blob Bottom */
-
-                            /* Start - Blob Top */
-                            const Positioned(
-                              top: 0,
-                              right: 0,
-                              child: SizedBox(
-                                  height: 253,
-                                  width: 253,
-                                  child: Image(
-                                      image: AssetImage("assets/blob_preferences_top.png")
-                                  )
-                              ),
-                            ),
-                            /* End - Blob Top */
-                            /* End - Blobs */
-
-                            /* Start - Blurry Background */
-                            const Blur(
-                              blur: 31.0,
-                              blurColor: ColorsResources.primaryColorDarkest,
-                              colorOpacity: 0.19,
-                              child: SizedBox(
-                                height: double.maxFinite,
-                                width: double.maxFinite,
-                              ),
-                            ),
-                            /* End - Blurry Background */
-
-                            /* Start - Stroke */
-                            Container(
-                                height: double.maxFinite,
-                                width: double.maxFinite,
+                        /* Start - Decoration */
+                        /* Start - Glow */
+                        InnerShadow(
+                            shadows: [
+                              Shadow(
+                                  color: ColorsResources.primaryColorLighter.withOpacity(0.37),
+                                  blurRadius: 1,
+                                  offset: const Offset(0, 0)
+                              )
+                            ],
+                            child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(37),
                                     border: Border.all(
-                                        color: ColorsResources.primaryColorLighter,
+                                        color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                         width: 1.3,
                                         strokeAlign: BorderSide.strokeAlignInside
                                     ),
-                                    color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                                    color: ColorsResources.primaryColorDarkest
                                 )
-                            ),
-                            /* End - Stroke */
-                            /* End - Decoration */
+                            )
+                        ),
+                        /* End - Glow */
 
-                            /* Start - Content */
-                            /* Start - Preferences */
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(37),
-                              child: ListView(
-                                padding: EdgeInsets.fromLTRB(0, contentsListPadding, 0, 37),
-                                physics: const BouncingScrollPhysics(),
-                                scrollDirection: Axis.vertical,
-                                children: [
+                        /* Start - Blobs */
+                        /* Start - Blob Bottom */
+                        const Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                              height: 253,
+                              width: 253,
+                              child: Image(
+                                  image: AssetImage("assets/blob_preferences_bottom.png")
+                              )
+                          ),
+                        ),
+                        /* End - Blob Bottom */
 
-                                  /* Start - Continuously Switch */
-                                  SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.continuously,
-                                      titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously()),
-                                  /* End - Continuously Switch */
+                        /* Start - Blob Top */
+                        const Positioned(
+                          top: 0,
+                          right: 0,
+                          child: SizedBox(
+                              height: 253,
+                              width: 253,
+                              child: Image(
+                                  image: AssetImage("assets/blob_preferences_top.png")
+                              )
+                          ),
+                        ),
+                        /* End - Blob Top */
+                        /* End - Blobs */
 
-                                  const Divider(
+                        /* Start - Blurry Background */
+                        const Blur(
+                          blur: 31.0,
+                          blurColor: ColorsResources.primaryColorDarkest,
+                          colorOpacity: 0.19,
+                          child: SizedBox(
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                          ),
+                        ),
+                        /* End - Blurry Background */
+
+                        /* Start - Stroke */
+                        Container(
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(37),
+                                border: Border.all(
+                                    color: ColorsResources.primaryColorLighter,
+                                    width: 1.3,
+                                    strokeAlign: BorderSide.strokeAlignInside
+                                ),
+                                color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                            )
+                        ),
+                        /* End - Stroke */
+                        /* End - Decoration */
+
+                        /* Start - Content */
+                        /* Start - Preferences */
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(37),
+                            child: ListView(
+                              padding: EdgeInsets.fromLTRB(0, contentsListPadding, 0, 37),
+                              physics: const BouncingScrollPhysics(),
+                              scrollDirection: Axis.vertical,
+                              children: [
+
+                                /* Start - Continuously Switch */
+                                SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.continuously,
+                                    titlePreferences: StringsResources.switchTitleContinuously(), descriptionPreferences: StringsResources.switchDescriptionContinuously()),
+                                /* End - Continuously Switch */
+
+                                const Divider(
                                     height: 37,
                                     color: Colors.transparent
-                                  ),
+                                ),
 
-                                  /* Start - Sounds Switch */
-                                  SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.sounds,
-                                      titlePreferences: StringsResources.switchTitleSounds(), descriptionPreferences: StringsResources.switchDescriptionSounds()),
-                                  /* End - Sounds Switch */
+                                /* Start - Sounds Switch */
+                                SwitchPreferences(preferencesIO: preferencesIO, preferencesKey: PreferencesKeys.sounds,
+                                    titlePreferences: StringsResources.switchTitleSounds(), descriptionPreferences: StringsResources.switchDescriptionSounds()),
+                                /* End - Sounds Switch */
 
-                                  const Divider(
-                                      height: 37,
-                                      color: Colors.transparent
-                                  ),
+                                const Divider(
+                                    height: 37,
+                                    color: Colors.transparent
+                                ),
 
-                                  /* Start - IQ Slider */
-                                  Padding(
-                                      padding: const EdgeInsets.fromLTRB(37, 0, 37, 0),
-                                      child: Column(
-                                        children: [
+                                /* Start - IQ Slider */
+                                Padding(
+                                    padding: const EdgeInsets.fromLTRB(37, 0, 37, 0),
+                                    child: Column(
+                                      children: [
 
-                                          ClipRRect(
-                                              borderRadius: BorderRadius.circular(13),
-                                              child: Blur(
-                                                blur: 37,
-                                                blurColor: ColorsResources.black,
-                                                colorOpacity: 0.13,
-                                                overlay: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  children: [
+                                        ClipRRect(
+                                            borderRadius: BorderRadius.circular(13),
+                                            child: Blur(
+                                              blur: 37,
+                                              blurColor: ColorsResources.black,
+                                              colorOpacity: 0.13,
+                                              overlay: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
 
-                                                    Expanded(
-                                                        flex: 7,
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
-                                                          child: GradientText(
-                                                              "low -",
-                                                              textAlign: TextAlign.center,
-                                                              colors: const [
-                                                                ColorsResources.lightRed,
-                                                                ColorsResources.premiumLight
-                                                              ],
-                                                              style: const TextStyle(
-                                                                  fontSize: 12,
-                                                                  fontWeight: FontWeight.bold,
-                                                                  fontFamily: "Electric",
-                                                                  shadows: [
-                                                                    Shadow(
+                                                  Expanded(
+                                                      flex: 7,
+                                                      child: Padding(
+                                                        padding: const EdgeInsets.fromLTRB(13, 0, 7, 0),
+                                                        child: GradientText(
+                                                            "low -",
+                                                            textAlign: TextAlign.center,
+                                                            colors: const [
+                                                              ColorsResources.lightRed,
+                                                              ColorsResources.premiumLight
+                                                            ],
+                                                            style: const TextStyle(
+                                                                fontSize: 12,
+                                                                fontWeight: FontWeight.bold,
+                                                                fontFamily: "Electric",
+                                                                shadows: [
+                                                                  Shadow(
                                                                       color: ColorsResources.lightRed,
                                                                       blurRadius: 13,
                                                                       offset: Offset(-1, 0)
-                                                                    )
-                                                                  ]
-                                                              )
-                                                          ),
-                                                        )
-                                                    ),
+                                                                  )
+                                                                ]
+                                                            )
+                                                        ),
+                                                      )
+                                                  ),
 
-                                                    Expanded(
+                                                  Expanded(
                                                       flex: 23,
                                                       child: SizedBox(
                                                           height: 31,
                                                           width: double.infinity,
                                                           child: SliderTheme(
-                                                            data: SliderThemeData(
-                                                              activeTrackColor: ColorsResources.premiumLight,
-                                                              inactiveTrackColor: ColorsResources.white.withOpacity(0.19),
-                                                              thumbColor: ColorsResources.cyan,
-                                                              thumbShape: const RoundSliderThumbShape(
-                                                                enabledThumbRadius: 5,
-                                                                disabledThumbRadius: 5
+                                                              data: SliderThemeData(
+                                                                  activeTrackColor: ColorsResources.premiumLight,
+                                                                  inactiveTrackColor: ColorsResources.white.withOpacity(0.19),
+                                                                  thumbColor: ColorsResources.cyan,
+                                                                  thumbShape: const RoundSliderThumbShape(
+                                                                      enabledThumbRadius: 5,
+                                                                      disabledThumbRadius: 5
+                                                                  ),
+                                                                  overlayShape: const RoundSliderThumbShape(
+                                                                      enabledThumbRadius: 13,
+                                                                      disabledThumbRadius: 13
+                                                                  ),
+                                                                  overlayColor: ColorsResources.cyan.withOpacity(0.13),
+                                                                  trackShape: const RoundedRectSliderTrackShape(),
+                                                                  trackHeight: 3
                                                               ),
-                                                              overlayShape: const RoundSliderThumbShape(
-                                                                  enabledThumbRadius: 13,
-                                                                  disabledThumbRadius: 13
-                                                              ),
-                                                              overlayColor: ColorsResources.cyan.withOpacity(0.13),
-                                                              trackShape: const RoundedRectSliderTrackShape(),
-                                                              trackHeight: 3
-                                                            ),
-                                                            child: Slider(
-                                                                min: 50.0,
-                                                                max: 150.0,
-                                                                value: iqSliderValue,
-                                                                divisions: 100,
-                                                                label: iqSliderValue.toString(),
-                                                                onChanged: (value) {
+                                                              child: Slider(
+                                                                  min: 50.0,
+                                                                  max: 150.0,
+                                                                  value: iqSliderValue,
+                                                                  divisions: 100,
+                                                                  label: iqSliderValue.toString(),
+                                                                  onChanged: (value) {
 
-                                                                  setState(() {
+                                                                    setState(() {
 
-                                                                    iqSliderValue = value;
+                                                                      iqSliderValue = value;
 
-                                                                  });
+                                                                    });
 
-                                                                },
-                                                                onChangeEnd: (value) {
+                                                                  },
+                                                                  onChangeEnd: (value) {
 
-                                                                  preferencesIO.storeIQ(value);
+                                                                    preferencesIO.storeIQ(value);
 
-                                                                  preferencesIO.calculateColorOffset(value);
+                                                                    preferencesIO.calculateColorOffset(value);
 
-                                                                }
-                                                            )
+                                                                  }
+                                                              )
                                                           )
                                                       )
-                                                    ),
+                                                  ),
 
-                                                    Expanded(
+                                                  Expanded(
                                                       flex: 7,
                                                       child: Padding(
                                                         padding: const EdgeInsets.fromLTRB(7, 0, 13, 0),
@@ -393,248 +379,247 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                                             )
                                                         ),
                                                       )
-                                                    )
-
-                                                  ],
-                                                ),
-                                                child: const SizedBox(
-                                                    height: 53,
-                                                    width: double.maxFinite
-                                                ),
-                                              )
-                                          ),
-
-                                          const Divider(
-                                              height: 13,
-                                              color: Colors.transparent
-                                          ),
-
-                                          const Image(
-                                            image: AssetImage("assets/preferences_pointer.png"),
-                                            height: 11,
-                                          ),
-                                          ClipRRect(
-                                              borderRadius: BorderRadius.circular(13),
-                                              child: Container(
-                                                  color: ColorsResources.premiumLight.withOpacity(0.07),
-                                                  child: SizedBox(
-                                                      height: 53,
-                                                      width: double.maxFinite,
-                                                      child: Padding(
-                                                          padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
-                                                          child: Align(
-                                                              alignment: Alignment.centerLeft,
-                                                              child: Text(
-                                                                StringsResources.iqDescription(),
-                                                                textAlign: TextAlign.start,
-                                                                maxLines: 2,
-                                                                style: const TextStyle(
-                                                                    color: ColorsResources.premiumLight,
-                                                                    fontSize: 13,
-                                                                    fontFamily: "Ubuntu",
-                                                                    letterSpacing: 1.1,
-                                                                    height: 1.3
-                                                                ),
-                                                              )
-                                                          )
-                                                      )
                                                   )
-                                              )
-                                          ),
 
-                                        ],
-                                      )
-                                  ),
-                                  /* Start - IQ Slider */
-
-                                ],
-                              )
-                            ),
-                            /* End - Preferences */
-
-                            /* Start - Back */
-                            Positioned(
-                                top: 37,
-                                left: 37,
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorsResources.black.withOpacity(0.73),
-                                              blurRadius: 19
-                                          )
-                                        ]
-                                    ),
-                                    child: const WidgetMask(
-                                        blendMode: BlendMode.srcATop,
-                                        childSaveLayer: true,
-                                        mask: ColoredBox(
-                                            color: ColorsResources.primaryColorDarkest
+                                                ],
+                                              ),
+                                              child: const SizedBox(
+                                                  height: 53,
+                                                  width: double.maxFinite
+                                              ),
+                                            )
                                         ),
-                                        child: Image(
-                                          image: AssetImage("assets/squircle.png"),
-                                          height: 73,
-                                          width: 73,
-                                        )
+
+                                        const Divider(
+                                            height: 13,
+                                            color: Colors.transparent
+                                        ),
+
+                                        const Image(
+                                          image: AssetImage("assets/preferences_pointer.png"),
+                                          height: 11,
+                                        ),
+                                        ClipRRect(
+                                            borderRadius: BorderRadius.circular(13),
+                                            child: Container(
+                                                color: ColorsResources.premiumLight.withOpacity(0.07),
+                                                child: SizedBox(
+                                                    height: 53,
+                                                    width: double.maxFinite,
+                                                    child: Padding(
+                                                        padding: const EdgeInsets.fromLTRB(13, 0, 13, 0),
+                                                        child: Align(
+                                                            alignment: Alignment.centerLeft,
+                                                            child: Text(
+                                                              StringsResources.iqDescription(),
+                                                              textAlign: TextAlign.start,
+                                                              maxLines: 2,
+                                                              style: const TextStyle(
+                                                                  color: ColorsResources.premiumLight,
+                                                                  fontSize: 13,
+                                                                  fontFamily: "Ubuntu",
+                                                                  letterSpacing: 1.1,
+                                                                  height: 1.3
+                                                              ),
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        ),
+
+                                      ],
+                                    )
+                                ),
+                                /* Start - IQ Slider */
+
+                              ],
+                            )
+                        ),
+                        /* End - Preferences */
+
+                        /* Start - Back */
+                        Positioned(
+                            top: 37,
+                            left: 37,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsResources.black.withOpacity(0.73),
+                                          blurRadius: 19
+                                      )
+                                    ]
+                                ),
+                                child: const WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask: ColoredBox(
+                                        color: ColorsResources.primaryColorDarkest
+                                    ),
+                                    child: Image(
+                                      image: AssetImage("assets/squircle.png"),
+                                      height: 73,
+                                      width: 73,
                                     )
                                 )
-                            ),
-                            Positioned(
-                                top: 37,
-                                left: 37,
-                                child: WidgetMask(
-                                  blendMode: BlendMode.srcIn,
-                                  childSaveLayer: true,
-                                  mask: Material(
-                                      shadowColor: Colors.transparent,
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                          splashColor: ColorsResources.primaryColor,
-                                          splashFactory: InkRipple.splashFactory,
-                                          onTap: () {
+                            )
+                        ),
+                        Positioned(
+                            top: 37,
+                            left: 37,
+                            child: WidgetMask(
+                              blendMode: BlendMode.srcIn,
+                              childSaveLayer: true,
+                              mask: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.primaryColor,
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
 
-                                            Future.delayed(const Duration(milliseconds: 333), () {
+                                        Future.delayed(const Duration(milliseconds: 333), () {
 
-                                              navigatePopWithResult(context, true);
+                                          navigatePopWithResult(context, true);
 
-                                            });
+                                        });
 
-                                          },
-                                          child: const Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
-                                              child: Image(
-                                                image: AssetImage("assets/back.png"),
-                                                height: 37,
-                                                width: 37,
-                                              )
+                                      },
+                                      child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
+                                          child: Image(
+                                            image: AssetImage("assets/back.png"),
+                                            height: 37,
+                                            width: 37,
                                           )
                                       )
-                                  ),
-                                  child: const Image(
-                                    image: AssetImage("assets/squircle.png"),
-                                    height: 73,
-                                    width: 73,
-                                  ),
-                                )
-                            ),
-                            /* End - Back */
+                                  )
+                              ),
+                              child: const Image(
+                                image: AssetImage("assets/squircle.png"),
+                                height: 73,
+                                width: 73,
+                              ),
+                            )
+                        ),
+                        /* End - Back */
 
-                            /* Start - Login */
-                            Positioned(
-                                top: 37,
-                                right: 37,
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorsResources.black.withOpacity(0.73),
-                                              blurRadius: 19
-                                          )
-                                        ]
+                        /* Start - Login */
+                        Positioned(
+                            top: 37,
+                            right: 37,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsResources.black.withOpacity(0.73),
+                                          blurRadius: 19
+                                      )
+                                    ]
+                                ),
+                                child: const WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask: ColoredBox(
+                                        color: ColorsResources.primaryColorDarkest
                                     ),
-                                    child: const WidgetMask(
-                                        blendMode: BlendMode.srcATop,
-                                        childSaveLayer: true,
-                                        mask: ColoredBox(
-                                            color: ColorsResources.primaryColorDarkest
-                                        ),
-                                        child: Image(
-                                          image: AssetImage("assets/squircle.png"),
-                                          height: 73,
-                                          width: 73,
-                                        )
+                                    child: Image(
+                                      image: AssetImage("assets/squircle.png"),
+                                      height: 73,
+                                      width: 73,
                                     )
                                 )
-                            ),
-                            Positioned(
-                                top: 37,
-                                right: 37,
-                                child: WidgetMask(
-                                  blendMode: BlendMode.srcIn,
-                                  childSaveLayer: true,
-                                  mask: Material(
-                                      shadowColor: Colors.transparent,
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                          splashColor: ColorsResources.primaryColor,
-                                          splashFactory: InkRipple.splashFactory,
-                                          onTap: () {
+                            )
+                        ),
+                        Positioned(
+                            top: 37,
+                            right: 37,
+                            child: WidgetMask(
+                                blendMode: BlendMode.srcIn,
+                                childSaveLayer: true,
+                                mask: Material(
+                                    shadowColor: Colors.transparent,
+                                    color: Colors.transparent,
+                                    child: InkWell(
+                                        splashColor: ColorsResources.primaryColor,
+                                        splashFactory: InkRipple.splashFactory,
+                                        onTap: () {
 
-                                            Future.delayed(const Duration(milliseconds: 333), () async {
+                                          Future.delayed(const Duration(milliseconds: 333), () async {
 
-                                              if (FirebaseAuth.instance.currentUser == null) {
+                                            if (FirebaseAuth.instance.currentUser == null) {
 
-                                                startLoginProcess();
+                                              startLoginProcess();
 
-                                              } else {
+                                            } else {
 
-                                                bool result = await navigateWithResult(context, const ProfileInterface());
+                                              bool result = await navigateWithResult(context, const ProfileInterface());
 
-                                                if (result) {
+                                              if (result) {
 
-                                                  if (FirebaseAuth.instance.currentUser == null) {
+                                                if (FirebaseAuth.instance.currentUser == null) {
 
-                                                    setState(() {
+                                                  setState(() {
 
-                                                      loginPlaceholder = Text(
-                                                          StringsResources.loginTitle(),
-                                                          style: TextStyle(
-                                                              color: ColorsResources.premiumLight,
-                                                              fontSize: 17,
-                                                              fontFamily: "Nasa",
-                                                              letterSpacing: 1.3,
-                                                              shadows: [
-                                                                Shadow(
-                                                                    color: ColorsResources.white.withOpacity(0.37),
-                                                                    blurRadius: 13,
-                                                                    offset: const Offset(0, 3)
-                                                                )
-                                                              ]
-                                                          )
-                                                      );
+                                                    loginPlaceholder = Text(
+                                                        StringsResources.loginTitle(),
+                                                        style: TextStyle(
+                                                            color: ColorsResources.premiumLight,
+                                                            fontSize: 17,
+                                                            fontFamily: "Nasa",
+                                                            letterSpacing: 1.3,
+                                                            shadows: [
+                                                              Shadow(
+                                                                  color: ColorsResources.white.withOpacity(0.37),
+                                                                  blurRadius: 13,
+                                                                  offset: const Offset(0, 3)
+                                                              )
+                                                            ]
+                                                        )
+                                                    );
 
-                                                    });
-
-                                                  }
+                                                  });
 
                                                 }
 
                                               }
 
-                                            });
+                                            }
 
-                                          },
-                                          child: SizedBox(
+                                          });
+
+                                        },
+                                        child: SizedBox(
                                             height: 73,
                                             width: 73,
                                             child: Center(
-                                              child: loginPlaceholder
+                                                child: loginPlaceholder
                                             )
-                                          )
-                                      )
-                                  ),
-                                  child: const Image(
-                                    image: AssetImage("assets/squircle.png"),
-                                    height: 73,
-                                    width: 73,
-                                  )
+                                        )
+                                    )
+                                ),
+                                child: const Image(
+                                  image: AssetImage("assets/squircle.png"),
+                                  height: 73,
+                                  width: 73,
                                 )
-                            ),
-                            NextedTooltips(
-                                atStartShow: loginTooltip,
-                                displaySection: NextedTooltips.sectionTopRight,
-                                topPosition: 115, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
-                                tooltipMessage: StringsResources.synchronizationNotice()
-                            ),
-                            /* End - Login */
-                            /* End - Content */
+                            )
+                        ),
+                        NextedTooltips(
+                            atStartShow: loginTooltip,
+                            displaySection: NextedTooltips.sectionTopRight,
+                            topPosition: 115, bottomPosition: 0, leftPosition: 0, rightPosition: 37,
+                            tooltipMessage: StringsResources.synchronizationNotice()
+                        ),
+                        /* End - Login */
+                        /* End - Content */
 
-                            /* Start - Syncing... */
-                            waitingAnimationPlaceholder
-                            /* End - Syncing... */
+                        /* Start - Syncing... */
+                        waitingAnimationPlaceholder
+                        /* End - Syncing... */
 
-                          ],
-                        )
+                      ],
                     )
                 )
             )

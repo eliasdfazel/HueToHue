@@ -19,8 +19,6 @@ import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart
 import 'package:huehue/gameplay/scenes/ordered_universe/data/levels_data_structure.dart';
 import 'package:huehue/gameplay/scenes/previous/previous_hue_to_hue.dart';
 import 'package:huehue/resources/colors_resources.dart';
-import 'package:huehue/resources/strings_resources.dart';
-import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/calculations/display.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
@@ -34,7 +32,6 @@ class PreviousInterface extends StatefulWidget {
   @override
   State<PreviousInterface> createState() => _PreviousInterfaceState();
 }
-
 class _PreviousInterfaceState extends State<PreviousInterface> {
 
   GameplayPaths gameplayPaths = GameplayPaths();
@@ -65,200 +62,186 @@ class _PreviousInterfaceState extends State<PreviousInterface> {
   @override
   Widget build(BuildContext context) {
 
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: StringsResources.applicationName(),
-        color: ColorsResources.primaryColor,
-        theme: ThemeData(
-          fontFamily: 'Ubuntu',
-          colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.primaryColorDarkest,
-          pageTransitionsTheme: const PageTransitionsTheme(builders: {
-            TargetPlatform.android: FadeTransitionBuilder(),
-            TargetPlatform.iOS: FadeTransitionBuilder(),
-          }),
-        ),
-        home: Scaffold(
-            resizeToAvoidBottomInset: true,
-            extendBody: true,
-            backgroundColor: ColorsResources.primaryColorDarkest,
-            body: ClipRRect(
-                borderRadius: BorderRadius.circular(37),
-                child: SizedBox(
-                    height: double.maxFinite,
-                    width: double.maxFinite,
-                    child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(37),
-                          // color: ColorsResources.primaryColorDarkest,
-                        ),
-                        child: Stack(
-                          children: [
+    return Scaffold(
+        resizeToAvoidBottomInset: true,
+        extendBody: true,
+        backgroundColor: ColorsResources.primaryColorDarkest,
+        body: ClipRRect(
+            borderRadius: BorderRadius.circular(37),
+            child: SizedBox(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(37),
+                      // color: ColorsResources.primaryColorDarkest,
+                    ),
+                    child: Stack(
+                      children: [
 
-                            /* Start - Decoration */
-                            /* Start - Glow */
-                            InnerShadow(
-                                shadows: [
-                                  Shadow(
-                                      color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                      blurRadius: 1,
-                                      offset: const Offset(0, 0)
-                                  )
-                                ],
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(37),
-                                        border: Border.all(
-                                            color: ColorsResources.primaryColorLighter.withOpacity(0.37),
-                                            width: 1.3,
-                                            strokeAlign: BorderSide.strokeAlignInside
-                                        ),
-                                        color: ColorsResources.primaryColorDarkest
-                                    )
-                                )
-                            ),
-                            /* End - Glow */
-
-                            /* Start - Blobs */
-                            /* Start - Blob Bottom */
-                            const Positioned(
-                              bottom: 0,
-                              left: 0,
-                              child: SizedBox(
-                                  height: 253,
-                                  width: 253,
-                                  child: Image(
-                                      image: AssetImage("assets/blob_previous_bottom.png")
-                                  )
-                              ),
-                            ),
-                            /* End - Blob Bottom */
-
-                            /* Start - Blob Top */
-                            const Positioned(
-                              top: 0,
-                              right: 0,
-                              child: SizedBox(
-                                  height: 253,
-                                  width: 253,
-                                  child: Image(
-                                      image: AssetImage("assets/blob_previous_top.png")
-                                  )
-                              ),
-                            ),
-                            /* End - Blob Top */
-                            /* End - Blobs */
-
-                            /* Start - Blurry Background */
-                            const Blur(
-                              blur: 31.0,
-                              blurColor: ColorsResources.primaryColorDarkest,
-                              colorOpacity: 0.19,
-                              child: SizedBox(
-                                height: double.maxFinite,
-                                width: double.maxFinite,
-                              ),
-                            ),
-                            /* End - Blurry Background */
-
-                            /* Start - Stroke */
-                            Container(
-                                height: double.maxFinite,
-                                width: double.maxFinite,
+                        /* Start - Decoration */
+                        /* Start - Glow */
+                        InnerShadow(
+                            shadows: [
+                              Shadow(
+                                  color: ColorsResources.primaryColorLighter.withOpacity(0.37),
+                                  blurRadius: 1,
+                                  offset: const Offset(0, 0)
+                              )
+                            ],
+                            child: Container(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(37),
                                     border: Border.all(
-                                        color: ColorsResources.primaryColorLighter,
+                                        color: ColorsResources.primaryColorLighter.withOpacity(0.37),
                                         width: 1.3,
                                         strokeAlign: BorderSide.strokeAlignInside
                                     ),
-                                    color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                                    color: ColorsResources.primaryColorDarkest
                                 )
-                            ),
-                            /* End - Stroke */
-                            /* End - Decoration */
+                            )
+                        ),
+                        /* End - Glow */
 
-                            /* Start - Content */
-                            /* Start - Preferences */
-                            ClipRRect(
+                        /* Start - Blobs */
+                        /* Start - Blob Bottom */
+                        const Positioned(
+                          bottom: 0,
+                          left: 0,
+                          child: SizedBox(
+                              height: 253,
+                              width: 253,
+                              child: Image(
+                                  image: AssetImage("assets/blob_previous_bottom.png")
+                              )
+                          ),
+                        ),
+                        /* End - Blob Bottom */
+
+                        /* Start - Blob Top */
+                        const Positioned(
+                          top: 0,
+                          right: 0,
+                          child: SizedBox(
+                              height: 253,
+                              width: 253,
+                              child: Image(
+                                  image: AssetImage("assets/blob_previous_top.png")
+                              )
+                          ),
+                        ),
+                        /* End - Blob Top */
+                        /* End - Blobs */
+
+                        /* Start - Blurry Background */
+                        const Blur(
+                          blur: 31.0,
+                          blurColor: ColorsResources.primaryColorDarkest,
+                          colorOpacity: 0.19,
+                          child: SizedBox(
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                          ),
+                        ),
+                        /* End - Blurry Background */
+
+                        /* Start - Stroke */
+                        Container(
+                            height: double.maxFinite,
+                            width: double.maxFinite,
+                            decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(37),
-                                child: allPreviousLevels
-                            ),
-                            /* End - Preferences */
+                                border: Border.all(
+                                    color: ColorsResources.primaryColorLighter,
+                                    width: 1.3,
+                                    strokeAlign: BorderSide.strokeAlignInside
+                                ),
+                                color: ColorsResources.primaryColorDarkest.withOpacity(0.1)
+                            )
+                        ),
+                        /* End - Stroke */
+                        /* End - Decoration */
 
-                            /* Start - Back */
-                            Positioned(
-                                top: 37,
-                                left: 37,
-                                child: Container(
-                                    decoration: BoxDecoration(
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: ColorsResources.black.withOpacity(0.73),
-                                              blurRadius: 19
-                                          )
-                                        ]
+                        /* Start - Content */
+                        /* Start - Preferences */
+                        ClipRRect(
+                            borderRadius: BorderRadius.circular(37),
+                            child: allPreviousLevels
+                        ),
+                        /* End - Preferences */
+
+                        /* Start - Back */
+                        Positioned(
+                            top: 37,
+                            left: 37,
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: ColorsResources.black.withOpacity(0.73),
+                                          blurRadius: 19
+                                      )
+                                    ]
+                                ),
+                                child: const WidgetMask(
+                                    blendMode: BlendMode.srcATop,
+                                    childSaveLayer: true,
+                                    mask: ColoredBox(
+                                        color: ColorsResources.primaryColorDarkest
                                     ),
-                                    child: const WidgetMask(
-                                        blendMode: BlendMode.srcATop,
-                                        childSaveLayer: true,
-                                        mask: ColoredBox(
-                                            color: ColorsResources.primaryColorDarkest
-                                        ),
-                                        child: Image(
-                                          image: AssetImage("assets/squircle.png"),
-                                          height: 73,
-                                          width: 73,
-                                        )
+                                    child: Image(
+                                      image: AssetImage("assets/squircle.png"),
+                                      height: 73,
+                                      width: 73,
                                     )
                                 )
-                            ),
-                            Positioned(
-                                top: 37,
-                                left: 37,
-                                child: WidgetMask(
-                                  blendMode: BlendMode.srcIn,
-                                  childSaveLayer: true,
-                                  mask: Material(
-                                      shadowColor: Colors.transparent,
-                                      color: Colors.transparent,
-                                      child: InkWell(
-                                          splashColor: ColorsResources.primaryColor,
-                                          splashFactory: InkRipple.splashFactory,
-                                          onTap: () {
+                            )
+                        ),
+                        Positioned(
+                            top: 37,
+                            left: 37,
+                            child: WidgetMask(
+                              blendMode: BlendMode.srcIn,
+                              childSaveLayer: true,
+                              mask: Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  child: InkWell(
+                                      splashColor: ColorsResources.primaryColor,
+                                      splashFactory: InkRipple.splashFactory,
+                                      onTap: () {
 
-                                            Future.delayed(const Duration(milliseconds: 333), () {
+                                        Future.delayed(const Duration(milliseconds: 333), () {
 
-                                              navigatePop(context);
+                                          navigatePop(context);
 
-                                            });
+                                        });
 
-                                          },
-                                          child: const Padding(
-                                              padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
-                                              child: Image(
-                                                image: AssetImage("assets/back.png"),
-                                                height: 37,
-                                                width: 37,
-                                              )
+                                      },
+                                      child: const Padding(
+                                          padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
+                                          child: Image(
+                                            image: AssetImage("assets/back.png"),
+                                            height: 37,
+                                            width: 37,
                                           )
                                       )
-                                  ),
-                                  child: const Image(
-                                    image: AssetImage("assets/squircle.png"),
-                                    height: 73,
-                                    width: 73,
-                                  ),
-                                )
-                            ),
-                            /* End - Back */
+                                  )
+                              ),
+                              child: const Image(
+                                image: AssetImage("assets/squircle.png"),
+                                height: 73,
+                                width: 73,
+                              ),
+                            )
+                        ),
+                        /* End - Back */
 
-                            /* End - Content */
+                        /* End - Content */
 
-                            waitingAnimationPlaceholder
+                        waitingAnimationPlaceholder
 
-                          ],
-                        )
+                      ],
                     )
                 )
             )

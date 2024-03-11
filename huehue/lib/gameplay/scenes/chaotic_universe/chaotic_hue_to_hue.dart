@@ -25,7 +25,6 @@ import 'package:huehue/gameplay/scenes/ordered_universe/elements/game_statues.da
 import 'package:huehue/preferences/io/preferences_io.dart';
 import 'package:huehue/resources/colors_resources.dart';
 import 'package:huehue/resources/strings_resources.dart';
-import 'package:huehue/utils/animation/fade_transition.dart';
 import 'package:huehue/utils/navigations/navigation_commands.dart';
 import 'package:huehue/utils/operations/colors.dart';
 import 'package:huehue/utils/operations/lifecycler.dart';
@@ -44,7 +43,6 @@ class ChaoticHueToHue extends StatefulWidget {
   @override
   State<ChaoticHueToHue> createState() => _ChaoticHueToHueState();
 }
-
 class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderStateMixin implements GameStatuesListener {
 
   Timer? gameplayTimer;
@@ -164,331 +162,317 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
     return ClipRRect(
         borderRadius: BorderRadius.circular(37),
-        child: MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: StringsResources.applicationName(),
-            color: ColorsResources.primaryColorDarkest,
-            theme: ThemeData(
-              fontFamily: 'Ubuntu',
-              colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColorDarkest),
-              backgroundColor: ColorsResources.primaryColorDarkest,
-              pageTransitionsTheme: const PageTransitionsTheme(builders: {
-                TargetPlatform.android: FadeTransitionBuilder(),
-                TargetPlatform.iOS: FadeTransitionBuilder(),
-              }),
-            ),
-            home: Scaffold(
-                resizeToAvoidBottomInset: true,
-                extendBody: true,
-                backgroundColor: ColorsResources.primaryColorDarkest,
-                body: SizedBox(
+        child: Scaffold(
+            resizeToAvoidBottomInset: true,
+            extendBody: true,
+            backgroundColor: ColorsResources.primaryColorDarkest,
+            body: SizedBox(
+                height: double.maxFinite,
+                width: double.maxFinite,
+                child: Container(
                     height: double.maxFinite,
                     width: double.maxFinite,
-                    child: Container(
-                        height: double.maxFinite,
-                        width: double.maxFinite,
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
-                                transform: GradientRotation(degreeToRadian(gradientColorAngle))
-                            )
-                        ),
-                        child: Stack(
-                            children: [
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                            colors: List.generate(gradientColors.length, (index) => gradientColors[index]),
+                            transform: GradientRotation(degreeToRadian(gradientColorAngle))
+                        )
+                    ),
+                    child: Stack(
+                        children: [
 
-                              /* Start - Gameplay Control */
-                              Material(
-                                shadowColor: Colors.transparent,
-                                color: Colors.transparent,
-                                child: InkWell(
-                                  splashColor: ColorsResources.primaryColor,
-                                  splashFactory: InkRipple.splashFactory,
-                                  onTap: () {
-                                    debugPrint("Gameplay Clicked");
+                          /* Start - Gameplay Control */
+                          Material(
+                            shadowColor: Colors.transparent,
+                            color: Colors.transparent,
+                            child: InkWell(
+                              splashColor: ColorsResources.primaryColor,
+                              splashFactory: InkRipple.splashFactory,
+                              onTap: () {
+                                debugPrint("Gameplay Clicked");
 
-                                    if (chaoticGradientsShapes.randomShapedColor.isNotEmpty) {
-                                      debugPrint("Gameplay Colors: ${gradientColors} ||| Shaped Colors: ${chaoticGradientsShapes.randomShapedColor}");
+                                if (chaoticGradientsShapes.randomShapedColor.isNotEmpty) {
+                                  debugPrint("Gameplay Colors: ${gradientColors} ||| Shaped Colors: ${chaoticGradientsShapes.randomShapedColor}");
 
-                                      processPlayAction(gradientColors, chaoticGradientsShapes.randomShapedColor);
+                                  processPlayAction(gradientColors, chaoticGradientsShapes.randomShapedColor);
 
-                                    }
+                                }
 
-                                  },
-                                ),
-                              ),
-                              /* End - Gameplay Control */
+                              },
+                            ),
+                          ),
+                          /* End - Gameplay Control */
 
-                              Positioned(
-                                  top: 73,
-                                  right: 37,
-                                  left: 37,
-                                  child: chaoticGradientsShapes
-                              ),
+                          Positioned(
+                              top: 73,
+                              right: 37,
+                              left: 37,
+                              child: chaoticGradientsShapes
+                          ),
 
-                              /* Start - Luck */
-                              Positioned(
-                                  bottom: 37,
-                                  right: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: luckOpacity,
-                                      duration: const Duration(milliseconds: 1357),
+                          /* Start - Luck */
+                          Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: AnimatedOpacity(
+                                  opacity: luckOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: ColorsResources.black.withOpacity(0.73),
+                                                blurRadius: 19
+                                            )
+                                          ]
+                                      ),
+                                      child: const WidgetMask(
+                                          blendMode: BlendMode.srcATop,
+                                          childSaveLayer: true,
+                                          mask: ColoredBox(
+                                              color: ColorsResources.primaryColorDarkest
+                                          ),
+                                          child: Image(
+                                            image: AssetImage("assets/squircle.png"),
+                                            height: 73,
+                                            width: 73,
+                                          )
+                                      )
+                                  )
+                              )
+                          ),
+                          Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: AnimatedOpacity(
+                                  opacity: luckOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: WidgetMask(
+                                    blendMode: BlendMode.srcIn,
+                                    childSaveLayer: true,
+                                    mask: Material(
+                                        shadowColor: Colors.transparent,
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            splashColor: ColorsResources.primaryColor,
+                                            splashFactory: InkRipple.splashFactory,
+                                            onTap: () {
+
+
+
+                                            },
+                                            child: const SizedBox(
+                                                height: 73,
+                                                width: 73
+                                            )
+                                        )
+                                    ),
+                                    child: const Image(
+                                      image: AssetImage("assets/squircle.png"),
+                                      height: 73,
+                                      width: 73,
+                                    ),
+                                  )
+                              )
+                          ),
+                          Positioned(
+                              bottom: 37,
+                              right: 37,
+                              child: AnimatedOpacity(
+                                  opacity: luckOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: SizedBox(
+                                      height: 73,
+                                      width: 73,
+                                      child: Center(
+                                          child: wavyLuckCounter.build(context)
+                                      )
+                                  )
+                              )
+                          ),
+                          Positioned(
+                              bottom: 119,
+                              right: 37,
+                              child: AnimatedOpacity(
+                                  opacity: luckOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: SizedBox(
+                                      width: 73,
                                       child: Container(
                                           decoration: BoxDecoration(
                                               boxShadow: [
                                                 BoxShadow(
-                                                    color: ColorsResources.black.withOpacity(0.73),
-                                                    blurRadius: 19
+                                                    color: ColorsResources.black.withOpacity(0.51),
+                                                    blurRadius: 13,
+                                                    offset: const Offset(0, -3)
                                                 )
                                               ]
                                           ),
-                                          child: const WidgetMask(
-                                              blendMode: BlendMode.srcATop,
-                                              childSaveLayer: true,
-                                              mask: ColoredBox(
-                                                  color: ColorsResources.primaryColorDarkest
-                                              ),
-                                              child: Image(
-                                                image: AssetImage("assets/squircle.png"),
-                                                height: 73,
-                                                width: 73,
-                                              )
+                                          child: const Image(
+                                            image: AssetImage("assets/luck_indicator.png"),
+                                            fit: BoxFit.contain,
                                           )
                                       )
                                   )
-                              ),
-                              Positioned(
-                                  bottom: 37,
-                                  right: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: luckOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: WidgetMask(
-                                        blendMode: BlendMode.srcIn,
-                                        childSaveLayer: true,
-                                        mask: Material(
-                                            shadowColor: Colors.transparent,
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                                splashColor: ColorsResources.primaryColor,
-                                                splashFactory: InkRipple.splashFactory,
-                                                onTap: () {
+                              )
+                          ),
+                          /* End - Luck */
 
-
-
-                                                },
-                                                child: const SizedBox(
-                                                    height: 73,
-                                                    width: 73
-                                                )
+                          /* Start - Point */
+                          Positioned(
+                              top: 37,
+                              left: 37,
+                              child: AnimatedOpacity(
+                                  opacity: pointsOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: Container(
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: ColorsResources.black.withOpacity(0.73),
+                                                blurRadius: 19
                                             )
-                                        ),
-                                        child: const Image(
-                                          image: AssetImage("assets/squircle.png"),
-                                          height: 73,
-                                          width: 73,
-                                        ),
-                                      )
-                                  )
-                              ),
-                              Positioned(
-                                  bottom: 37,
-                                  right: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: luckOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: SizedBox(
-                                          height: 73,
-                                          width: 73,
-                                          child: Center(
-                                              child: wavyLuckCounter.build(context)
-                                          )
-                                      )
-                                  )
-                              ),
-                              Positioned(
-                                  bottom: 119,
-                                  right: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: luckOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: SizedBox(
-                                          width: 73,
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: ColorsResources.black.withOpacity(0.51),
-                                                        blurRadius: 13,
-                                                        offset: const Offset(0, -3)
-                                                    )
-                                                  ]
-                                              ),
-                                              child: const Image(
-                                                image: AssetImage("assets/luck_indicator.png"),
-                                                fit: BoxFit.contain,
-                                              )
-                                          )
-                                      )
-                                  )
-                              ),
-                              /* End - Luck */
-
-                              /* Start - Point */
-                              Positioned(
-                                  top: 37,
-                                  left: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: pointsOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                    color: ColorsResources.black.withOpacity(0.73),
-                                                    blurRadius: 19
-                                                )
-                                              ]
+                                          ]
+                                      ),
+                                      child: const WidgetMask(
+                                          blendMode: BlendMode.srcATop,
+                                          childSaveLayer: true,
+                                          mask: ColoredBox(
+                                              color: ColorsResources.primaryColorDarkest
                                           ),
-                                          child: const WidgetMask(
-                                              blendMode: BlendMode.srcATop,
-                                              childSaveLayer: true,
-                                              mask: ColoredBox(
-                                                  color: ColorsResources.primaryColorDarkest
-                                              ),
-                                              child: Image(
-                                                image: AssetImage("assets/squircle.png"),
-                                                height: 73,
-                                                width: 73,
-                                              )
+                                          child: Image(
+                                            image: AssetImage("assets/squircle.png"),
+                                            height: 73,
+                                            width: 73,
                                           )
                                       )
                                   )
-                              ),
-                              Positioned(
-                                  top: 37,
-                                  left: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: pointsOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: WidgetMask(
-                                        blendMode: BlendMode.srcIn,
-                                        childSaveLayer: true,
-                                        mask: Material(
-                                            shadowColor: Colors.transparent,
-                                            color: Colors.transparent,
-                                            child: InkWell(
-                                                splashColor: ColorsResources.primaryColor,
-                                                splashFactory: InkRipple.splashFactory,
-                                                onTap: () {
+                              )
+                          ),
+                          Positioned(
+                              top: 37,
+                              left: 37,
+                              child: AnimatedOpacity(
+                                  opacity: pointsOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: WidgetMask(
+                                    blendMode: BlendMode.srcIn,
+                                    childSaveLayer: true,
+                                    mask: Material(
+                                        shadowColor: Colors.transparent,
+                                        color: Colors.transparent,
+                                        child: InkWell(
+                                            splashColor: ColorsResources.primaryColor,
+                                            splashFactory: InkRipple.splashFactory,
+                                            onTap: () {
 
 
 
-                                                },
-                                                child: const SizedBox(
-                                                    height: 73,
-                                                    width: 73
-                                                )
+                                            },
+                                            child: const SizedBox(
+                                                height: 73,
+                                                width: 73
                                             )
-                                        ),
-                                        child: const Image(
-                                          image: AssetImage("assets/squircle.png"),
-                                          height: 73,
-                                          width: 73,
-                                        ),
-                                      )
+                                        )
+                                    ),
+                                    child: const Image(
+                                      image: AssetImage("assets/squircle.png"),
+                                      height: 73,
+                                      width: 73,
+                                    ),
                                   )
-                              ),
-                              Positioned(
-                                  top: 37,
-                                  left: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: pointsOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: SizedBox(
-                                          height: 73,
-                                          width: 73,
-                                          child: Center(
-                                              child: Padding(
-                                                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                                                  child: AnimatedSwitcher(
-                                                      duration: const Duration(milliseconds: 333),
-                                                      transitionBuilder: (Widget child, Animation<double> animation) {
+                              )
+                          ),
+                          Positioned(
+                              top: 37,
+                              left: 37,
+                              child: AnimatedOpacity(
+                                  opacity: pointsOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: SizedBox(
+                                      height: 73,
+                                      width: 73,
+                                      child: Center(
+                                          child: Padding(
+                                              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                                              child: AnimatedSwitcher(
+                                                  duration: const Duration(milliseconds: 333),
+                                                  transitionBuilder: (Widget child, Animation<double> animation) {
 
-                                                        return FadeTransition(opacity: animation, child: child);
-                                                      },
-                                                      child: Text(
-                                                        currentPoints.toString(),
-                                                        key: ValueKey<int>(currentPoints),
-                                                        textAlign: TextAlign.center,
-                                                        style: TextStyle(
-                                                            color: ColorsResources.premiumLight,
-                                                            fontSize: 31,
-                                                            fontFamily: "Electric",
-                                                            shadows: [
-                                                              Shadow(
-                                                                  color: ColorsResources.white.withOpacity(0.19),
-                                                                  blurRadius: 7,
-                                                                  offset: const Offset(0, 3)
-                                                              )
-                                                            ]
-                                                        ),
-                                                      )
+                                                    return FadeTransition(opacity: animation, child: child);
+                                                  },
+                                                  child: Text(
+                                                    currentPoints.toString(),
+                                                    key: ValueKey<int>(currentPoints),
+                                                    textAlign: TextAlign.center,
+                                                    style: TextStyle(
+                                                        color: ColorsResources.premiumLight,
+                                                        fontSize: 31,
+                                                        fontFamily: "Electric",
+                                                        shadows: [
+                                                          Shadow(
+                                                              color: ColorsResources.white.withOpacity(0.19),
+                                                              blurRadius: 7,
+                                                              offset: const Offset(0, 3)
+                                                          )
+                                                        ]
+                                                    ),
                                                   )
                                               )
                                           )
                                       )
                                   )
-                              ),
-                              Positioned(
-                                  top: 119,
-                                  left: 37,
-                                  child: AnimatedOpacity(
-                                      opacity: pointsOpacity,
-                                      duration: const Duration(milliseconds: 1357),
-                                      child: SizedBox(
-                                          width: 73,
-                                          child: Container(
-                                              decoration: BoxDecoration(
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                        color: ColorsResources.black.withOpacity(0.51),
-                                                        blurRadius: 13,
-                                                        offset: const Offset(0, 3)
-                                                    )
-                                                  ]
-                                              ),
-                                              child: const Image(
-                                                image: AssetImage("assets/point_indicator.png"),
-                                                fit: BoxFit.contain,
-                                              )
-                                          )
-                                      )
-                                  )
-                              ),
-                              /* End - Point */
-
-                              AnimatedOpacity(
-                                  opacity: gameplayWaitingOpacity,
-                                  duration: Duration.zero,
-                                  child: Center(
+                              )
+                          ),
+                          Positioned(
+                              top: 119,
+                              left: 37,
+                              child: AnimatedOpacity(
+                                  opacity: pointsOpacity,
+                                  duration: const Duration(milliseconds: 1357),
+                                  child: SizedBox(
+                                      width: 73,
                                       child: Container(
-                                          height: 333,
-                                          width: 333,
-                                          alignment: Alignment.center,
-                                          child: LoadingAnimationWidget.discreteCircle(
-                                              color: ColorsResources.premiumLight,
-                                              secondRingColor: ColorsResources.primaryColorLighter,
-                                              thirdRingColor: ColorsResources.cyan,
-                                              size: 73
+                                          decoration: BoxDecoration(
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: ColorsResources.black.withOpacity(0.51),
+                                                    blurRadius: 13,
+                                                    offset: const Offset(0, 3)
+                                                )
+                                              ]
+                                          ),
+                                          child: const Image(
+                                            image: AssetImage("assets/point_indicator.png"),
+                                            fit: BoxFit.contain,
                                           )
                                       )
                                   )
-                              ),
+                              )
+                          ),
+                          /* End - Point */
 
-                              gameStatuesPlaceholder
+                          AnimatedOpacity(
+                              opacity: gameplayWaitingOpacity,
+                              duration: Duration.zero,
+                              child: Center(
+                                  child: Container(
+                                      height: 333,
+                                      width: 333,
+                                      alignment: Alignment.center,
+                                      child: LoadingAnimationWidget.discreteCircle(
+                                          color: ColorsResources.premiumLight,
+                                          secondRingColor: ColorsResources.primaryColorLighter,
+                                          thirdRingColor: ColorsResources.cyan,
+                                          size: 73
+                                      )
+                                  )
+                              )
+                          ),
 
-                            ]
-                        )
+                          gameStatuesPlaceholder
+
+                        ]
                     )
                 )
             )
