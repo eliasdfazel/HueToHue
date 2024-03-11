@@ -101,6 +101,7 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
   @override
   void dispose() {
+    super.dispose();
 
     animationController?.dispose();
 
@@ -108,7 +109,6 @@ class _ChaoticHueToHueState extends State<ChaoticHueToHue> with TickerProviderSt
 
     BackButtonInterceptor.remove(aInterceptor);
 
-    super.dispose();
   }
 
   @override
