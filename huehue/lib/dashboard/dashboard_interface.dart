@@ -568,9 +568,10 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
 
                                       },
                                       child: const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 13, 0, 7),
+                                          padding: EdgeInsets.all(17),
                                           child: Image(
-                                              image: AssetImage("assets/link.png")
+                                              image: AssetImage("assets/share.png"),
+                                            color: ColorsResources.premiumLight,
                                           )
                                       )
                                   )
