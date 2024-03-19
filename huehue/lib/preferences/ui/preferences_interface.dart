@@ -37,7 +37,6 @@ class PreferencesInterface extends StatefulWidget {
   @override
   State<PreferencesInterface> createState() => _PreferencesInterfaceState();
 }
-
 class _PreferencesInterfaceState extends State<PreferencesInterface> implements SynchronizationStatus {
 
   SyncIO syncIO = SyncIO();
@@ -247,7 +246,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                 /* End - Continuously Switch */
 
                                 const Divider(
-                                    height: 37,
+                                    height: 51,
                                     color: Colors.transparent
                                 ),
 
@@ -257,7 +256,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
                                 /* End - Sounds Switch */
 
                                 const Divider(
-                                    height: 37,
+                                    height: 51,
                                     color: Colors.transparent
                                 ),
 
