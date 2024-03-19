@@ -15,9 +15,14 @@ class StringsResources {
     return "Hue To Hue";
   }
 
-  static String linksGeeksEmpire() {
+  static String instagramGeeksEmpire() {
 
-    return "https://GeeksEmpire.co/Links";
+    return "https://instagram.com/geeksempire.co";
+  }
+
+  static String sharingText() {
+
+    return "Hue To Hue: Playing Colors - Game Of Focus & Quick Reactions 🎮 🎨 ⚡ https://play.google.com/store/apps/details?id=co.geeksempire.huehue";
   }
 
   static String switchOn() {

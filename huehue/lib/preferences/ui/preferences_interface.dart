@@ -486,7 +486,7 @@ class _PreferencesInterfaceState extends State<PreferencesInterface> implements 
 
                                       },
                                       child: const Padding(
-                                          padding: EdgeInsets.fromLTRB(0, 19, 5, 13),
+                                          padding: EdgeInsets.fromLTRB(7, 0, 11, 0),
                                           child: Image(
                                             image: AssetImage("assets/back.png"),
                                             height: 37,

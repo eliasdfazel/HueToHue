@@ -35,6 +35,7 @@ import 'package:huehue/utils/ui/elements/nexted_tooltip.dart';
 import 'package:huehue/utils/ui/system/system_bars.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:widget_mask/widget_mask.dart';
 
@@ -303,7 +304,11 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                       splashFactory: InkRipple.splashFactory,
                                       onTap: () {
 
+                                        Future.delayed(const Duration(milliseconds: 555), () {
 
+                                          launchUrl(Uri.parse(StringsResources.instagramGeeksEmpire()), mode: LaunchMode.externalApplication);
+
+                                        });
 
                                       },
                                       child: const Image(
@@ -557,9 +562,9 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                                       splashColor: ColorsResources.primaryColor,
                                       splashFactory: InkRipple.splashFactory,
                                       onTap: () {
-                                        FirebaseAnalytics.instance.logEvent(name: "GeeksEmpireLinks");
+                                        FirebaseAnalytics.instance.logEvent(name: "Share");
 
-                                        launchUrl(Uri.parse(StringsResources.linksGeeksEmpire()), mode: LaunchMode.externalApplication);
+                                        Share.share(StringsResources.sharingText());
 
                                       },
                                       child: const Padding(
