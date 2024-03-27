@@ -15,6 +15,12 @@ dependencies:
 
 
   ####### ####### #######
+  app_version_update: ^4.0.1
+  ####### ####### #######
+
+
+
+  ####### ####### #######
   back_button_interceptor: ^7.0.2
 
   blobs: ^2.0.0

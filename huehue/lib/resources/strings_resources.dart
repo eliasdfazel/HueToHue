@@ -25,6 +25,11 @@ class StringsResources {
     return "Hue To Hue: Playing Colors - Game Of Focus & Quick Reactions 🎮 🎨 ⚡ https://play.google.com/store/apps/details?id=co.geeksempire.huehue";
   }
 
+  static String availableUpdate() {
+
+    return "Update";
+  }
+
   static String switchOn() {
 
     return "on";

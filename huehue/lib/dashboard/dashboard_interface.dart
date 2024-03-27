@@ -19,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_inner_shadow/flutter_inner_shadow.dart';
 import 'package:games_services/games_services.dart';
+import 'package:huehue/Update/process/UpdateAvailability.dart';
+import 'package:huehue/Update/ui/UpdateWidget.dart';
 import 'package:huehue/gameplay/assets/assets_io.dart';
 import 'package:huehue/gameplay/scenes/chaotic_universe/chaotic_hue_to_hue.dart';
 import 'package:huehue/gameplay/scenes/ordered_universe/data/gameplay_paths.dart';
@@ -48,6 +50,8 @@ class DashboardInterface extends StatefulWidget {
 }
 class DashboardInterfaceState extends State<DashboardInterface> implements SynchronizationStatus, AssetsStatus {
 
+  UpdateAvailability updateAvailability = UpdateAvailability();
+
   static final backgroundAudioPlayer = AudioPlayer();
 
   GameplayPaths gameplayPaths = GameplayPaths();
@@ -69,6 +73,8 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
   bool newLevelTooltip = false;
 
   Widget waitingAnimationPlaceholder = Container();
+
+  Widget updatePlaceholder = Container();
 
   @override
   void dispose() {
@@ -125,6 +131,21 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
         previousTooltip = false;
 
       });
+
+    });
+
+    updateAvailability.check().then((updateData) {
+      debugPrint("Update Available: ${updateData.$1}");
+
+      if (true) {
+
+        setState(() {
+
+          updatePlaceholder = updateWidget(updateData.$2);
+
+        });
+
+      }
 
     });
 
@@ -261,6 +282,8 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                         /* End - Stroke | Play */
 
                         waitingAnimationPlaceholder,
+
+                        updatePlaceholder,
 
                         /* Start - Content */
                         /* Start - Branding */

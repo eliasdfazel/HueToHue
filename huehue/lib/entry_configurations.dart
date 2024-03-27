@@ -30,12 +30,12 @@ class _EntryConfigurationsState extends State<EntryConfigurations> with SingleTi
 
   @override
   void initState() {
+    super.initState();
 
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
     changeColor(ColorsResources.primaryColorDarkest, ColorsResources.primaryColorDarkest);
 
-    super.initState();
   }
 
   @override
