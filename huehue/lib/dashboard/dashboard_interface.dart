@@ -137,7 +137,7 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
     updateAvailability.check().then((updateData) {
       debugPrint("Update Available: ${updateData.$1}");
 
-      if (true) {
+      if (updateData.$1) {
 
         setState(() {
 
@@ -282,8 +282,6 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                         /* End - Stroke | Play */
 
                         waitingAnimationPlaceholder,
-
-                        updatePlaceholder,
 
                         /* Start - Content */
                         /* Start - Branding */
@@ -608,6 +606,8 @@ class DashboardInterfaceState extends State<DashboardInterface> implements Synch
                         ),
                         /* End - Link */
                         /* End - Content */
+
+                        updatePlaceholder
 
                       ],
                     )
