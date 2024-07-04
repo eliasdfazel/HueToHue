@@ -59,7 +59,6 @@ void main() async {
         theme: ThemeData(
           fontFamily: 'Ubuntu',
           colorScheme: ColorScheme.fromSwatch().copyWith(secondary: ColorsResources.primaryColor),
-          backgroundColor: ColorsResources.primaryColorDarkest,
           pageTransitionsTheme: const PageTransitionsTheme(builders: {
             TargetPlatform.android: FadeTransitionBuilder(),
             TargetPlatform.iOS: FadeTransitionBuilder(),
